@@ -2,10 +2,6 @@ import { initializeApp, getApps, cert, type App } from "firebase-admin/app";
 import { getAuth, type Auth } from "firebase-admin/auth";
 import { getFirestore, type Firestore } from "firebase-admin/firestore";
 
-let adminApp: App;
-let adminAuth: Auth;
-let adminDb: Firestore;
-
 function getAdminApp(): App {
   if (getApps().length > 0) {
     return getApps()[0]!;
@@ -22,8 +18,15 @@ function getAdminApp(): App {
   });
 }
 
-adminApp = getAdminApp();
-adminAuth = getAuth(adminApp);
-adminDb = getFirestore(adminApp);
+function makeProxy<T extends object>(getInstance: () => T): T {
+  return new Proxy({} as T, {
+    get(_, prop) {
+      const instance = getInstance();
+      const value = instance[prop as keyof T];
+      return typeof value === "function" ? (value as Function).bind(instance) : value;
+    },
+  });
+}
 
-export { adminApp, adminAuth, adminDb };
+export const adminAuth: Auth = makeProxy(() => getAuth(getAdminApp()));
+export const adminDb: Firestore = makeProxy(() => getFirestore(getAdminApp()));
