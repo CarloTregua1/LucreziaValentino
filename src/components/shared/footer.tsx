@@ -7,22 +7,22 @@ export function Footer() {
         <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
           <div>
             <p className="font-serif text-xl text-[var(--color-foreground)]">Lucrezia</p>
-            <p className="mt-2 text-xs text-[var(--color-muted)]">Moda italiana di qualità</p>
+            <p className="mt-2 text-xs text-[var(--color-muted)]">Consulente in bonus e fiscalità</p>
           </div>
 
           <div className="flex flex-col gap-2">
             <p className="text-xs font-medium uppercase tracking-widest text-[var(--color-muted)]">
-              Negozio
+              Servizi
             </p>
-            <Link href="/prodotti" className="text-sm text-[var(--color-foreground)] hover:text-[var(--color-accent)]">Collezione</Link>
-            <Link href="/chi-siamo" className="text-sm text-[var(--color-foreground)] hover:text-[var(--color-accent)]">Chi siamo</Link>
+            <Link href="/servizi" className="text-sm text-[var(--color-foreground)] hover:text-[var(--color-accent)]">Tutti i servizi</Link>
+            <Link href="/chi-siamo" className="text-sm text-[var(--color-foreground)] hover:text-[var(--color-accent)]">Chi sono</Link>
           </div>
 
           <div className="flex flex-col gap-2">
             <p className="text-xs font-medium uppercase tracking-widest text-[var(--color-muted)]">
               Assistenza
             </p>
-            <Link href="/account/messaggi" className="text-sm text-[var(--color-foreground)] hover:text-[var(--color-accent)]">Contattaci</Link>
+            <Link href="/account/messaggi" className="text-sm text-[var(--color-foreground)] hover:text-[var(--color-accent)]">Contattami</Link>
             <Link href="/account/ordini" className="text-sm text-[var(--color-foreground)] hover:text-[var(--color-accent)]">I miei ordini</Link>
           </div>
 

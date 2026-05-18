@@ -13,16 +13,16 @@ export function Nav() {
 
         <nav className="hidden items-center gap-8 md:flex">
           <Link
-            href="/prodotti"
+            href="/servizi"
             className="text-sm tracking-wide text-[var(--color-muted)] transition-colors hover:text-[var(--color-foreground)]"
           >
-            Collezione
+            Servizi
           </Link>
           <Link
             href="/chi-siamo"
             className="text-sm tracking-wide text-[var(--color-muted)] transition-colors hover:text-[var(--color-foreground)]"
           >
-            Chi siamo
+            Chi sono
           </Link>
         </nav>
 

@@ -8,11 +8,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   return {
     title: slug,
-    description: `Scopri ${slug} su Lucrezia.`,
+    description: `Scopri ${slug} — consulenza di Lucrezia.`,
   };
 }
 
-export default async function ProductDetailPage({ params }: Props) {
+export default async function ServizioDetailPage({ params }: Props) {
   const { slug } = await params;
 
   return (
@@ -21,7 +21,7 @@ export default async function ProductDetailPage({ params }: Props) {
         <h1 className="font-serif text-[var(--text-h1)] text-[var(--color-foreground)]">
           {slug}
         </h1>
-        <p className="mt-6 text-[var(--color-muted)]">Dettaglio prodotto — in costruzione.</p>
+        <p className="mt-6 text-[var(--color-muted)]">Dettaglio servizio — in costruzione.</p>
       </div>
     </section>
   );

@@ -11,7 +11,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         <nav className="mt-8 flex flex-col gap-1">
           {[
             { href: "/admin", label: "Dashboard" },
-            { href: "/admin/prodotti", label: "Prodotti" },
+            { href: "/admin/servizi", label: "Servizi" },
             { href: "/admin/ordini", label: "Ordini" },
             { href: "/admin/messaggi", label: "Messaggi" },
             { href: "/admin/categorie", label: "Categorie" },
