@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CartLink } from "./cart-count";
 
 export function Nav() {
   return (
@@ -33,12 +34,7 @@ export function Nav() {
           >
             Account
           </Link>
-          <Link
-            href="/carrello"
-            className="text-sm tracking-wide text-[var(--color-foreground)]"
-          >
-            Carrello (0)
-          </Link>
+          <CartLink />
         </div>
       </div>
     </header>
