@@ -1,21 +1,30 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { getServizioById } from "@/lib/actions/servizi";
+import { ServizioForm } from "../_components/servizio-form";
 
 interface Props {
   params: Promise<{ id: string }>;
 }
 
-export const metadata: Metadata = { title: "Modifica servizio | Admin" };
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id } = await params;
+  const servizio = await getServizioById(id);
+  return { title: servizio ? `${servizio.name} | Admin` : "Servizio | Admin" };
+}
 
 export default async function AdminEditServizioPage({ params }: Props) {
   const { id } = await params;
+  const servizio = await getServizioById(id);
+
+  if (!servizio) notFound();
 
   return (
-    <div>
-      <h1 className="font-serif text-3xl text-[var(--color-foreground)]">
-        Modifica servizio
+    <div className="mx-auto max-w-3xl">
+      <h1 className="mb-10 font-serif text-3xl text-[var(--color-foreground)]">
+        Modifica: {servizio.name}
       </h1>
-      <p className="mt-2 text-sm text-[var(--color-muted)]">ID: {id}</p>
-      <p className="mt-6 text-[var(--color-muted)]">Form servizio — in costruzione.</p>
+      <ServizioForm servizio={servizio} />
     </div>
   );
 }

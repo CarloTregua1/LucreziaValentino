@@ -209,6 +209,34 @@ export interface SettingsDoc {
   shippingPolicy: LocalizedString;
 }
 
+/* ── Servizio ── */
+
+export type ServizioType = "consulenza" | "digitale";
+export type ServizioStatus = "draft" | "published";
+
+export interface ServizioImage {
+  url: string;
+  alt: string;
+  order: number;
+}
+
+export interface ServizioDoc {
+  id: string;
+  slug: string;
+  name: string;
+  shortDescription: string;
+  description: string;
+  type: ServizioType;
+  category: string;
+  priceCents: number;
+  compareAtPriceCents?: number;
+  images: ServizioImage[];
+  status: ServizioStatus;
+  seo: { title?: string; description?: string };
+  createdAt: string;
+  updatedAt: string;
+}
+
 /* ── Cart (client-side) ── */
 
 export interface CartItem {
