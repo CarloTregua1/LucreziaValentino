@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
+import { FirebaseProvider } from "@/components/providers/firebase-provider";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -20,10 +21,10 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   title: {
     template: "%s | Lucrezia",
-    default: "Lucrezia — Moda italiana",
+    default: "Lucrezia — Consulente in bonus e fiscalità",
   },
   description:
-    "Scopri la collezione esclusiva di Lucrezia. Moda italiana di qualità, consegnata con cura.",
+    "Consulenza professionale su bonus e ottimizzazione fiscale. Scopri i servizi di Lucrezia.",
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_APP_URL ?? "https://lucrezia-shop.vercel.app"
   ),
@@ -47,11 +48,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="it"
-      className={`${cormorant.variable} ${dmSans.variable}`}
-    >
-      <body className="min-h-screen flex flex-col antialiased">{children}</body>
+    <html lang="it" className={`${cormorant.variable} ${dmSans.variable}`}>
+      <body className="min-h-screen flex flex-col antialiased">
+        <FirebaseProvider>{children}</FirebaseProvider>
+      </body>
     </html>
   );
 }
