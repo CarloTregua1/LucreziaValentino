@@ -11,26 +11,37 @@ export async function getServizi(status?: "draft" | "published"): Promise<Serviz
     const all = snap.docs.map((d) => d.data() as ServizioDoc);
     const filtered = status ? all.filter((s) => s.status === status) : all;
     return filtered.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
-  } catch {
+  } catch (e) {
+    console.error("getServizi failed", e);
     return [];
   }
 }
 
 export async function getServizioBySlug(slug: string): Promise<ServizioDoc | null> {
-  const snap = await adminDb
-    .collection("servizi")
-    .where("slug", "==", slug)
-    .limit(1)
-    .get();
+  try {
+    const snap = await adminDb
+      .collection("servizi")
+      .where("slug", "==", slug)
+      .limit(1)
+      .get();
 
-  if (snap.empty) return null;
-  return snap.docs[0].data() as ServizioDoc;
+    if (snap.empty) return null;
+    return snap.docs[0].data() as ServizioDoc;
+  } catch (e) {
+    console.error("getServizioBySlug failed", e);
+    return null;
+  }
 }
 
 export async function getServizioById(id: string): Promise<ServizioDoc | null> {
-  const doc = await adminDb.collection("servizi").doc(id).get();
-  if (!doc.exists) return null;
-  return doc.data() as ServizioDoc;
+  try {
+    const doc = await adminDb.collection("servizi").doc(id).get();
+    if (!doc.exists) return null;
+    return doc.data() as ServizioDoc;
+  } catch (e) {
+    console.error("getServizioById failed", e);
+    return null;
+  }
 }
 
 export async function createServizio(

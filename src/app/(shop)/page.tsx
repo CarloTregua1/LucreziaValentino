@@ -10,6 +10,10 @@ export const metadata: Metadata = {
     "Consulenza professionale su bonus e ottimizzazione fiscale. Strategie su misura per privati e aziende.",
 };
 
+// Render at request time, not at build time — the homepage reads from
+// Firestore and we don't want the Vercel build to depend on the DB.
+export const dynamic = "force-dynamic";
+
 const CARD_PLACEHOLDERS = [
   "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=900&q=85",
   "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=900&q=85",
