@@ -1,13 +1,36 @@
 "use client";
 
+import { useState, useTransition } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useCartStore } from "@/lib/store/cart";
 import { formatCents } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/components/providers/firebase-provider";
+import { createCheckoutSession } from "@/lib/actions/checkout";
 
 export function CartContents() {
   const { items, removeItem, updateQuantity, totalCents } = useCartStore();
+  const { user, loading: authLoading } = useAuth();
+  const [pending, startTransition] = useTransition();
+  const [error, setError] = useState<string | null>(null);
+
+  function handleCheckout() {
+    setError(null);
+    startTransition(async () => {
+      const result = await createCheckoutSession({
+        items: items.map((i) => ({
+          productId: i.productId,
+          quantity: i.quantity,
+        })),
+      });
+      if (result.ok) {
+        window.location.href = result.url;
+      } else {
+        setError(result.error);
+      }
+    });
+  }
 
   if (items.length === 0) {
     return (
@@ -142,7 +165,33 @@ export function CartContents() {
               {formatCents(totalCents())}
             </span>
           </div>
-          <Button className="mt-6 w-full">Procedi al pagamento</Button>
+
+          {user ? (
+            <Button
+              className="mt-6 w-full"
+              onClick={handleCheckout}
+              isLoading={pending}
+              disabled={pending || items.length === 0}
+            >
+              {pending ? "Reindirizzamento…" : "Procedi al pagamento"}
+            </Button>
+          ) : authLoading ? (
+            <Button className="mt-6 w-full" disabled>
+              Verifico accesso…
+            </Button>
+          ) : (
+            <Link
+              href="/login?from=/carrello"
+              className="mt-6 block w-full bg-[var(--color-foreground)] py-4 text-center text-sm tracking-wide text-[var(--color-background)] transition-colors hover:bg-[var(--color-accent)]"
+            >
+              Accedi per acquistare
+            </Link>
+          )}
+
+          {error && (
+            <p className="mt-3 text-sm text-[var(--color-error)]">{error}</p>
+          )}
+
           <Link
             href="/servizi"
             className="link-underline mt-5 block text-center text-sm text-[var(--color-foreground-soft)]"

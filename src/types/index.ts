@@ -111,30 +111,17 @@ export type OrderStatus =
   | "pending"
   | "paid"
   | "fulfilled"
-  | "shipped"
-  | "delivered"
   | "cancelled"
   | "refunded";
 
 export interface OrderItem {
   productId: string;
-  variantId?: string;
   slug: string;
   name: string;
-  image: string;
+  image?: string;
   priceCents: number;
   quantity: number;
   subtotalCents: number;
-}
-
-export interface OrderAddress {
-  fullName: string;
-  street: string;
-  city: string;
-  postalCode: string;
-  province: string;
-  country: string;
-  phone: string;
 }
 
 export interface OrderDoc {
@@ -144,19 +131,13 @@ export interface OrderDoc {
   status: OrderStatus;
   items: OrderItem[];
   subtotalCents: number;
-  shippingCents: number;
-  taxCents: number;
   totalCents: number;
   currency: Currency;
   stripeSessionId: string;
   stripePaymentIntentId: string;
-  shippingAddress: OrderAddress;
-  billingAddress: OrderAddress;
-  shippingMethod?: string;
-  trackingNumber?: string;
   notes?: string;
-  createdAt: Timestamp;
-  updatedAt: Timestamp;
+  createdAt: string;
+  updatedAt: string;
 }
 
 /* ── Chat ── */
