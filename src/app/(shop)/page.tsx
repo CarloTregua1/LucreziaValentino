@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getServizi } from "@/lib/actions/servizi";
 import type { ServizioDoc } from "@/types";
+import { ParallaxGallery } from "./_components/parallax-gallery";
 
 export const metadata: Metadata = {
   title: "Lucrezia — Consulente in bonus e fiscalità",
@@ -320,6 +321,9 @@ export default async function HomePage() {
           </ol>
         </div>
       </section>
+
+      {/* ── Parallax gallery ── */}
+      <ParallaxGallery />
 
       {/* ── Brand story ── */}
       <section className="section-spacing">
