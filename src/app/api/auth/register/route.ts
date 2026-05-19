@@ -41,7 +41,12 @@ export async function POST(req: Request) {
       path: "/",
     });
     return response;
-  } catch {
-    return NextResponse.json({ error: "Registrazione non riuscita" }, { status: 500 });
+  } catch (err) {
+    console.error("register route failed:", err);
+    const message = err instanceof Error ? err.message : "Errore sconosciuto";
+    return NextResponse.json(
+      { error: "Registrazione non riuscita", detail: message },
+      { status: 500 },
+    );
   }
 }
