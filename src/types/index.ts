@@ -149,11 +149,11 @@ export interface ConversationDoc {
   userId: string;
   userEmail: string;
   userName: string;
-  lastMessageAt: Timestamp;
+  lastMessageAt: string;
   lastMessagePreview: string;
   unreadByAdmin: boolean;
   unreadByCustomer: boolean;
-  createdAt: Timestamp;
+  createdAt: string;
 }
 
 export interface MessageDoc {
@@ -161,8 +161,8 @@ export interface MessageDoc {
   senderId: string;
   senderRole: SenderRole;
   content: string;
-  createdAt: Timestamp;
-  readAt?: Timestamp;
+  createdAt: string;
+  readAt?: string;
 }
 
 /* ── Settings ── */
