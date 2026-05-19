@@ -17,28 +17,25 @@ service cloud.firestore {
       return isSignedIn() && request.auth.token.role == 'admin';
     }
 
-    // ── Products & Categories (public read, admin-only write) ─────────────────
+    // ── Servizi (public read for published, admin-only via Admin SDK) ────────
 
-    match /products/{productId} {
-      allow read: if resource.data.status == 'active' || isAdmin();
-      allow write: if false; // writes go through Firebase Admin SDK only
-
-      match /variants/{variantId} {
-        allow read: if get(/databases/$(database)/documents/products/$(productId)).data.status == 'active' || isAdmin();
-        allow write: if false;
-      }
+    match /servizi/{servizioId} {
+      allow read: if resource.data.status == 'published' || isAdmin();
+      allow write: if false; // all writes go through server actions / Admin SDK
     }
+
+    // ── Categorie (placeholder — public read) ────────────────────────────────
 
     match /categories/{categoryId} {
       allow read: if true;
       allow write: if false;
     }
 
-    // ── Users ─────────────────────────────────────────────────────────────────
+    // ── Users (only own profile; admin can read all) ─────────────────────────
 
     match /users/{uid} {
       allow read: if isOwner(uid) || isAdmin();
-      allow write: if false; // user profile creation goes through server action
+      allow write: if false; // creation goes through /api/auth/register
 
       match /addresses/{addressId} {
         allow read: if isOwner(uid) || isAdmin();
@@ -46,36 +43,36 @@ service cloud.firestore {
       }
     }
 
-    // ── Orders ────────────────────────────────────────────────────────────────
+    // ── Ordini (owner reads own, admin reads all; writes only via webhook) ───
 
-    match /orders/{orderId} {
+    match /ordini/{ordineId} {
       allow read: if isAdmin() ||
         (isSignedIn() && resource.data.userId == request.auth.uid);
-      allow write: if false; // created only via Stripe webhook server handler
+      allow write: if false; // Stripe webhook writes via Admin SDK
     }
 
-    // ── Conversations & Messages ──────────────────────────────────────────────
+    // ── Conversazioni e messaggi (real-time chat) ────────────────────────────
+    // Conversation docs are keyed BY userId, so we can check the path
+    // directly instead of doing an extra get() on resource.data.userId.
 
-    match /conversations/{conversationId} {
-      allow read: if isAdmin() ||
-        (isSignedIn() && resource.data.userId == request.auth.uid);
-      allow write: if false;
+    match /conversations/{userId} {
+      allow read: if isOwner(userId) || isAdmin();
+      allow write: if false; // server actions handle writes with validation
 
       match /messages/{messageId} {
-        allow read: if isAdmin() ||
-          (isSignedIn() && get(/databases/$(database)/documents/conversations/$(conversationId)).data.userId == request.auth.uid);
-        allow write: if false; // messages written via server action to validate content
+        allow read: if isOwner(userId) || isAdmin();
+        allow write: if false;
       }
     }
 
-    // ── Settings (read-only, admin write via Admin SDK) ───────────────────────
+    // ── Settings (public read for shop config) ───────────────────────────────
 
     match /settings/{docId} {
       allow read: if true;
       allow write: if false;
     }
 
-    // ── Deny everything else ──────────────────────────────────────────────────
+    // ── Deny everything else by default ──────────────────────────────────────
 
     match /{document=**} {
       allow read, write: if false;
