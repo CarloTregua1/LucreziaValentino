@@ -4,14 +4,18 @@
   /* ── Colors ── */
   --color-background: #faf7f2;
   --color-foreground: #1e2b4a;
+  --color-foreground-soft: #2c3a5c;
   --color-muted: #7a726a;
   --color-muted-light: #b8afa5;
   --color-accent: #b5654b;
   --color-accent-hover: #9e5540;
   --color-accent-light: #f0e8e3;
+  --color-accent-deep: #7a3f2d;
   --color-border: #e6dfd6;
+  --color-border-strong: #d6cdc0;
   --color-card: #ffffff;
   --color-card-subtle: #f5f1eb;
+  --color-cream-deep: #efe8dd;
   --color-success: #3a7d44;
   --color-error: #c0392b;
   --color-warning: #e67e22;
@@ -21,13 +25,14 @@
   --font-sans: var(--font-dm-sans), system-ui, sans-serif;
 
   /* ── Font sizes ── */
-  --text-display: clamp(2.5rem, 6vw, 5rem);
-  --text-h1: clamp(2rem, 4vw, 3.5rem);
-  --text-h2: clamp(1.5rem, 3vw, 2.5rem);
+  --text-display: clamp(3rem, 8vw, 7rem);
+  --text-h1: clamp(2.25rem, 5vw, 4rem);
+  --text-h2: clamp(1.75rem, 3.5vw, 2.75rem);
   --text-h3: clamp(1.25rem, 2vw, 1.75rem);
+  --text-eyebrow: 0.7rem;
 
   /* ── Spacing ── */
-  --section-y: clamp(4rem, 8vw, 8rem);
+  --section-y: clamp(4.5rem, 9vw, 9rem);
   --container-x: clamp(1.5rem, 5vw, 2rem);
 
   /* ── Borders ── */
@@ -50,6 +55,11 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+body {
+  font-weight: 300;
+  letter-spacing: 0.005em;
+}
+
 h1,
 h2,
 h3,
@@ -58,8 +68,8 @@ h5,
 h6 {
   font-family: var(--font-serif);
   font-weight: 400;
-  line-height: 1.1;
-  letter-spacing: -0.01em;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
 }
 
 /* ── Utilities ── */
@@ -70,8 +80,118 @@ h6 {
   padding-inline: var(--container-x);
 }
 
+.container-md {
+  width: 100%;
+  max-width: 64rem;
+  margin-inline: auto;
+  padding-inline: var(--container-x);
+}
+
 .section-spacing {
   padding-block: var(--section-y);
+}
+
+.section-spacing-sm {
+  padding-block: clamp(3rem, 6vw, 5rem);
+}
+
+.eyebrow {
+  font-size: var(--text-eyebrow);
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.eyebrow-muted {
+  font-size: var(--text-eyebrow);
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.serif-italic {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Animated underline used on nav links and inline links */
+.link-underline {
+  position: relative;
+  display: inline-block;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 1px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--transition-base);
+}
+.link-underline:hover::after,
+.link-underline[data-active="true"]::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Decorative hairline + dot ornament */
+.hair-rule {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--color-muted);
+}
+.hair-rule::before,
+.hair-rule::after {
+  content: "";
+  display: block;
+  width: 2rem;
+  height: 1px;
+  background-color: currentColor;
+  opacity: 0.5;
+}
+
+/* Section index used as numerical anchor (01, 02 …) */
+.section-index {
+  font-family: var(--font-sans);
+  font-feature-settings: "tnum" 1;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  color: var(--color-muted);
+}
+
+/* Reveal-on-scroll baseline (used opportunistically) */
+@media (prefers-reduced-motion: no-preference) {
+  .fade-in {
+    animation: fade-in 600ms ease both;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Accordion summary marker reset */
+details > summary {
+  list-style: none;
+  cursor: pointer;
+}
+details > summary::-webkit-details-marker {
+  display: none;
 }
 
 /* ── Focus visible ── */
