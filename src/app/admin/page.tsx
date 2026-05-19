@@ -6,24 +6,25 @@ export const metadata: Metadata = { title: "Dashboard Admin" };
 export const dynamic = "force-dynamic";
 
 async function getStats() {
-  const [serviziSnap, ordiniSnap] = await Promise.all([
+  const results = await Promise.allSettled([
     adminDb.collection("servizi").get(),
     adminDb.collection("ordini").get(),
   ]);
 
-  const servizi = serviziSnap.docs.map((d) => d.data());
-  const published = servizi.filter((s) => s.status === "published").length;
-
-  const ordini = ordiniSnap.docs.map((d) => d.data());
-  const revenueCents = ordini
-    .filter((o) => o.status === "paid" || o.status === "fulfilled")
-    .reduce((sum, o) => sum + (o.totalCents ?? 0), 0);
+  const serviziDocs = results[0].status === "fulfilled"
+    ? results[0].value.docs.map((d) => d.data())
+    : [];
+  const ordiniDocs = results[1].status === "fulfilled"
+    ? results[1].value.docs.map((d) => d.data())
+    : [];
 
   return {
-    totalServizi: servizi.length,
-    publishedServizi: published,
-    totalOrdini: ordini.length,
-    revenueCents,
+    totalServizi: serviziDocs.length,
+    publishedServizi: serviziDocs.filter((s) => s.status === "published").length,
+    totalOrdini: ordiniDocs.length,
+    revenueCents: ordiniDocs
+      .filter((o) => o.status === "paid" || o.status === "fulfilled")
+      .reduce((sum, o) => sum + (o.totalCents ?? 0), 0),
   };
 }
 

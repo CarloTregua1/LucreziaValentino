@@ -14,3 +14,4 @@ firestore-debug.log
 *-service-account*.json
 .vercel
 .claude/
+tsconfig.tsbuildinfo

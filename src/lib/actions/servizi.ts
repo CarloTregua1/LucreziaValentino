@@ -6,14 +6,14 @@ import { revalidatePath } from "next/cache";
 import type { ServizioDoc } from "@/types";
 
 export async function getServizi(status?: "draft" | "published"): Promise<ServizioDoc[]> {
-  let query = adminDb.collection("servizi").orderBy("createdAt", "desc");
-
-  if (status) {
-    query = query.where("status", "==", status) as typeof query;
+  try {
+    const snap = await adminDb.collection("servizi").get();
+    const all = snap.docs.map((d) => d.data() as ServizioDoc);
+    const filtered = status ? all.filter((s) => s.status === status) : all;
+    return filtered.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+  } catch {
+    return [];
   }
-
-  const snap = await query.get();
-  return snap.docs.map((d) => d.data() as ServizioDoc);
 }
 
 export async function getServizioBySlug(slug: string): Promise<ServizioDoc | null> {
