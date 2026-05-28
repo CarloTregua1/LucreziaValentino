@@ -5,8 +5,8 @@
   --color-background: #faf7f2;
   --color-foreground: #1e2b4a;
   --color-foreground-soft: #2c3a5c;
-  --color-muted: #7a726a;
-  --color-muted-light: #b8afa5;
+  --color-muted: #5d564f;
+  --color-muted-light: #d4ccc2;
   --color-accent: #b5654b;
   --color-accent-hover: #9e5540;
   --color-accent-light: #f0e8e3;
@@ -29,10 +29,16 @@
   --text-h1: clamp(2.25rem, 5vw, 4rem);
   --text-h2: clamp(1.75rem, 3.5vw, 2.75rem);
   --text-h3: clamp(1.25rem, 2vw, 1.75rem);
-  --text-eyebrow: 0.7rem;
+  --text-eyebrow: 0.95rem;
+
+  /* Tighter line-heights on the small utilities so the bigger base size
+     doesn't make paragraphs feel airy. */
+  --text-xs--line-height: 1.5;
+  --text-sm--line-height: 1.55;
+  --text-base--line-height: 1.65;
 
   /* ── Spacing ── */
-  --section-y: clamp(4.5rem, 9vw, 9rem);
+  --section-y: clamp(2.75rem, 5vw, 5rem);
   --container-x: clamp(1.5rem, 5vw, 2rem);
 
   /* ── Borders ── */
@@ -48,6 +54,10 @@
 
 /* ── Base ── */
 html {
+  /* 18px base instead of the browser default 16px — every rem-based size on
+     the site scales up by 12.5%. This fixes small-text readability across
+     all viewports without per-utility overrides. */
+  font-size: 18px;
   background-color: var(--color-background);
   color: var(--color-foreground);
   font-family: var(--font-sans);
@@ -56,7 +66,7 @@ html {
 }
 
 body {
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: 0.005em;
 }
 
@@ -92,7 +102,7 @@ h6 {
 }
 
 .section-spacing-sm {
-  padding-block: clamp(3rem, 6vw, 5rem);
+  padding-block: clamp(2rem, 4vw, 3.25rem);
 }
 
 .eyebrow {
@@ -161,7 +171,7 @@ h6 {
 .section-index {
   font-family: var(--font-sans);
   font-feature-settings: "tnum" 1;
-  font-size: 0.75rem;
+  font-size: 1rem;
   font-weight: 500;
   letter-spacing: 0.2em;
   color: var(--color-muted);

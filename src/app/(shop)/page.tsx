@@ -94,7 +94,7 @@ export default async function HomePage() {
   return (
     <div>
       {/* ── Hero ── */}
-      <section className="relative overflow-hidden pt-16 pb-20 sm:pt-24 sm:pb-28 lg:pt-28 lg:pb-32">
+      <section className="relative overflow-hidden pt-6 pb-20 sm:pt-10 sm:pb-28 lg:pt-14 lg:pb-32">
         <div className="container-xl">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16 lg:items-end">
             <div className="lg:col-span-7">
