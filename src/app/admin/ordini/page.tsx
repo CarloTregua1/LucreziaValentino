@@ -62,7 +62,7 @@ export default async function AdminOrdersPage() {
         </div>
       ) : (
         <div className="mt-8 overflow-x-auto border border-[var(--color-border)]">
-          <table className="w-full text-sm">
+          <table className="w-full min-w-[640px] text-sm">
             <thead>
               <tr className="border-b border-[var(--color-border)] bg-[var(--color-card-subtle)] text-left">
                 <th className="px-4 py-3 text-xs uppercase tracking-widest text-[var(--color-muted)]">

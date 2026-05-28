@@ -18,7 +18,7 @@ export default async function AdminServiziPage() {
 
   return (
     <div>
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <h1 className="font-serif text-3xl text-[var(--color-foreground)]">Servizi</h1>
         <Link
           href="/admin/servizi/nuovo"
@@ -39,8 +39,8 @@ export default async function AdminServiziPage() {
           </Link>
         </div>
       ) : (
-        <div className="mt-8 border border-[var(--color-border)]">
-          <table className="w-full text-sm">
+        <div className="mt-8 overflow-x-auto border border-[var(--color-border)]">
+          <table className="w-full min-w-[640px] text-sm">
             <thead>
               <tr className="border-b border-[var(--color-border)] bg-[var(--color-card-subtle)]">
                 <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-widest text-[var(--color-muted)]">
