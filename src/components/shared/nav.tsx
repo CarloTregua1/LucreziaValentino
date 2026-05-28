@@ -2,11 +2,13 @@ import Link from "next/link";
 import { cookies } from "next/headers";
 import { verifySessionCookie } from "@/lib/firebase/auth";
 import { CartLink } from "./cart-count";
+import { MobileMenu } from "./mobile-menu";
 
 const NAV_LINKS = [
   { href: "/servizi", label: "Servizi" },
   { href: "/chi-siamo", label: "Chi sono" },
   { href: "/account/messaggi", label: "Contatti" },
+  { href: "/account", label: "Account" },
 ];
 
 export async function Nav() {
@@ -17,7 +19,10 @@ export async function Nav() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-[var(--color-border)] bg-[var(--color-background)]/85 backdrop-blur-md">
-      <div className="container-xl flex items-center justify-between py-5">
+      <div
+        className="container-xl flex items-center justify-between py-5"
+        style={{ ["--mobile-nav-h" as string]: "73px" }}
+      >
         <Link
           href="/"
           className="group flex items-baseline gap-2 text-[var(--color-foreground)]"
@@ -33,6 +38,7 @@ export async function Nav() {
           </span>
         </Link>
 
+        {/* Desktop nav links */}
         <nav className="hidden items-center gap-10 md:flex">
           {NAV_LINKS.map((link) => (
             <Link
@@ -46,21 +52,31 @@ export async function Nav() {
         </nav>
 
         <div className="flex items-center gap-5">
+          {/* Desktop-only items (always visible on md+) */}
           {isAdmin && (
             <Link
               href="/admin"
-              className="hidden bg-[var(--color-foreground)] px-3 py-1.5 text-xs uppercase tracking-widest text-[var(--color-background)] transition-colors hover:bg-[var(--color-accent)] sm:inline-block"
+              className="hidden bg-[var(--color-foreground)] px-3 py-1.5 text-xs uppercase tracking-widest text-[var(--color-background)] transition-colors hover:bg-[var(--color-accent)] md:inline-block"
             >
               Admin
             </Link>
           )}
-          <Link
-            href="/account"
-            className="link-underline hidden text-sm tracking-wide text-[var(--color-foreground-soft)] hover:text-[var(--color-foreground)] sm:inline-block"
-          >
-            Account
-          </Link>
-          <CartLink />
+          <span className="hidden md:inline-block">
+            <CartLink />
+          </span>
+
+          {/* Mobile right-side: admin sees just the Admin button; everyone
+              else gets a hamburger that opens the nav drawer. */}
+          {isAdmin ? (
+            <Link
+              href="/admin"
+              className="bg-[var(--color-foreground)] px-3 py-1.5 text-xs uppercase tracking-widest text-[var(--color-background)] transition-colors hover:bg-[var(--color-accent)] md:hidden"
+            >
+              Admin
+            </Link>
+          ) : (
+            <MobileMenu links={NAV_LINKS} />
+          )}
         </div>
       </div>
     </header>
