@@ -12,10 +12,6 @@ const IMAGES: Array<{ src: string; alt: string }> = [
     alt: "Macchina da scrivere d'epoca",
   },
   {
-    src: "https://images.unsplash.com/photo-1524781289445-ddf8f5695861?w=1600&q=85",
-    alt: "Dettaglio editoriale 1",
-  },
-  {
     src: "https://images.unsplash.com/photo-1551836022-4c4c79ecde51?w=1600&q=85",
     alt: "Architettura italiana in luce calda",
   },
@@ -24,149 +20,97 @@ const IMAGES: Array<{ src: string; alt: string }> = [
     alt: "Documenti di studio",
   },
   {
-    src: "https://images.unsplash.com/photo-1610194352361-4c81a6a8967e?w=1600&q=85",
-    alt: "Dettaglio editoriale 2",
-  },
-  {
     src: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1600&q=85",
     alt: "Carte e penna sul tavolo",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1618202133208-2907bebba9e1?w=1600&q=85",
-    alt: "Dettaglio editoriale 3",
   },
   {
     src: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1600&q=85",
     alt: "Tetti italiani all'alba",
   },
   {
-    src: "https://images.unsplash.com/photo-1495805442109-bf1cf975750b?w=1600&q=85",
-    alt: "Dettaglio editoriale 4",
-  },
-  {
     src: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=85",
     alt: "Studio minimale",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1548021682-1720ed403a5b?w=1600&q=85",
-    alt: "Dettaglio editoriale 5",
   },
 ];
 
 export function ParallaxGallery() {
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
-  // Drag state lives in a ref so we don't trigger React re-renders on each
-  // mouse move — matches the imperative animate() pattern from the original.
-  const stateRef = useRef({
-    mouseDownAt: 0,
-    prevPercentage: 0,
-    percentage: 0,
-    maxPercentage: 0,
-  });
 
   useEffect(() => {
     const section = sectionRef.current;
     const track = trackRef.current;
     if (!section || !track) return;
 
-    // Dynamic clamp: max negative translate is the point at which the
-    // track's right edge meets the section's right padding boundary.
-    // Recomputed on mount and on every resize.
-    const recomputeMax = () => {
-      const trackWidth = track.scrollWidth;
+    // Tunables:
+    // ACTIVE_RANGE — fraction of the section's transit through the viewport
+    // during which the horizontal sweep happens. 1.0 = entering→leaving;
+    // 0.55 = only the middle 55% animates (sweep finishes in less scroll
+    // distance, so it feels faster).
+    // SMOOTHING — how aggressively the displayed offset eases toward the
+    // scroll target each frame. Higher = snappier, lower = silkier.
+    const ACTIVE_RANGE = 0.55;
+    const SMOOTHING = 0.16;
+
+    let maxTranslate = 0;
+    let target = 0;
+    let current = 0;
+    let rafId = 0;
+
+    const recompute = () => {
       const cs = getComputedStyle(section);
       const leftPad = parseFloat(cs.paddingLeft) || 0;
       const rightPad = parseFloat(cs.paddingRight) || 0;
       const usable = section.clientWidth - leftPad - rightPad;
-      stateRef.current.maxPercentage =
-        trackWidth <= usable
-          ? 0
-          : -((trackWidth - usable) / trackWidth) * 100;
+      maxTranslate = Math.max(0, track.scrollWidth - usable);
+      computeTarget();
+      // Snap on resize so we don't ease across the size change.
+      current = target;
+      apply();
     };
 
-    recomputeMax();
-
-    const handleDown = (clientX: number) => {
-      stateRef.current.mouseDownAt = clientX;
+    // Map the section's transit through the viewport to a 0→1 progress,
+    // then tighten that to ACTIVE_RANGE around the midpoint so the sweep
+    // happens over less scroll distance.
+    const computeTarget = () => {
+      const rect = section.getBoundingClientRect();
+      const denom = window.innerHeight + section.offsetHeight;
+      const raw = (window.innerHeight - rect.top) / denom;
+      const margin = (1 - ACTIVE_RANGE) / 2;
+      const stretched = (raw - margin) / ACTIVE_RANGE;
+      target = Math.max(0, Math.min(1, stretched));
     };
 
-    const handleUp = () => {
-      if (stateRef.current.mouseDownAt === 0) return;
-      stateRef.current.mouseDownAt = 0;
-      stateRef.current.prevPercentage = stateRef.current.percentage;
+    const apply = () => {
+      track.style.transform = `translate3d(${-current * maxTranslate}px, -50%, 0)`;
     };
 
-    const handleMove = (clientX: number) => {
-      if (stateRef.current.mouseDownAt === 0) return;
-
-      const mouseDelta = stateRef.current.mouseDownAt - clientX;
-      const maxDelta = window.innerWidth / 2;
-      const delta = (mouseDelta / maxDelta) * -100;
-      const nextUnconstrained =
-        stateRef.current.prevPercentage + delta;
-      const nextPercentage = Math.max(
-        Math.min(nextUnconstrained, 0),
-        stateRef.current.maxPercentage,
-      );
-      stateRef.current.percentage = nextPercentage;
-
-      track.animate(
-        { transform: `translate(${nextPercentage}%, -50%)` },
-        { duration: 1200, fill: "forwards" },
-      );
-
-      // Remap nextPercentage from [0, maxPercentage] to [0, 100] so each
-      // image still pans its full width regardless of how short the drag
-      // range turned out to be after the dynamic clamp.
-      const range = stateRef.current.maxPercentage;
-      const normalized = range === 0 ? 0 : nextPercentage / range;
-      const objPos = 100 * (1 - normalized);
-
-      const images = track.querySelectorAll<HTMLImageElement>(
-        ".parallax-gallery__image",
-      );
-      images.forEach((img) => {
-        img.animate(
-          { objectPosition: `${objPos}% center` },
-          { duration: 1200, fill: "forwards" },
-        );
-      });
+    const tick = () => {
+      const diff = target - current;
+      if (Math.abs(diff) < 0.0005) {
+        current = target;
+        apply();
+        rafId = 0;
+        return;
+      }
+      current += diff * SMOOTHING;
+      apply();
+      rafId = requestAnimationFrame(tick);
     };
 
-    const onMouseDown = (e: MouseEvent) => handleDown(e.clientX);
-    const onMouseMove = (e: MouseEvent) => handleMove(e.clientX);
-    const onMouseUp = () => handleUp();
-
-    const onTouchStart = (e: TouchEvent) => {
-      const t = e.touches[0];
-      if (t) handleDown(t.clientX);
+    const onScroll = () => {
+      computeTarget();
+      if (!rafId) rafId = requestAnimationFrame(tick);
     };
-    const onTouchMove = (e: TouchEvent) => {
-      const t = e.touches[0];
-      if (t) handleMove(t.clientX);
-    };
-    const onTouchEnd = () => handleUp();
 
-    // Drag only initiates from inside the gallery section, but move/up are
-    // tracked on window so the user can continue dragging even if the
-    // cursor leaves the gallery bounds.
-    section.addEventListener("mousedown", onMouseDown);
-    section.addEventListener("touchstart", onTouchStart, { passive: true });
-    window.addEventListener("mousemove", onMouseMove);
-    window.addEventListener("mouseup", onMouseUp);
-    window.addEventListener("touchmove", onTouchMove, { passive: true });
-    window.addEventListener("touchend", onTouchEnd);
-    window.addEventListener("resize", recomputeMax);
+    recompute();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", recompute);
 
     return () => {
-      section.removeEventListener("mousedown", onMouseDown);
-      section.removeEventListener("touchstart", onTouchStart);
-      window.removeEventListener("mousemove", onMouseMove);
-      window.removeEventListener("mouseup", onMouseUp);
-      window.removeEventListener("touchmove", onTouchMove);
-      window.removeEventListener("touchend", onTouchEnd);
-      window.removeEventListener("resize", recomputeMax);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", recompute);
+      if (rafId) cancelAnimationFrame(rafId);
     };
   }, []);
 
@@ -174,9 +118,8 @@ export function ParallaxGallery() {
     <section
       ref={sectionRef}
       aria-label="Galleria atmosferica dello studio"
-      className="relative h-[95vh] min-h-[600px] overflow-hidden bg-[var(--color-foreground)] text-[var(--color-background)] select-none"
+      className="relative h-screen min-h-[600px] overflow-hidden bg-[var(--color-foreground)] text-[var(--color-background)]"
       style={{
-        touchAction: "pan-y",
         paddingLeft: "var(--container-x)",
         paddingRight: "var(--container-x)",
       }}
@@ -203,36 +146,33 @@ export function ParallaxGallery() {
         </h2>
       </div>
 
-      {/* Drag hint anchored bottom-left */}
+      {/* Scroll hint anchored bottom-left */}
       <div className="pointer-events-none absolute bottom-8 left-0 right-0 z-10 flex items-center gap-3 text-xs uppercase tracking-widest text-[var(--color-muted-light)]" style={{ paddingLeft: "var(--container-x)", paddingRight: "var(--container-x)" }}>
         <span className="inline-block h-px w-10 bg-[var(--color-accent-light)]/60" />
-        <span>Trascina per esplorare</span>
+        <span>Atmosfere in scorrimento</span>
       </div>
 
-      {/* The parallax track itself — anchored to the section's left padding
-          boundary instead of the viewport center, so the first image lands
-          where text in the rest of the page begins. */}
+      {/* Horizontal track — translated based on the section's vertical
+          position in the viewport. */}
       <div
         ref={trackRef}
-        className="parallax-gallery__track absolute top-1/2 flex cursor-grab gap-[4vmin] active:cursor-grabbing"
+        className="absolute top-1/2 flex gap-[4vmin]"
         style={{
           left: "var(--container-x)",
-          transform: "translate(0%, -50%)",
+          transform: "translate3d(0, -50%, 0)",
+          willChange: "transform",
         }}
       >
         {IMAGES.map((img, i) => (
-          // We need a raw <img> element because the parallax effect animates
-          // object-position via the Web Animations API directly on the image
-          // node, which next/image's wrapper makes awkward to target.
           // eslint-disable-next-line @next/next/no-img-element
           <img
             key={i}
             src={img.src}
             alt={img.alt}
             draggable={false}
-            loading="lazy"
-            className="parallax-gallery__image h-[56vmin] w-[40vmin] flex-shrink-0 object-cover"
-            style={{ objectPosition: "100% center" }}
+            loading={i < 2 ? "eager" : "lazy"}
+            className="h-[56vmin] w-[40vmin] flex-shrink-0 object-cover"
+            style={{ objectPosition: "center" }}
           />
         ))}
       </div>
