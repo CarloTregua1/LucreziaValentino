@@ -8,10 +8,11 @@ import { storage } from "@/lib/firebase/client";
 import { ref as storageRef, uploadBytes, getDownloadURL } from "firebase/storage";
 import { servizioSchema, type ServizioFormValues, type ServizioInput } from "@/lib/schemas/servizio";
 import { createServizio, updateServizio } from "@/lib/actions/servizi";
-import type { ServizioDoc } from "@/types";
+import type { CategoryDoc, ServizioDoc } from "@/types";
 
 interface Props {
   servizio?: ServizioDoc;
+  categories: CategoryDoc[];
 }
 
 function slugify(text: string): string {
@@ -28,7 +29,7 @@ function formatPrice(cents: number): string {
   return (cents / 100).toFixed(2);
 }
 
-export function ServizioForm({ servizio }: Props) {
+export function ServizioForm({ servizio, categories }: Props) {
   const router = useRouter();
   const [uploading, setUploading] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
@@ -166,11 +167,27 @@ export function ServizioForm({ servizio }: Props) {
 
           <div>
             <label className={labelClass}>Categoria *</label>
-            <input
-              {...register("category")}
-              className={inputClass}
-              placeholder="Bonus, Fiscalità, Guide…"
-            />
+            {categories.length === 0 ? (
+              <div className="border border-dashed border-[var(--color-border)] px-4 py-2.5 text-xs text-[var(--color-muted)]">
+                Nessuna categoria.{" "}
+                <a
+                  href="/admin/categorie/nuova"
+                  className="text-[var(--color-accent)] underline underline-offset-2"
+                >
+                  Creane una
+                </a>{" "}
+                prima di pubblicare un servizio.
+              </div>
+            ) : (
+              <select {...register("category")} className={inputClass}>
+                <option value="">— seleziona —</option>
+                {categories.map((c) => (
+                  <option key={c.id} value={c.slug}>
+                    {c.name}
+                  </option>
+                ))}
+              </select>
+            )}
             {errors.category && <p className={errorClass}>{errors.category.message}</p>}
           </div>
 

@@ -97,12 +97,11 @@ export interface VariantDoc {
 export interface CategoryDoc {
   id: string;
   slug: string;
-  name: LocalizedString;
-  description: LocalizedString;
-  parentId?: string;
+  name: string;
+  description: string;
   order: number;
-  image?: string;
-  seo: ProductSeo;
+  createdAt: string;
+  updatedAt: string;
 }
 
 /* ── Order ── */
@@ -167,27 +166,19 @@ export interface MessageDoc {
 
 /* ── Settings ── */
 
-export interface ShippingMethod {
-  name: string;
-  priceCents: number;
-  etaDays: number;
-}
-
-export interface ShippingZone {
-  name: string;
-  countries: string[];
-  methods: ShippingMethod[];
-}
-
 export interface SettingsDoc {
   shopName: string;
   shopEmail: string;
   shopPhone: string;
-  shippingZones: ShippingZone[];
-  freeShippingThresholdCents?: number;
   vatNumber: string;
-  returnsPolicy: LocalizedString;
-  shippingPolicy: LocalizedString;
+  address: string;
+  openingHours: string;
+  responseTime: string;
+  instagramUrl: string;
+  linkedinUrl: string;
+  heroTagline: string;
+  footerTagline: string;
+  updatedAt: string;
 }
 
 /* ── Servizio ── */
