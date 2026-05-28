@@ -91,7 +91,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
 
       {/* Sidebar (drawer on mobile, fixed on desktop) */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 w-64 shrink-0 border-r border-[var(--color-border)] bg-[var(--color-card)] px-4 py-8 transition-transform duration-200 md:static md:z-auto md:w-60 md:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-50 flex w-64 shrink-0 flex-col border-r border-[var(--color-border)] bg-[var(--color-card)] px-4 py-8 transition-transform duration-200 md:static md:z-auto md:w-60 md:translate-x-0 ${
           open ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -131,6 +131,30 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
             );
           })}
         </nav>
+
+        <div className="mt-auto border-t border-[var(--color-border)] pt-6">
+          <Link
+            href="/"
+            className="flex items-center gap-2 rounded px-3 py-2 text-sm text-[var(--color-muted)] transition-colors hover:bg-[var(--color-card-subtle)] hover:text-[var(--color-foreground)]"
+          >
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 14 14"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M9 3L5 7l4 4"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            Vai al sito
+          </Link>
+        </div>
       </aside>
 
       <main className="min-w-0 flex-1 p-4 sm:p-6 md:p-8">{children}</main>
