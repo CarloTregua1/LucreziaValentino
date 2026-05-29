@@ -15,3 +15,6 @@ firestore-debug.log
 .vercel
 .claude/
 tsconfig.tsbuildinfo
+
+# Source/working material (CV, certificates, raw assets) — not for publishing
+Contenuti/

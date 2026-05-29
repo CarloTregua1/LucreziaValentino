@@ -6,6 +6,7 @@ import { MobileMenu } from "./mobile-menu";
 
 const NAV_LINKS = [
   { href: "/servizi", label: "Servizi" },
+  { href: "/blog", label: "Blog" },
   { href: "/chi-siamo", label: "Chi sono" },
   { href: "/account/messaggi", label: "Contatti" },
   { href: "/account", label: "Account" },
@@ -34,7 +35,7 @@ export async function Nav() {
             aria-hidden
             className="hidden font-serif italic text-sm text-[var(--color-accent)] sm:inline"
           >
-            studio
+            Valentino
           </span>
         </Link>
 

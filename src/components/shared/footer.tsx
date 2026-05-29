@@ -5,6 +5,7 @@ const COLUMNS = [
     title: "Studio",
     links: [
       { href: "/servizi", label: "Servizi" },
+      { href: "/blog", label: "Blog" },
       { href: "/chi-siamo", label: "Chi sono" },
     ],
   },
@@ -61,13 +62,13 @@ export function Footer() {
             <p className="font-serif text-3xl leading-none text-[var(--color-background)]">
               Lucrezia
               <span className="ml-2 serif-italic text-[var(--color-accent-light)]">
-                studio
+                Valentino
               </span>
             </p>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-[var(--color-muted-light)]">
-              Consulenza in bonus e fiscalità per privati e aziende. Ogni
-              percorso è costruito su misura, con priorità chiare e scadenze
-              monitorate.
+              Educatrice finanziaria, formatrice e consulente. Credito, fisco,
+              previdenza, formazione e orientamento — con competenza, etica e
+              parole semplici.
             </p>
           </div>
 
@@ -103,13 +104,21 @@ export function Footer() {
             </p>
             <ul className="mt-4 space-y-2 text-sm text-[var(--color-background)]/90">
               <li>Lun – Ven · 9:00 – 18:00</li>
-              <li>Italia · da remoto</li>
+              <li>Catania · in studio e da remoto</li>
               <li>
                 <a
-                  href="mailto:ciao@lucrezia.it"
+                  href="tel:+393508502846"
                   className="link-underline"
                 >
-                  ciao@lucrezia.it
+                  +39 350 850 2846
+                </a>
+              </li>
+              <li>
+                <a
+                  href="mailto:s.lucreziavalentino@gmail.com"
+                  className="link-underline"
+                >
+                  s.lucreziavalentino@gmail.com
                 </a>
               </li>
             </ul>

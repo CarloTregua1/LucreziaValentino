@@ -5,7 +5,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Chi sono",
   description:
-    "Lucrezia, consulente specializzata in bonus e ottimizzazione fiscale. Esperienza, metodo e ascolto al servizio dei tuoi obiettivi.",
+    "Lucrezia Valentino — educatrice finanziaria, formatrice e consulente. Oltre dieci anni tra finanza, formazione e orientamento, al servizio delle tue scelte.",
 };
 
 const VALUES = [
@@ -15,34 +15,39 @@ const VALUES = [
   },
   {
     title: "Su misura",
-    body: "Non esiste una soluzione valida per tutti. Costruisco la strategia partendo dai tuoi numeri e dai tuoi obiettivi.",
+    body: "Non esiste una soluzione valida per tutti. Costruisco il percorso partendo dalla tua storia e dai tuoi obiettivi.",
   },
   {
-    title: "Riservatezza",
-    body: "I tuoi dati restano tuoi. Trattati con cura, protetti e mai condivisi senza il tuo consenso esplicito.",
+    title: "Etica e riservatezza",
+    body: "Trasparenza, sostenibilità e rispetto della persona. I tuoi dati restano tuoi, trattati con cura e mai condivisi.",
   },
 ];
 
 const TIMELINE = [
   {
-    year: "2018",
-    title: "Laurea in Economia",
-    body: "Tesi sulla fiscalità delle PMI italiane, votazione 110/110 con lode.",
+    year: "1996",
+    title: "Perito aziendale e lingue estere",
+    body: "Diploma all'ITC «Luigi Einaudi» in economia, tecnica aziendale e diritto.",
   },
   {
-    year: "2020",
-    title: "Abilitazione Dottore Commercialista",
-    body: "Iscrizione all'Ordine e avvio della libera professione.",
+    year: "2011",
+    title: "Specialista Consulente Finanziario",
+    body: "Dieci anni in Poste Italiane tra consulenza, prodotti finanziari e assicurativi.",
   },
   {
-    year: "2022",
-    title: "Specializzazione bonus e incentivi",
-    body: "Focus su credito d'imposta, transizione 4.0 e bonus edilizi.",
+    year: "2024",
+    title: "Educatrice finanziaria AIEF",
+    body: "Certificazione AIEF, avvio della libera professione e prime pubblicazioni.",
+  },
+  {
+    year: "2025",
+    title: "Credito, docenza e pubblicazioni",
+    body: "Iscrizione all'OAM, consulenza creditizia e docenza nei progetti GOL; nasce la collana «Orizzonti Finanziari».",
   },
   {
     year: "2026",
-    title: "Studio Lucrezia",
-    body: "Oggi affianco oltre 200 clienti tra privati, professionisti e imprese.",
+    title: "Formazione e microcredito",
+    body: "Iscrizione all'AIF, accreditamento ENM per il microcredito e formazione sulla sicurezza sul lavoro.",
   },
 ];
 
@@ -54,7 +59,7 @@ export default function AboutPage() {
         <div className="container-xl">
           <p className="section-index">— Chi sono</p>
           <h1 className="mt-4 max-w-4xl font-serif text-[var(--text-h1)] leading-[1.02] text-[var(--color-foreground)]">
-            La fiscalità è una materia umana,
+            La finanza è una materia umana,
             <br />
             <span className="serif-italic text-[var(--color-accent)]">
               prima ancora che tecnica.
@@ -69,8 +74,8 @@ export default function AboutPage() {
           <div className="lg:col-span-5">
             <div className="relative aspect-[4/5] overflow-hidden bg-[var(--color-card-subtle)]">
               <Image
-                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&q=90"
-                alt="Ritratto di Lucrezia"
+                src="/images/lucrezia.jpg"
+                alt="Ritratto di Lucrezia Valentino"
                 fill
                 priority
                 className="object-cover"
@@ -82,30 +87,35 @@ export default function AboutPage() {
           <div className="lg:col-span-7">
             <p className="eyebrow">Lucrezia Valentino</p>
             <p className="mt-3 font-serif text-3xl leading-tight text-[var(--color-foreground)] sm:text-4xl">
-              Consulente in bonus e fiscalità.
+              Educatrice finanziaria, formatrice e consulente.
             </p>
 
             <div className="mt-8 space-y-5 leading-relaxed text-[var(--color-foreground-soft)]">
               <p>
-                Mi chiamo Lucrezia e da oltre cinque anni accompagno privati,
-                liberi professionisti e piccole-medie imprese in tutto ciò che
-                riguarda fisco, bonus e ottimizzazione finanziaria.
+                Mi chiamo Lucrezia e da oltre dieci anni mi muovo nel mondo
+                della finanza, della formazione e dell&apos;orientamento. Ho
+                iniziato in Poste Italiane come consulente finanziaria; oggi
+                affianco persone, famiglie e professionisti come educatrice
+                finanziaria, consulente del credito e operatrice CAF e
+                Patronato.
               </p>
               <p>
-                Sono dottore commercialista, ma il mio lavoro non si esaurisce
-                nei numeri: si tratta di leggere una situazione, capire dove ci
-                sono opportunità non sfruttate e costruire una strada
-                percorribile, sostenibile, chiara. La materia fiscale è
-                complessa per natura — il mio compito è renderla{" "}
+                Il mio lavoro non si esaurisce nei numeri: si tratta di
+                ascoltare una storia, capire dove ci sono opportunità e
+                costruire una strada percorribile, sostenibile, chiara. La
+                materia finanziaria è complessa per natura — il mio compito è
+                renderla{" "}
                 <span className="serif-italic text-[var(--color-foreground)]">
                   comprensibile e azionabile
                 </span>{" "}
-                per chi sta dall&apos;altra parte della scrivania.
+                per chi ho di fronte.
               </p>
               <p>
-                Ogni nuovo cliente è una nuova relazione: ascolto, studio,
-                propongo. E poi accompagno nel tempo, perché la pianificazione
-                fiscale non è un evento una tantum — è un percorso.
+                Sono anche formatrice e orientatrice: progetto e conduco corsi
+                su credito, fisco, sicurezza sul lavoro e intelligenza
+                artificiale, e accompagno chi cerca la propria strada
+                professionale. Scrivo inoltre guide ed ebook per rendere
+                l&apos;educazione finanziaria davvero accessibile.
               </p>
             </div>
 

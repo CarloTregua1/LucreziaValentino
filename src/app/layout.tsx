@@ -20,18 +20,18 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | Lucrezia",
-    default: "Lucrezia — Consulente in bonus e fiscalità",
+    template: "%s | Lucrezia Valentino",
+    default: "Lucrezia Valentino — Educatrice finanziaria e formatrice",
   },
   description:
-    "Consulenza professionale su bonus e ottimizzazione fiscale. Scopri i servizi di Lucrezia.",
+    "Educazione e consulenza finanziaria, credito, CAF e Patronato, formazione, orientamento e microcredito. Competenza, etica e ascolto al servizio delle tue scelte.",
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_APP_URL ?? "https://lucrezia-shop.vercel.app"
   ),
   openGraph: {
     type: "website",
     locale: "it_IT",
-    siteName: "Lucrezia",
+    siteName: "Lucrezia Valentino",
   },
   twitter: {
     card: "summary_large_image",

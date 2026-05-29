@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getServizi } from "@/lib/actions/servizi";
+import { getAllPosts } from "@/lib/content/blog";
 
 export const dynamic = "force-dynamic";
 
@@ -11,6 +12,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: baseUrl, lastModified: now, changeFrequency: "weekly", priority: 1 },
     { url: `${baseUrl}/servizi`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${baseUrl}/blog`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/chi-siamo`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
   ];
 
@@ -22,5 +24,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  return [...staticRoutes, ...serviceRoutes];
+  const postRoutes: MetadataRoute.Sitemap = getAllPosts().map((p) => ({
+    url: `${baseUrl}/blog/${p.slug}`,
+    lastModified: new Date(p.date),
+    changeFrequency: "monthly",
+    priority: 0.6,
+  }));
+
+  return [...staticRoutes, ...serviceRoutes, ...postRoutes];
 }

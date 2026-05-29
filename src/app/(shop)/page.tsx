@@ -6,9 +6,9 @@ import type { ServizioDoc } from "@/types";
 import { ParallaxGallery } from "./_components/parallax-gallery";
 
 export const metadata: Metadata = {
-  title: "Lucrezia — Consulente in bonus e fiscalità",
+  title: "Lucrezia Valentino — Educatrice finanziaria e formatrice",
   description:
-    "Consulenza professionale su bonus e ottimizzazione fiscale. Strategie su misura per privati e aziende.",
+    "Educazione e consulenza finanziaria, credito, CAF e Patronato, formazione, orientamento e microcredito. Competenza, etica e ascolto al servizio delle tue scelte.",
 };
 
 // Render at request time, not at build time — the homepage reads from
@@ -26,64 +26,74 @@ function getServiceImage(s: ServizioDoc, idx: number): string {
 }
 
 const STATS = [
-  { value: "5+", label: "Anni di esperienza" },
-  { value: "200+", label: "Clienti seguiti" },
-  { value: "98%", label: "Pratiche andate a buon fine" },
+  { value: "10+", label: "Anni nel settore finanziario" },
+  { value: "5", label: "Albi e registri professionali" },
+  { value: "100%", label: "Percorsi su misura" },
+];
+
+const ACCREDITATIONS = [
+  { src: "/images/loghi/aief.png", alt: "AIEF — Associazione Italiana Educatori Finanziari" },
+  { src: "/images/loghi/oam.png", alt: "OAM — Organismo degli Agenti e dei Mediatori" },
+  { src: "/images/loghi/asnor.png", alt: "ASNOR — Associazione Nazionale Orientatori" },
+  { src: "/images/loghi/aif.png", alt: "AIF — Associazione Italiana Formatori" },
+  { src: "/images/loghi/microcredito.png", alt: "Ente Nazionale Microcredito" },
+  { src: "/images/loghi/regione-sicilia.png", alt: "Regione Siciliana" },
 ];
 
 const METHOD_STEPS = [
   {
     n: "01",
-    title: "Analisi gratuita",
-    body: "Una prima call conoscitiva per capire la tua situazione, gli obiettivi e i bonus a cui hai diritto.",
+    title: "Ascolto e analisi",
+    body: "Una prima call conoscitiva gratuita per capire la tua situazione, i tuoi obiettivi e le opzioni davvero a tua disposizione.",
   },
   {
     n: "02",
-    title: "Strategia personalizzata",
-    body: "Costruiamo insieme un piano fiscale costruito intorno ai tuoi numeri, con priorità chiare e tempi precisi.",
+    title: "Percorso su misura",
+    body: "Costruiamo insieme un piano chiaro — finanziario, formativo o di orientamento — con priorità definite e passi concreti.",
   },
   {
     n: "03",
-    title: "Esecuzione e follow-up",
-    body: "Gestisco l'intera pratica e ti accompagno nel tempo, monitorando scadenze e nuove opportunità.",
+    title: "Supporto continuo",
+    body: "Ti accompagno passo dopo passo fino al risultato, restando un punto di riferimento anche dopo, in totale trasparenza.",
   },
 ];
 
-const TESTIMONIALS = [
-  {
-    quote:
-      "Lucrezia ha trasformato un labirinto burocratico in un percorso chiaro. Mi ha fatto risparmiare migliaia di euro che non sapevo nemmeno di poter recuperare.",
-    name: "Marco T.",
-    role: "Imprenditore — Milano",
-  },
-  {
-    quote:
-      "Professionale, puntuale e — cosa rara — capace di spiegare la materia in modo comprensibile. Da quando lavoro con lei, la mia attività ha tutta un'altra serenità fiscale.",
-    name: "Giulia R.",
-    role: "Libera professionista — Roma",
-  },
+// Real institutions where Lucrezia has taught or collaborated (from CV).
+const COLLABORATIONS = [
+  "AKG Italia",
+  "RICAM Academy",
+  "FORIT",
+  "IGEA CPS",
+  "TEFURMA",
+  "Lezione Online",
+  "AIEF",
+  "ASNOR",
+  "Ente Nazionale Microcredito",
+  "I.I.S. Filippo Brunelleschi",
+  "HI Finance",
+  "Poste Italiane",
 ];
 
 const FAQS = [
   {
     q: "Come funziona la prima consulenza?",
-    a: "La prima call conoscitiva è gratuita e dura circa 30 minuti. Insieme analizziamo la tua situazione attuale e capiamo quali bonus o ottimizzazioni sono accessibili per te.",
+    a: "La prima call conoscitiva è gratuita e dura circa 30 minuti. Insieme facciamo il punto sulla tua situazione e capiamo come posso esserti utile, senza alcun impegno.",
   },
   {
-    q: "Per chi è pensato il servizio?",
-    a: "Lavoro con privati, liberi professionisti e piccole-medie imprese. Ogni percorso è costruito su misura, dalla dichiarazione semplice alla pianificazione fiscale d'impresa.",
+    q: "Di cosa ti occupi esattamente?",
+    a: "Educazione e consulenza finanziaria, consulenza sul credito, assistenza CAF e Patronato, formazione professionale, orientamento, microcredito e formazione sull'intelligenza artificiale. Trovi tutto nella sezione Servizi.",
   },
   {
-    q: "Quanto costano le consulenze?",
-    a: "Il prezzo dipende dalla complessità della pratica. Trovi i pacchetti standard nella sezione Servizi; per esigenze specifiche, parliamo durante la prima call.",
+    q: "Lavori solo a Catania?",
+    a: "Ho sede a Catania, ma seguo clienti in tutta Italia: gran parte delle consulenze e dei percorsi si svolge comodamente da remoto, in video-call.",
   },
   {
-    q: "I prodotti digitali sono aggiornati?",
-    a: "Sì. Guide e template vengono aggiornati ad ogni modifica normativa rilevante. Chi ha già acquistato riceve la nuova versione senza costi aggiuntivi.",
+    q: "Come acquisto un servizio?",
+    a: "Le consulenze e i percorsi si prenotano direttamente dal sito. Ebook e corsi online sono invece disponibili sulle piattaforme esterne dedicate, raggiungibili dalla scheda del servizio.",
   },
   {
-    q: "Lavori solo in Italia?",
-    a: "La consulenza è dedicata alla fiscalità italiana, ma posso seguire anche italiani residenti all'estero per quanto concerne gli obblighi nei confronti del fisco italiano.",
+    q: "Rilasci attestati per i corsi?",
+    a: "Sì. Al termine dei percorsi formativi vengono rilasciati attestati riconosciuti. Sono formatrice iscritta al Registro dei Formatori Professionisti AIF.",
   },
 ];
 
@@ -99,7 +109,7 @@ export default async function HomePage() {
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16 lg:items-end">
             <div className="lg:col-span-7">
               <p className="eyebrow">
-                Consulente in bonus e fiscalità — Italia
+                Educatrice finanziaria · Formatrice · Catania
               </p>
 
               <h1 className="mt-6 font-serif leading-[0.92] text-[var(--color-foreground)]">
@@ -113,15 +123,15 @@ export default async function HomePage() {
                   className="mt-2 block serif-italic text-[var(--color-accent)]"
                   style={{ fontSize: "calc(var(--text-h2) * 1.05)" }}
                 >
-                  consulenza fiscale con metodo.
+                  educazione finanziaria con metodo.
                 </span>
               </h1>
 
               <p className="mt-8 max-w-xl text-lg leading-relaxed text-[var(--color-foreground-soft)]">
-                Affianco privati e aziende nella gestione dei bonus e
-                nell&apos;ottimizzazione fiscale. Niente formule pronte:
-                soluzioni costruite sui tuoi numeri, sui tuoi obiettivi e sul
-                tuo tempo.
+                Educatrice finanziaria, formatrice e consulente. Affianco
+                persone, famiglie e professionisti nelle scelte su credito,
+                fisco, previdenza e crescita professionale — con competenza,
+                etica e parole semplici.
               </p>
 
               <div className="mt-10 flex flex-wrap items-center gap-4">
@@ -150,8 +160,8 @@ export default async function HomePage() {
             <div className="lg:col-span-5">
               <div className="relative aspect-[4/5] overflow-hidden bg-[var(--color-card-subtle)]">
                 <Image
-                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&q=90"
-                  alt="Lucrezia — consulente finanziaria"
+                  src="/images/lucrezia.jpg"
+                  alt="Lucrezia Valentino — educatrice finanziaria e formatrice"
                   fill
                   priority
                   className="object-cover"
@@ -159,11 +169,11 @@ export default async function HomePage() {
                 />
                 {/* floating credibility badge */}
                 <div className="absolute bottom-6 left-6 right-6 sm:left-8 sm:right-auto sm:max-w-xs bg-[var(--color-background)]/95 backdrop-blur p-5 sm:p-6">
-                  <p className="eyebrow">Dal 2020</p>
+                  <p className="eyebrow">Dal 2011 nel settore finanziario</p>
                   <p className="mt-2 font-serif text-2xl leading-tight text-[var(--color-foreground)]">
-                    Consulenza{" "}
-                    <span className="serif-italic">su misura</span>, per chi
-                    cerca chiarezza.
+                    Competenza ed{" "}
+                    <span className="serif-italic">ascolto</span>, al servizio
+                    delle tue scelte.
                   </p>
                 </div>
               </div>
@@ -190,6 +200,30 @@ export default async function HomePage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── Accreditations ── */}
+      <section className="border-b border-[var(--color-border)]">
+        <div className="container-xl py-12 sm:py-14">
+          <p className="text-center text-xs uppercase tracking-widest text-[var(--color-muted)]">
+            Iscrizioni, registri e accreditamenti
+          </p>
+          <ul className="mt-8 grid grid-cols-2 items-center gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-6">
+            {ACCREDITATIONS.map((logo) => (
+              <li key={logo.src} className="flex items-center justify-center">
+                <span className="relative h-12 w-full max-w-[140px]">
+                  <Image
+                    src={logo.src}
+                    alt={logo.alt}
+                    fill
+                    className="object-contain opacity-70 transition-opacity hover:opacity-100"
+                    sizes="140px"
+                  />
+                </span>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
@@ -270,10 +304,12 @@ export default async function HomePage() {
                     </p>
                     <div className="mt-8 flex items-baseline justify-between border-t border-[var(--color-border)] pt-5">
                       <p className="text-sm font-medium text-[var(--color-foreground)]">
-                        {new Intl.NumberFormat("it-IT", {
-                          style: "currency",
-                          currency: "EUR",
-                        }).format(s.priceCents / 100)}
+                        {s.externalUrl
+                          ? "Disponibile online"
+                          : new Intl.NumberFormat("it-IT", {
+                              style: "currency",
+                              currency: "EUR",
+                            }).format(s.priceCents / 100)}
                       </p>
                       <span className="text-sm text-[var(--color-accent)] transition-transform duration-300 group-hover:translate-x-1">
                         Approfondisci →
@@ -330,8 +366,8 @@ export default async function HomePage() {
         <div className="container-xl grid gap-16 lg:grid-cols-2 lg:items-center">
           <div className="relative order-2 aspect-[4/5] overflow-hidden bg-[var(--color-card-subtle)] lg:order-1">
             <Image
-              src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1200&q=85"
-              alt="Studio professionale"
+              src="/images/lucrezia.jpg"
+              alt="Lucrezia Valentino nel suo studio"
               fill
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"
@@ -344,17 +380,19 @@ export default async function HomePage() {
               <span className="serif-italic">tuoi obiettivi.</span>
             </h2>
             <p className="mt-6 leading-relaxed text-[var(--color-foreground-soft)]">
-              Sono Lucrezia, consulente specializzata in bonus e fiscalità.
-              Lavoro con persone e aziende che vogliono mettere ordine nei
-              propri conti senza rinunciare a opportunità. Ogni situazione è
-              unica: il mio approccio è sempre personalizzato.
+              Sono Lucrezia Valentino. Dopo oltre dieci anni nel settore
+              finanziario e assicurativo, oggi unisco consulenza ed educazione:
+              aiuto le persone a comprendere credito, fisco e previdenza e
+              formo chi vuole crescere a livello professionale. Il mio compito è
+              rendere comprensibile e azionabile ciò che spesso sembra troppo
+              complesso.
             </p>
 
             <ul className="mt-10 space-y-4">
               {[
-                "Iscritta all'Ordine dei Dottori Commercialisti",
-                "Specializzazione in bonus fiscali e incentivi PMI",
-                "Aggiornamento normativo continuo",
+                "Educatrice finanziaria certificata AIEF",
+                "Consulente del credito iscritta all'OAM",
+                "Formatrice AIF · Orientatrice certificata ASNOR",
               ].map((credit) => (
                 <li
                   key={credit}
@@ -379,45 +417,38 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ── Testimonials ── */}
+      {/* ── Collaborations ── */}
       <section className="section-spacing border-y border-[var(--color-border)] bg-[var(--color-cream-deep)]">
-        <div className="container-xl">
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <div>
-              <p className="section-index">04 — Dicono di me</p>
-              <h2 className="mt-3 font-serif text-[var(--text-h2)] text-[var(--color-foreground)]">
-                Le <span className="serif-italic">parole</span> di chi mi
-                sceglie.
-              </h2>
-            </div>
+        <div className="container-xl grid gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-5">
+            <p className="section-index">04 — Collaborazioni</p>
+            <h2 className="mt-3 font-serif text-[var(--text-h2)] text-[var(--color-foreground)]">
+              Dove insegno e{" "}
+              <span className="serif-italic">collaboro.</span>
+            </h2>
+            <p className="mt-6 leading-relaxed text-[var(--color-foreground-soft)]">
+              Enti di formazione, accademie, associazioni e istituti scolastici
+              con cui lavoro come docente, educatrice finanziaria e consulente —
+              tra progetti GOL, PNRR e percorsi professionalizzanti.
+            </p>
+            <p className="mt-5 text-sm leading-relaxed text-[var(--color-muted)]">
+              Tra questi, il corso di educazione finanziaria all&apos;I.I.S.
+              Filippo Brunelleschi (progetto PNRR): due edizioni, quattro classi
+              coinvolte e la richiesta di una terza edizione.
+            </p>
           </div>
 
-          <div className="mt-14 grid gap-px bg-[var(--color-border)] md:grid-cols-2">
-            {TESTIMONIALS.map((t) => (
-              <figure
-                key={t.name}
-                className="flex flex-col bg-[var(--color-background)] p-10 sm:p-12"
-              >
-                <span
-                  aria-hidden
-                  className="font-serif text-7xl leading-none text-[var(--color-accent)]"
+          <div className="lg:col-span-7">
+            <ul className="grid grid-cols-2 gap-px bg-[var(--color-border)] sm:grid-cols-3">
+              {COLLABORATIONS.map((name) => (
+                <li
+                  key={name}
+                  className="flex min-h-[88px] items-center justify-center bg-[var(--color-background)] px-4 py-6 text-center font-serif text-lg leading-tight text-[var(--color-foreground)]"
                 >
-                  &ldquo;
-                </span>
-                <blockquote className="mt-2 font-serif text-2xl leading-snug text-[var(--color-foreground)] sm:text-[1.65rem]">
-                  {t.quote}
-                </blockquote>
-                <figcaption className="mt-8 flex items-center gap-3 text-sm text-[var(--color-muted)]">
-                  <span className="inline-block h-px w-8 bg-[var(--color-accent)]" />
-                  <span>
-                    <span className="text-[var(--color-foreground)]">
-                      {t.name}
-                    </span>{" "}
-                    · {t.role}
-                  </span>
-                </figcaption>
-              </figure>
-            ))}
+                  {name}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
@@ -496,9 +527,9 @@ export default async function HomePage() {
                 </span>
               </h2>
               <p className="mt-6 max-w-xl text-[var(--color-muted-light)]">
-                Trenta minuti per fare chiarezza sulla tua situazione fiscale
-                e sui bonus a cui hai diritto. Senza impegno, in totale
-                riservatezza.
+                Trenta minuti per fare chiarezza sui tuoi obiettivi — credito,
+                fisco, previdenza o crescita professionale. Senza impegno, in
+                totale riservatezza.
               </p>
             </div>
             <div className="lg:col-span-5 lg:text-right">
