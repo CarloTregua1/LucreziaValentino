@@ -2,6 +2,7 @@ import Link from "next/link";
 import { cookies } from "next/headers";
 import { verifySessionCookie } from "@/lib/firebase/auth";
 import { CartLink } from "./cart-count";
+import { NavLinks } from "./nav-links";
 import { MobileMenu } from "./mobile-menu";
 
 const NAV_LINKS = [
@@ -20,10 +21,7 @@ export async function Nav() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-[var(--color-border)] bg-[var(--color-background)]/85 backdrop-blur-md">
-      <div
-        className="container-xl flex items-center justify-between py-5"
-        style={{ ["--mobile-nav-h" as string]: "73px" }}
-      >
+      <div className="container-xl flex items-center justify-between py-5">
         <Link
           href="/"
           className="group flex items-baseline gap-2 text-[var(--color-foreground)]"
@@ -40,17 +38,7 @@ export async function Nav() {
         </Link>
 
         {/* Desktop nav links */}
-        <nav className="hidden items-center gap-10 md:flex">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="link-underline text-sm tracking-wide text-[var(--color-foreground-soft)] hover:text-[var(--color-foreground)]"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
+        <NavLinks links={NAV_LINKS} />
 
         <div className="flex items-center gap-5">
           {/* Desktop-only items (always visible on md+) */}
