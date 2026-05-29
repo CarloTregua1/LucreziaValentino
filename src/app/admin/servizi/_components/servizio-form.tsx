@@ -51,6 +51,7 @@ export function ServizioForm({ servizio, categories }: Props) {
           description: servizio.description,
           type: servizio.type,
           category: servizio.category,
+          externalUrl: servizio.externalUrl ?? "",
           priceCents: servizio.priceCents,
           compareAtPriceCents: servizio.compareAtPriceCents,
           images: servizio.images,
@@ -60,6 +61,7 @@ export function ServizioForm({ servizio, categories }: Props) {
       : {
           type: "consulenza",
           status: "draft",
+          externalUrl: "",
           images: [],
           seo: {},
         },
@@ -197,6 +199,22 @@ export function ServizioForm({ servizio, categories }: Props) {
               <option value="draft">Bozza</option>
               <option value="published">Pubblicato</option>
             </select>
+          </div>
+
+          <div className="sm:col-span-2">
+            <label className={labelClass}>Link esterno (acquisto/iscrizione)</label>
+            <input
+              {...register("externalUrl")}
+              className={inputClass}
+              placeholder="https://… — se compilato, il bottone porta qui invece del carrello"
+            />
+            {errors.externalUrl && (
+              <p className={errorClass}>{errors.externalUrl.message}</p>
+            )}
+            <p className="mt-1.5 text-xs text-[var(--color-muted)]">
+              Usalo per ebook e corsi venduti su piattaforme esterne (Amazon,
+              Lezione Online…). Lascia vuoto per i servizi acquistabili sul sito.
+            </p>
           </div>
         </div>
       </section>

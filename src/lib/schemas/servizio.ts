@@ -16,6 +16,14 @@ export const servizioSchema = z.object({
   description: z.string().default(""),
   type: z.enum(["consulenza", "digitale"]),
   category: z.string().min(1, "Categoria obbligatoria"),
+  externalUrl: z
+    .string()
+    .trim()
+    .refine(
+      (v) => v === "" || /^https?:\/\/.+/i.test(v),
+      "Inserire un URL valido (https://…) o lasciare vuoto"
+    )
+    .default(""),
   priceCents: z.number().int().positive("Inserire un prezzo valido"),
   compareAtPriceCents: z.number().int().positive().optional(),
   images: z.array(servizioImageSchema).default([]),

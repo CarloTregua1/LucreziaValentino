@@ -200,6 +200,7 @@ export interface ServizioDoc {
   description: string;
   type: ServizioType;
   category: string;
+  externalUrl?: string;
   priceCents: number;
   compareAtPriceCents?: number;
   images: ServizioImage[];

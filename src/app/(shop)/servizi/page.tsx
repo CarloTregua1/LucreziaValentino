@@ -110,12 +110,12 @@ export default async function ServiziPage() {
                       href={`/servizi/${s.slug}`}
                       className="group relative flex flex-col bg-[var(--color-background)] transition-colors duration-300 hover:bg-[var(--color-accent-light)]"
                     >
-                      <div className="relative aspect-[4/3] overflow-hidden">
+                      <div className="relative aspect-[4/3] overflow-hidden bg-[var(--color-card-subtle)]">
                         <Image
                           src={getImage(s, idx)}
                           alt={s.images[0]?.alt ?? s.name}
                           fill
-                          className="object-cover transition-transform duration-700 group-hover:scale-105"
+                          className="object-contain p-4"
                           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         />
                         <span className="absolute left-4 top-4 bg-[var(--color-background)]/90 px-2.5 py-1 text-xs tracking-widest text-[var(--color-foreground)]">
@@ -135,10 +135,12 @@ export default async function ServiziPage() {
                         </p>
                         <div className="mt-8 flex items-baseline justify-between border-t border-[var(--color-border)] pt-5">
                           <p className="text-sm font-medium text-[var(--color-foreground)]">
-                            {new Intl.NumberFormat("it-IT", {
-                              style: "currency",
-                              currency: "EUR",
-                            }).format(s.priceCents / 100)}
+                            {s.externalUrl
+                              ? "Disponibile online"
+                              : new Intl.NumberFormat("it-IT", {
+                                  style: "currency",
+                                  currency: "EUR",
+                                }).format(s.priceCents / 100)}
                           </p>
                           <span className="text-sm text-[var(--color-accent)] transition-transform duration-300 group-hover:translate-x-1">
                             Scopri →

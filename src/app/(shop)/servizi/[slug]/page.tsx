@@ -35,6 +35,12 @@ const HIGHLIGHTS = [
   { label: "Pagamento", value: "Sicuro · Stripe" },
 ];
 
+const EXTERNAL_HIGHLIGHTS = [
+  { label: "Formato", value: "100% online" },
+  { label: "Accesso", value: "Immediato" },
+  { label: "Contenuti", value: "Aggiornati" },
+];
+
 export default async function ServizioDetailPage({ params }: Props) {
   const { slug } = await params;
   const servizio = await getServizioBySlug(slug);
@@ -43,6 +49,7 @@ export default async function ServizioDetailPage({ params }: Props) {
 
   const heroImage = servizio.images[0]?.url ?? PLACEHOLDER_IMAGE;
   const heroAlt = servizio.images[0]?.alt ?? servizio.name;
+  const isExternal = Boolean(servizio.externalUrl);
   const formatPrice = (cents: number) =>
     new Intl.NumberFormat("it-IT", {
       style: "currency",
@@ -85,7 +92,7 @@ export default async function ServizioDetailPage({ params }: Props) {
                   alt={heroAlt}
                   fill
                   priority
-                  className="object-cover"
+                  className="object-contain p-6"
                   sizes="(max-width: 1024px) 100vw, 55vw"
                 />
               </div>
@@ -100,7 +107,7 @@ export default async function ServizioDetailPage({ params }: Props) {
                         src={img.url}
                         alt={img.alt}
                         fill
-                        className="object-cover"
+                        className="object-contain p-2"
                         sizes="15vw"
                       />
                     </div>
@@ -121,29 +128,50 @@ export default async function ServizioDetailPage({ params }: Props) {
                   {servizio.shortDescription}
                 </p>
 
-                <div className="mt-8 flex items-baseline gap-4">
-                  <p className="font-serif text-4xl leading-none text-[var(--color-foreground)] sm:text-5xl">
-                    {formatPrice(servizio.priceCents)}
-                  </p>
-                  {servizio.compareAtPriceCents && (
-                    <p className="text-lg text-[var(--color-muted)] line-through">
-                      {formatPrice(servizio.compareAtPriceCents)}
+                {isExternal ? (
+                  <div className="mt-8">
+                    <a
+                      href={servizio.externalUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block w-full bg-[var(--color-foreground)] py-4 text-center text-sm tracking-wide text-[var(--color-background)] transition-colors hover:bg-[var(--color-accent)]"
+                    >
+                      {servizio.type === "digitale" &&
+                      servizio.category.toLowerCase().includes("ebook")
+                        ? "Acquista l'ebook →"
+                        : "Vai al corso →"}
+                    </a>
+                    <p className="mt-3 text-xs text-[var(--color-muted)]">
+                      Acquisto e accesso gestiti sulla piattaforma esterna.
                     </p>
-                  )}
-                </div>
+                  </div>
+                ) : (
+                  <>
+                    <div className="mt-8 flex items-baseline gap-4">
+                      <p className="font-serif text-4xl leading-none text-[var(--color-foreground)] sm:text-5xl">
+                        {formatPrice(servizio.priceCents)}
+                      </p>
+                      {servizio.compareAtPriceCents && (
+                        <p className="text-lg text-[var(--color-muted)] line-through">
+                          {formatPrice(servizio.compareAtPriceCents)}
+                        </p>
+                      )}
+                    </div>
 
-                <div className="mt-8">
-                  <AddToCartButton
-                    slug={servizio.slug}
-                    name={servizio.name}
-                    priceCents={servizio.priceCents}
-                    image={heroImage}
-                  />
-                </div>
+                    <div className="mt-8">
+                      <AddToCartButton
+                        slug={servizio.slug}
+                        name={servizio.name}
+                        priceCents={servizio.priceCents}
+                        image={heroImage}
+                      />
+                    </div>
+                  </>
+                )}
 
                 {/* Highlights */}
                 <ul className="mt-8 grid grid-cols-3 gap-px border border-[var(--color-border)] bg-[var(--color-border)]">
-                  {HIGHLIGHTS.map((h) => (
+                  {(isExternal ? EXTERNAL_HIGHLIGHTS : HIGHLIGHTS).map((h) => (
                     <li
                       key={h.label}
                       className="bg-[var(--color-background)] px-3 py-4 text-center"
