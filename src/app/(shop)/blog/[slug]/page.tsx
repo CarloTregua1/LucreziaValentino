@@ -90,7 +90,7 @@ export default async function BlogPostPage({ params }: Props) {
               alt={post.imageAlt}
               fill
               priority
-              className="object-cover"
+              className="object-contain p-4"
               sizes="(max-width: 1024px) 100vw, 64rem"
             />
           </div>

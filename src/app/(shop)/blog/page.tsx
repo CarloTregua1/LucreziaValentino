@@ -49,7 +49,7 @@ export default function BlogPage() {
                   alt={featured.imageAlt}
                   fill
                   priority
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="object-contain p-4"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
               </div>
@@ -87,12 +87,12 @@ export default function BlogPage() {
                   href={`/blog/${post.slug}`}
                   className="group flex flex-col bg-[var(--color-background)] transition-colors duration-300 hover:bg-[var(--color-accent-light)]"
                 >
-                  <div className="relative aspect-[4/3] overflow-hidden">
+                  <div className="relative aspect-[4/3] overflow-hidden bg-[var(--color-card-subtle)]">
                     <Image
                       src={post.image}
                       alt={post.imageAlt}
                       fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="object-contain p-4"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                   </div>
