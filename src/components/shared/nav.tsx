@@ -6,7 +6,7 @@ import { NavLinks } from "./nav-links";
 import { MobileMenu } from "./mobile-menu";
 
 const NAV_LINKS = [
-  { href: "/servizi", label: "Servizi" },
+  { href: "/servizi", label: "Aree di competenza" },
   { href: "/blog", label: "Blog" },
   { href: "/chi-siamo", label: "Chi sono" },
   { href: "/account/messaggi", label: "Contatti" },
@@ -31,7 +31,7 @@ export async function Nav() {
           </span>
           <span
             aria-hidden
-            className="hidden font-serif italic text-sm text-[var(--color-accent)] sm:inline"
+            className="font-serif italic text-2xl leading-none tracking-tight text-[var(--color-accent)]"
           >
             Valentino
           </span>
@@ -45,12 +45,12 @@ export async function Nav() {
           {isAdmin && (
             <Link
               href="/admin"
-              className="hidden bg-[var(--color-foreground)] px-3 py-1.5 text-xs uppercase tracking-widest text-[var(--color-background)] transition-colors hover:bg-[var(--color-accent)] md:inline-block"
+              className="hidden bg-[var(--color-foreground)] px-3 py-1.5 text-xs uppercase tracking-widest text-[var(--color-background)] transition-colors hover:bg-[var(--color-accent)] lg:inline-block"
             >
               Admin
             </Link>
           )}
-          <span className="hidden md:inline-block">
+          <span className="hidden lg:inline-block">
             <CartLink />
           </span>
 
@@ -59,7 +59,7 @@ export async function Nav() {
           {isAdmin ? (
             <Link
               href="/admin"
-              className="bg-[var(--color-foreground)] px-3 py-1.5 text-xs uppercase tracking-widest text-[var(--color-background)] transition-colors hover:bg-[var(--color-accent)] md:hidden"
+              className="bg-[var(--color-foreground)] px-3 py-1.5 text-xs uppercase tracking-widest text-[var(--color-background)] transition-colors hover:bg-[var(--color-accent)] lg:hidden"
             >
               Admin
             </Link>

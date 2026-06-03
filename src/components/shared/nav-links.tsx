@@ -22,7 +22,7 @@ export function NavLinks({ links }: Props) {
     .sort((a, b) => b.href.length - a.href.length)[0]?.href;
 
   return (
-    <nav className="hidden items-center gap-10 md:flex">
+    <nav className="hidden items-center gap-8 lg:flex">
       {links.map((link) => {
         const active = link.href === activeHref;
         return (

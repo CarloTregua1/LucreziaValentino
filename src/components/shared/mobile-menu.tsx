@@ -51,7 +51,7 @@ export function MobileMenu({ links }: Props) {
         aria-expanded={open}
         aria-controls="mobile-nav"
         onClick={() => setOpen((v) => !v)}
-        className="flex h-9 w-9 items-center justify-center text-[var(--color-foreground)] md:hidden"
+        className="flex h-9 w-9 items-center justify-center text-[var(--color-foreground)] lg:hidden"
       >
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
           {open ? (
@@ -76,7 +76,7 @@ export function MobileMenu({ links }: Props) {
         tabIndex={-1}
         aria-hidden="true"
         onClick={() => setOpen(false)}
-        className={`absolute inset-x-0 top-full z-30 h-screen bg-black/40 transition-opacity duration-200 md:hidden ${
+        className={`absolute inset-x-0 top-full z-30 h-screen bg-black/40 transition-opacity duration-200 lg:hidden ${
           open ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       />
@@ -85,7 +85,7 @@ export function MobileMenu({ links }: Props) {
       <div
         id="mobile-nav"
         inert={!open}
-        className={`absolute inset-x-0 top-full z-40 border-b border-[var(--color-border)] bg-[var(--color-background)] shadow-lg transition-[opacity,transform] duration-200 ease-out md:hidden ${
+        className={`absolute inset-x-0 top-full z-40 border-b border-[var(--color-border)] bg-[var(--color-background)] shadow-lg transition-[opacity,transform] duration-200 ease-out lg:hidden ${
           open
             ? "translate-y-0 opacity-100"
             : "pointer-events-none -translate-y-2 opacity-0"
