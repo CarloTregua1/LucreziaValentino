@@ -6,9 +6,9 @@ import type { ServizioDoc } from "@/types";
 import { ParallaxGallery } from "./_components/parallax-gallery";
 
 export const metadata: Metadata = {
-  title: "Lucrezia Valentino — Educatrice finanziaria e formatrice",
+  title: "Lucrezia Valentino — Consulenza, formazione e orientamento",
   description:
-    "Educazione e consulenza finanziaria, credito, CAF e Patronato, formazione, orientamento e microcredito. Competenza, etica e ascolto al servizio delle tue scelte.",
+    "Consulenza specialistica, formazione professionale e orientamento per lo sviluppo delle competenze, la crescita professionale e la valorizzazione del capitale umano. In presenza e online, su tutto il territorio nazionale.",
 };
 
 // Render at request time, not at build time — the homepage reads from
@@ -27,73 +27,93 @@ function getServiceImage(s: ServizioDoc, idx: number): string {
 
 const STATS = [
   { value: "10+", label: "Anni nel settore finanziario" },
-  { value: "5", label: "Albi e registri professionali" },
   { value: "100%", label: "Percorsi su misura" },
+  { value: "Italia", label: "In presenza e online" },
 ];
 
+const ROLES = [
+  "Educatrice Finanziaria",
+  "Formatrice Professionale",
+  "Consulente del Credito",
+  "Orientatrice Professionale",
+  "Progettista Formativa",
+];
+
+// Logos shown at the very top of the page (registers and accreditations).
+// OAM and S.ARF are intentionally represented as text below, not as logos.
 const ACCREDITATIONS = [
   { src: "/images/loghi/aief.png", alt: "AIEF — Associazione Italiana Educatori Finanziari" },
-  { src: "/images/loghi/oam.png", alt: "OAM — Organismo degli Agenti e dei Mediatori" },
   { src: "/images/loghi/asnor.png", alt: "ASNOR — Associazione Nazionale Orientatori" },
   { src: "/images/loghi/aif.png", alt: "AIF — Associazione Italiana Formatori" },
   { src: "/images/loghi/microcredito.png", alt: "Ente Nazionale Microcredito" },
   { src: "/images/loghi/regione-sicilia.png", alt: "Regione Siciliana" },
+  { src: "/images/loghi/regione-lombardia.png", alt: "Regione Lombardia" },
+];
+
+// Textual registrations (no logo, per client request).
+const TEXT_CREDENTIALS = [
+  "Iscritta all’OAM — Organismo degli Agenti e dei Mediatori",
+  "Iscritta al S.ARF — Registro Regionale dei Formatori della Regione Siciliana",
 ];
 
 const METHOD_STEPS = [
   {
     n: "01",
-    title: "Ascolto e analisi",
-    body: "Una prima call conoscitiva gratuita per capire la tua situazione, i tuoi obiettivi e le opzioni davvero a tua disposizione.",
+    title: "Analisi delle esigenze",
+    body: "Valutazione preliminare degli obiettivi, delle esigenze e del contesto di riferimento, al fine di individuare le soluzioni più adeguate e il percorso maggiormente coerente con le specifiche necessità.",
   },
   {
     n: "02",
-    title: "Percorso su misura",
-    body: "Costruiamo insieme un piano chiaro — finanziario, formativo o di orientamento — con priorità definite e passi concreti.",
+    title: "Definizione del percorso",
+    body: "Elaborazione di un percorso personalizzato di consulenza, formazione o orientamento, strutturato sulla base di obiettivi chiari, priorità operative e risultati attesi.",
   },
   {
     n: "03",
-    title: "Supporto continuo",
-    body: "Ti accompagno passo dopo passo fino al risultato, restando un punto di riferimento anche dopo, in totale trasparenza.",
+    title: "Affiancamento e monitoraggio",
+    body: "Supporto professionale durante l’intero percorso, con monitoraggio delle attività, aggiornamento continuo e attenzione al raggiungimento degli obiettivi definiti.",
   },
-];
-
-// Real institutions where Lucrezia has taught or collaborated (from CV).
-const COLLABORATIONS = [
-  "AKG Italia",
-  "RICAM Academy",
-  "FORIT",
-  "IGEA CPS",
-  "TEFURMA",
-  "Lezione Online",
-  "AIEF",
-  "ASNOR",
-  "Ente Nazionale Microcredito",
-  "I.I.S. Filippo Brunelleschi",
-  "HI Finance",
-  "Poste Italiane",
 ];
 
 const FAQS = [
   {
-    q: "Come funziona la prima consulenza?",
-    a: "La prima call conoscitiva è gratuita e dura circa 30 minuti. Insieme facciamo il punto sulla tua situazione e capiamo come posso esserti utile, senza alcun impegno.",
+    q: "Come si svolge il primo incontro?",
+    a: "Il primo incontro conoscitivo consente di approfondire esigenze, obiettivi e ambiti di interesse, al fine di individuare la soluzione più adeguata e definire un percorso coerente con le specifiche necessità.",
   },
   {
-    q: "Di cosa ti occupi esattamente?",
-    a: "Educazione e consulenza finanziaria, consulenza sul credito, assistenza CAF e Patronato, formazione professionale, orientamento, microcredito e formazione sull'intelligenza artificiale. Trovi tutto nella sezione Servizi.",
+    q: "Di quali ambiti ti occupi?",
+    a: "Le competenze comprendono educazione finanziaria, consulenza creditizia e microcredito, preparazione agli esami OCF, OAM e IVASS, orientamento professionale, progettazione e formazione professionale, servizi fiscali e previdenziali, sicurezza sul lavoro e innovazione digitale.",
   },
   {
-    q: "Lavori solo a Catania?",
-    a: "Ho sede a Catania, ma seguo clienti in tutta Italia: gran parte delle consulenze e dei percorsi si svolge comodamente da remoto, in video-call.",
+    q: "I servizi sono disponibili solo a Catania?",
+    a: "Le attività possono essere svolte sia in presenza sia a distanza, consentendo la collaborazione con persone, professionisti, imprese ed enti su tutto il territorio nazionale.",
   },
   {
-    q: "Come acquisto un servizio?",
-    a: "Le consulenze e i percorsi si prenotano direttamente dal sito. Ebook e corsi online sono invece disponibili sulle piattaforme esterne dedicate, raggiungibili dalla scheda del servizio.",
+    q: "A chi sono rivolti i servizi?",
+    a: "I servizi si rivolgono a privati, professionisti, studenti, lavoratori, imprese, enti di formazione, associazioni e organizzazioni interessati allo sviluppo di competenze professionali, finanziarie e trasversali.",
   },
   {
-    q: "Rilasci attestati per i corsi?",
-    a: "Sì. Al termine dei percorsi formativi vengono rilasciati attestati riconosciuti. Sono formatrice iscritta al Registro dei Formatori Professionisti AIF.",
+    q: "Come richiedere una consulenza o un percorso formativo?",
+    a: "È possibile richiedere informazioni o fissare un incontro attraverso i recapiti presenti nella sezione Contatti. Ogni richiesta viene valutata al fine di individuare la soluzione più adeguata alle specifiche esigenze.",
+  },
+  {
+    q: "Sono previsti attestati o certificazioni?",
+    a: "L’eventuale rilascio di attestati o certificazioni dipende dalla tipologia di percorso e dalle disposizioni previste dall’ente organizzatore o dal soggetto promotore delle attività formative.",
+  },
+  {
+    q: "È possibile realizzare percorsi personalizzati?",
+    a: "Sì. Ogni intervento può essere progettato e adattato sulla base degli obiettivi, del contesto professionale e delle esigenze specifiche della persona, dell’azienda o dell’organizzazione.",
+  },
+  {
+    q: "Sono previste collaborazioni con aziende ed enti di formazione?",
+    a: "Sì. Le collaborazioni comprendono attività di docenza, progettazione formativa, orientamento, educazione finanziaria e consulenza specialistica realizzate con aziende, enti di formazione, istituti scolastici, associazioni e organizzazioni.",
+  },
+  {
+    q: "Sono disponibili percorsi di preparazione agli esami OCF, OAM e IVASS?",
+    a: "Sì. Sono disponibili percorsi individuali e di gruppo finalizzati all’acquisizione delle competenze necessarie per affrontare gli esami di abilitazione professionale.",
+  },
+  {
+    q: "È possibile svolgere consulenze e percorsi formativi online?",
+    a: "Sì. Molti servizi di consulenza, formazione e orientamento possono essere erogati efficacemente anche in modalità online attraverso piattaforme digitali dedicate.",
   },
 ];
 
@@ -103,35 +123,83 @@ export default async function HomePage() {
 
   return (
     <div>
+      {/* ── Accreditations (top) ── */}
+      <section className="border-b border-[var(--color-border)] bg-[var(--color-cream-deep)]">
+        <div className="container-xl py-10 sm:py-12">
+          <p className="text-center text-xs uppercase tracking-widest text-[var(--color-muted)]">
+            Iscrizioni, registri e accreditamenti
+          </p>
+          <ul className="mt-7 grid grid-cols-2 items-center gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-6">
+            {ACCREDITATIONS.map((logo) => (
+              <li key={logo.src} className="flex items-center justify-center">
+                <span className="relative h-12 w-full max-w-[140px]">
+                  <Image
+                    src={logo.src}
+                    alt={logo.alt}
+                    fill
+                    className="object-contain opacity-80 transition-opacity hover:opacity-100"
+                    sizes="140px"
+                  />
+                </span>
+              </li>
+            ))}
+          </ul>
+          <ul className="mx-auto mt-8 flex max-w-3xl flex-col items-center gap-2 text-center text-xs tracking-wide text-[var(--color-muted)] sm:flex-row sm:justify-center sm:gap-8">
+            {TEXT_CREDENTIALS.map((c) => (
+              <li key={c}>{c}</li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       {/* ── Hero ── */}
-      <section className="relative overflow-hidden pt-6 pb-20 sm:pt-10 sm:pb-28 lg:pt-14 lg:pb-32">
+      <section className="relative overflow-hidden pt-10 pb-20 sm:pt-12 sm:pb-28 lg:pt-16 lg:pb-32">
         <div className="container-xl">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16 lg:items-end">
             <div className="lg:col-span-7">
               <p className="eyebrow">
-                Educatrice finanziaria · Formatrice · Catania
+                Consulenza · Formazione · Orientamento
               </p>
 
-              <h1 className="mt-6 font-serif leading-[0.92] text-[var(--color-foreground)]">
+              <h1 className="mt-6 font-serif leading-[0.95] text-[var(--color-foreground)]">
                 <span
                   className="block"
                   style={{ fontSize: "var(--text-display)" }}
                 >
-                  Lucrezia
+                  Lucrezia Valentino
                 </span>
                 <span
-                  className="mt-2 block serif-italic text-[var(--color-accent)]"
-                  style={{ fontSize: "calc(var(--text-h2) * 1.05)" }}
+                  className="mt-4 block serif-italic text-[var(--color-accent)]"
+                  style={{ fontSize: "var(--text-h3)" }}
                 >
-                  educazione finanziaria con metodo.
+                  Consulenza, formazione e orientamento per la crescita
+                  professionale e finanziaria.
                 </span>
               </h1>
 
-              <p className="mt-8 max-w-xl text-lg leading-relaxed text-[var(--color-foreground-soft)]">
-                Educatrice finanziaria, formatrice e consulente. Affianco
-                persone, famiglie e professionisti nelle scelte su credito,
-                fisco, previdenza e crescita professionale — con competenza,
-                etica e parole semplici.
+              <p className="mt-7 text-xs uppercase tracking-[0.18em] text-[var(--color-muted)]">
+                {ROLES.join(" · ")}
+              </p>
+
+              <p className="mt-7 max-w-xl text-lg leading-relaxed text-[var(--color-foreground-soft)]">
+                Consulenza specialistica, formazione professionale e
+                orientamento per lo sviluppo delle competenze, la crescita
+                professionale e la valorizzazione del capitale umano.
+              </p>
+
+              <p className="mt-5 max-w-xl leading-relaxed text-[var(--color-foreground-soft)]">
+                Competenze specialistiche nei settori dell’educazione
+                finanziaria, della consulenza creditizia e del microcredito,
+                della preparazione agli esami OCF, OAM e IVASS, della
+                progettazione formativa, dei servizi fiscali e previdenziali,
+                della sicurezza sul lavoro e dell’innovazione digitale.
+              </p>
+
+              <p className="mt-5 max-w-xl leading-relaxed text-[var(--color-foreground-soft)]">
+                Percorsi di consulenza, formazione e sviluppo rivolti a persone,
+                professionisti, imprese, enti di formazione e organizzazioni,
+                fondati su competenza, etica professionale, innovazione e
+                aggiornamento continuo.
               </p>
 
               <div className="mt-10 flex flex-wrap items-center gap-4">
@@ -139,7 +207,7 @@ export default async function HomePage() {
                   href="/servizi"
                   className="bg-[var(--color-foreground)] px-9 py-4 text-sm tracking-wide text-[var(--color-background)] transition-colors hover:bg-[var(--color-accent)]"
                 >
-                  Scopri i servizi
+                  Aree di competenza
                 </Link>
                 <Link
                   href="/chi-siamo"
@@ -152,7 +220,7 @@ export default async function HomePage() {
               <div className="mt-14 hidden items-center gap-3 text-xs text-[var(--color-muted)] sm:flex">
                 <span className="hair-rule" aria-hidden />
                 <span className="tracking-widest uppercase">
-                  Disponibile per nuove consulenze · 2026
+                  Su tutto il territorio nazionale · in presenza e online
                 </span>
               </div>
             </div>
@@ -161,7 +229,7 @@ export default async function HomePage() {
               <div className="relative aspect-[4/5] overflow-hidden bg-[var(--color-card-subtle)]">
                 <Image
                   src="/images/lucrezia.jpg"
-                  alt="Lucrezia Valentino — educatrice finanziaria e formatrice"
+                  alt="Lucrezia Valentino — consulenza, formazione e orientamento"
                   fill
                   priority
                   className="object-cover"
@@ -203,51 +271,30 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ── Accreditations ── */}
-      <section className="border-b border-[var(--color-border)]">
-        <div className="container-xl py-12 sm:py-14">
-          <p className="text-center text-xs uppercase tracking-widest text-[var(--color-muted)]">
-            Iscrizioni, registri e accreditamenti
-          </p>
-          <ul className="mt-8 grid grid-cols-2 items-center gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-6">
-            {ACCREDITATIONS.map((logo) => (
-              <li key={logo.src} className="flex items-center justify-center">
-                <span className="relative h-12 w-full max-w-[140px]">
-                  <Image
-                    src={logo.src}
-                    alt={logo.alt}
-                    fill
-                    className="object-contain opacity-70 transition-opacity hover:opacity-100"
-                    sizes="140px"
-                  />
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* ── Services grid ── */}
+      {/* ── Aree di competenza grid ── */}
       <section className="section-spacing">
         <div className="container-xl">
           <div className="grid gap-6 sm:grid-cols-2 sm:items-end">
             <div>
-              <p className="section-index">01 — Servizi</p>
+              <p className="section-index">01 — Aree di competenza</p>
               <h2 className="mt-3 font-serif text-[var(--text-h2)] text-[var(--color-foreground)]">
-                Pacchetti <span className="serif-italic">chiari</span>,
-                <br className="hidden sm:block" /> risultati misurabili.
+                Consulenza, formazione e orientamento per la crescita
+                professionale e finanziaria di{" "}
+                <span className="serif-italic">
+                  persone, professionisti e organizzazioni.
+                </span>
               </h2>
             </div>
             <div className="sm:text-right">
               <p className="text-[var(--color-foreground-soft)]">
-                Consulenze personalizzate e prodotti digitali per affrontare
-                fisco e bonus con metodo.
+                Percorsi su misura per lo sviluppo delle competenze e la
+                valorizzazione del capitale umano.
               </p>
               <Link
                 href="/servizi"
                 className="link-underline mt-4 inline-block text-sm text-[var(--color-foreground)]"
               >
-                Vedi tutti i servizi →
+                Vedi tutte le aree di competenza →
               </Link>
             </div>
           </div>
@@ -332,8 +379,8 @@ export default async function HomePage() {
               Tre passi, <span className="serif-italic">zero sorprese.</span>
             </h2>
             <p className="mt-5 text-[var(--color-foreground-soft)]">
-              Un processo semplice, pensato per metterti subito a fuoco
-              priorità, scadenze e risparmi possibili.
+              Un percorso strutturato, dall’analisi delle esigenze fino al
+              raggiungimento degli obiettivi definiti.
             </p>
           </div>
 
@@ -367,7 +414,7 @@ export default async function HomePage() {
           <div className="relative order-2 aspect-[4/5] overflow-hidden bg-[var(--color-card-subtle)] lg:order-1">
             <Image
               src="/images/lucrezia.jpg"
-              alt="Lucrezia Valentino nel suo studio"
+              alt="Lucrezia Valentino"
               fill
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"
@@ -381,17 +428,17 @@ export default async function HomePage() {
             </h2>
             <p className="mt-6 leading-relaxed text-[var(--color-foreground-soft)]">
               Sono Lucrezia Valentino. Dopo oltre dieci anni nel settore
-              finanziario e assicurativo, oggi unisco consulenza ed educazione:
-              aiuto le persone a comprendere credito, fisco e previdenza e
-              formo chi vuole crescere a livello professionale. Il mio compito è
-              rendere comprensibile e azionabile ciò che spesso sembra troppo
-              complesso.
+              finanziario e assicurativo, oggi unisco consulenza, formazione e
+              orientamento: aiuto persone, professionisti e organizzazioni a
+              sviluppare competenze e a crescere a livello professionale e
+              finanziario. Il mio compito è rendere comprensibile e azionabile
+              ciò che spesso sembra troppo complesso.
             </p>
 
             <ul className="mt-10 space-y-4">
               {[
                 "Educatrice finanziaria certificata AIEF",
-                "Consulente del credito iscritta all'OAM",
+                "Consulente del credito iscritta all’OAM",
                 "Formatrice AIF · Orientatrice certificata ASNOR",
               ].map((credit) => (
                 <li
@@ -417,55 +464,57 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ── Collaborations ── */}
+      {/* ── Collaborazioni professionali ── */}
       <section className="section-spacing border-y border-[var(--color-border)] bg-[var(--color-cream-deep)]">
         <div className="container-xl grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
-            <p className="section-index">04 — Collaborazioni</p>
+            <p className="section-index">04 — Collaborazioni Professionali</p>
             <h2 className="mt-3 font-serif text-[var(--text-h2)] text-[var(--color-foreground)]">
-              Dove insegno e{" "}
-              <span className="serif-italic">collaboro.</span>
+              Una rete di{" "}
+              <span className="serif-italic">collaborazioni.</span>
             </h2>
-            <p className="mt-6 leading-relaxed text-[var(--color-foreground-soft)]">
-              Enti di formazione, accademie, associazioni e istituti scolastici
-              con cui lavoro come docente, educatrice finanziaria e consulente —
-              tra progetti GOL, PNRR e percorsi professionalizzanti.
-            </p>
-            <p className="mt-5 text-sm leading-relaxed text-[var(--color-muted)]">
-              Tra questi, il corso di educazione finanziaria all&apos;I.I.S.
-              Filippo Brunelleschi (progetto PNRR): due edizioni, quattro classi
-              coinvolte e la richiesta di una terza edizione.
-            </p>
           </div>
 
-          <div className="lg:col-span-7">
-            <ul className="grid grid-cols-2 gap-px bg-[var(--color-border)] sm:grid-cols-3">
-              {COLLABORATIONS.map((name) => (
-                <li
-                  key={name}
-                  className="flex min-h-[88px] items-center justify-center bg-[var(--color-background)] px-4 py-6 text-center font-serif text-lg leading-tight text-[var(--color-foreground)]"
-                >
-                  {name}
-                </li>
-              ))}
-            </ul>
+          <div className="lg:col-span-7 space-y-6 leading-relaxed text-[var(--color-foreground-soft)]">
+            <p>
+              Una rete di collaborazioni sviluppata con enti di formazione,
+              accademie, associazioni professionali, istituti scolastici,
+              organizzazioni e realtà operanti nei settori della formazione,
+              dell’orientamento, dell’educazione finanziaria e della
+              consulenza.
+            </p>
+            <p>
+              Attività di docenza, progettazione formativa, educazione
+              finanziaria, orientamento professionale e consulenza specialistica
+              realizzate nell’ambito di percorsi professionalizzanti, programmi
+              finanziati, iniziative PNRR e progetti dedicati allo sviluppo
+              delle competenze e alla valorizzazione del capitale umano.
+            </p>
+            <p>
+              Tra le esperienze più significative, la realizzazione di percorsi
+              di educazione finanziaria presso istituti scolastici nell’ambito
+              delle iniziative PNRR, con il coinvolgimento di studenti, docenti
+              e comunità educanti, contribuendo alla diffusione di competenze
+              finanziarie e professionali orientate alla cittadinanza attiva e
+              consapevole.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* ── FAQ ── */}
+      {/* ── Informazioni utili (FAQ) ── */}
       <section className="section-spacing">
         <div className="container-xl grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <p className="section-index">05 — Domande frequenti</p>
+            <p className="section-index">05 — Informazioni Utili</p>
             <h2 className="mt-3 font-serif text-[var(--text-h2)] text-[var(--color-foreground)]">
-              <span className="serif-italic">Dubbi?</span>
-              <br />
-              Partiamo da qui.
+              Indicazioni e{" "}
+              <span className="serif-italic">chiarimenti.</span>
             </h2>
             <p className="mt-5 text-[var(--color-foreground-soft)]">
-              Non trovi la tua risposta? Scrivimi, ti rispondo personalmente
-              entro 24 ore.
+              Indicazioni e chiarimenti sui servizi, sulle modalità di
+              collaborazione e sui percorsi di consulenza, formazione e
+              orientamento.
             </p>
             <Link
               href="/account/messaggi"
@@ -505,7 +554,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ── CTA ── */}
+      {/* ── CTA — Parliamone insieme ── */}
       <section className="relative overflow-hidden bg-[var(--color-foreground)] text-[var(--color-background)]">
         <div
           aria-hidden
@@ -518,26 +567,28 @@ export default async function HomePage() {
                 className="eyebrow"
                 style={{ color: "var(--color-accent-light)" }}
               >
-                Prossimo passo
+                Parliamone insieme
               </p>
               <h2 className="mt-4 font-serif text-[var(--text-h1)] leading-[1] text-[var(--color-background)]">
-                Prenota la prima call,{" "}
+                Ogni percorso nasce{" "}
                 <span className="serif-italic text-[var(--color-accent-light)]">
-                  è gratuita.
+                  dall’ascolto.
                 </span>
               </h2>
               <p className="mt-6 max-w-xl text-[var(--color-muted-light)]">
-                Trenta minuti per fare chiarezza sui tuoi obiettivi — credito,
-                fisco, previdenza o crescita professionale. Senza impegno, in
-                totale riservatezza.
+                Ogni percorso nasce dall’ascolto, dall’analisi delle esigenze e
+                dalla definizione di soluzioni concrete orientate alla crescita
+                professionale, allo sviluppo delle competenze e al benessere
+                finanziario. Per informazioni sui servizi o sulle modalità di
+                collaborazione, è possibile richiedere un contatto diretto.
               </p>
             </div>
             <div className="lg:col-span-5 lg:text-right">
               <Link
-                href="/servizi"
+                href="/account/messaggi"
                 className="inline-block bg-[var(--color-accent)] px-10 py-4 text-sm tracking-widest uppercase text-white transition-colors hover:bg-[var(--color-accent-hover)]"
               >
-                Prenota ora
+                Richiedi informazioni
               </Link>
               <p className="mt-4 text-xs tracking-widest uppercase text-[var(--color-muted-light)]">
                 Risposta entro 24h

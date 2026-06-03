@@ -4,7 +4,7 @@ const COLUMNS = [
   {
     title: "Studio",
     links: [
-      { href: "/servizi", label: "Servizi" },
+      { href: "/servizi", label: "Aree di competenza" },
       { href: "/blog", label: "Blog" },
       { href: "/chi-siamo", label: "Chi sono" },
     ],
@@ -104,7 +104,8 @@ export function Footer() {
             </p>
             <ul className="mt-4 space-y-2 text-sm text-[var(--color-background)]/90">
               <li>Lun – Ven · 9:00 – 18:00</li>
-              <li>Catania · in studio e da remoto</li>
+              <li>Catania · Milano</li>
+              <li>In presenza e online, su tutto il territorio nazionale</li>
               <li>
                 <a
                   href="tel:+393508502846"

@@ -5,9 +5,9 @@ import { getServizi } from "@/lib/actions/servizi";
 import type { ServizioDoc } from "@/types";
 
 export const metadata: Metadata = {
-  title: "Servizi",
+  title: "Aree di competenza",
   description:
-    "Consulenza su bonus e fiscalità — scopri tutti i servizi di Lucrezia: consulenze personalizzate e prodotti digitali.",
+    "Consulenza, formazione e orientamento per la crescita professionale e finanziaria di persone, professionisti e organizzazioni.",
 };
 
 export const dynamic = "force-dynamic";
@@ -38,16 +38,16 @@ export default async function ServiziPage() {
           <p className="section-index">— Catalogo</p>
           <div className="mt-4 grid gap-6 lg:grid-cols-12 lg:items-end">
             <h1 className="lg:col-span-7 font-serif text-[var(--text-h1)] leading-[1.02] text-[var(--color-foreground)]">
-              I miei{" "}
+              Le mie{" "}
               <span className="serif-italic text-[var(--color-accent)]">
-                servizi
-              </span>{" "}
-              di consulenza.
+                aree di competenza
+              </span>
+              .
             </h1>
             <p className="lg:col-span-5 max-w-lg text-[var(--color-foreground-soft)]">
-              Consulenze personalizzate e prodotti digitali per la gestione
-              di bonus e fiscalità. Scegli il livello di supporto che ti
-              serve.
+              Consulenza, formazione e orientamento per la crescita
+              professionale e finanziaria di persone, professionisti e
+              organizzazioni. Scegli il livello di supporto che ti serve.
             </p>
           </div>
         </div>

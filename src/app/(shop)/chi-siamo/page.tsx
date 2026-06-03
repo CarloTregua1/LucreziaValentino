@@ -25,11 +25,6 @@ const VALUES = [
 
 const TIMELINE = [
   {
-    year: "1996",
-    title: "Perito aziendale e lingue estere",
-    body: "Diploma all'ITC «Luigi Einaudi» in economia, tecnica aziendale e diritto.",
-  },
-  {
     year: "2011",
     title: "Specialista Consulente Finanziario",
     body: "Dieci anni in Poste Italiane tra consulenza, prodotti finanziari e assicurativi.",
