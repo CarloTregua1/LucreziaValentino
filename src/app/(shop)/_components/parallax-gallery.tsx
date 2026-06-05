@@ -3,34 +3,16 @@
 import { useEffect, useRef } from "react";
 
 const IMAGES: Array<{ src: string; alt: string }> = [
-  {
-    src: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600&q=85",
-    alt: "Calcolatrice e ricevute sulla scrivania",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&q=85",
-    alt: "Macchina da scrivere d'epoca",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1551836022-4c4c79ecde51?w=1600&q=85",
-    alt: "Architettura italiana in luce calda",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1600&q=85",
-    alt: "Documenti di studio",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1600&q=85",
-    alt: "Carte e penna sul tavolo",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1600&q=85",
-    alt: "Tetti italiani all'alba",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=85",
-    alt: "Studio minimale",
-  },
+  { src: "/images/gallery/gallery-01.png", alt: "Atmosfere dello studio di Lucrezia Valentino" },
+  { src: "/images/gallery/gallery-02.png", alt: "Atmosfere dello studio di Lucrezia Valentino" },
+  { src: "/images/gallery/gallery-03.png", alt: "Atmosfere dello studio di Lucrezia Valentino" },
+  { src: "/images/gallery/gallery-04.png", alt: "Atmosfere dello studio di Lucrezia Valentino" },
+  { src: "/images/gallery/gallery-05.png", alt: "Atmosfere dello studio di Lucrezia Valentino" },
+  { src: "/images/gallery/gallery-06.png", alt: "Atmosfere dello studio di Lucrezia Valentino" },
+  { src: "/images/gallery/gallery-07.png", alt: "Atmosfere dello studio di Lucrezia Valentino" },
+  { src: "/images/gallery/gallery-08.png", alt: "Atmosfere dello studio di Lucrezia Valentino" },
+  { src: "/images/gallery/gallery-09.png", alt: "Atmosfere dello studio di Lucrezia Valentino" },
+  { src: "/images/gallery/gallery-10.png", alt: "Atmosfere dello studio di Lucrezia Valentino" },
 ];
 
 export function ParallaxGallery() {
