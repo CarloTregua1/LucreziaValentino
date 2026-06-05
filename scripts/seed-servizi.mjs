@@ -68,7 +68,7 @@ const SERVIZI = [
       "<p>Supporto orientativo nella lettura delle informazioni presenti nelle principali banche dati creditizie e nella comprensione delle procedure previste dalla normativa per l'aggiornamento, la rettifica o la cancellazione di dati inesatti o non correttamente trattati.</p>" +
       "<h3>Trasparenza professionale</h3>" +
       "<p>La consulenza ha finalità informative, orientative e di supporto all'analisi delle esigenze finanziarie del cliente. L'eventuale concessione del credito resta subordinata alle valutazioni effettuate dagli istituti di credito o dagli intermediari finanziari competenti, nel rispetto della normativa vigente.</p>" +
-      "<p>Iscritta OAM — Organismo Agenti e Mediatori. Numero di iscrizione OAM: [INSERIRE NUMERO].</p>" +
+      "<p>Iscritta OAM — Organismo Agenti e Mediatori. Numero di iscrizione OAM: M594.</p>" +
       "<h3>La consulenza include</h3>" +
       "<p><strong>Consulenza Creditizia Personalizzata — € 75</strong></p>" +
       "<ul><li>Incontro individuale online</li><li>Analisi preliminare della situazione economica e finanziaria</li><li>Orientamento sulle principali soluzioni di credito</li><li>Supporto nella comprensione di costi, condizioni e sostenibilità</li><li>Durata indicativa: fino a 60 minuti</li></ul>" +
