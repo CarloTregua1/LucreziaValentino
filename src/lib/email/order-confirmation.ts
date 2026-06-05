@@ -16,11 +16,11 @@ function orderHtml(order: OrderDoc): string {
     .map(
       (i) => `
       <tr>
-        <td style="padding:12px 0;border-bottom:1px solid #e6dfd6;color:#1e2b4a;font-family:Georgia,serif;font-size:16px;">
+        <td style="padding:12px 0;border-bottom:1px solid #e6dfd6;color:#0a2463;font-family:Georgia,serif;font-size:16px;">
           ${i.name}
           <div style="color:#7a726a;font-size:13px;margin-top:2px;">Quantità: ${i.quantity}</div>
         </td>
-        <td style="padding:12px 0;border-bottom:1px solid #e6dfd6;text-align:right;color:#1e2b4a;font-size:14px;">
+        <td style="padding:12px 0;border-bottom:1px solid #e6dfd6;text-align:right;color:#0a2463;font-size:14px;">
           ${formatEur(i.subtotalCents)}
         </td>
       </tr>`,
@@ -29,12 +29,12 @@ function orderHtml(order: OrderDoc): string {
 
   return `<!doctype html>
 <html lang="it">
-<body style="margin:0;padding:0;background:#faf7f2;font-family:'Helvetica Neue',Arial,sans-serif;color:#1e2b4a;">
+<body style="margin:0;padding:0;background:#faf7f2;font-family:'Helvetica Neue',Arial,sans-serif;color:#0a2463;">
   <div style="max-width:560px;margin:0 auto;padding:40px 24px;">
     <p style="font-size:11px;letter-spacing:0.25em;text-transform:uppercase;color:#b5654b;margin:0 0 12px;">
       Lucrezia · Studio
     </p>
-    <h1 style="font-family:Georgia,serif;font-size:32px;line-height:1.1;margin:0 0 8px;color:#1e2b4a;">
+    <h1 style="font-family:Georgia,serif;font-size:32px;line-height:1.1;margin:0 0 8px;color:#0a2463;">
       Grazie per il tuo ordine
     </h1>
     <p style="color:#7a726a;font-size:15px;margin:0 0 32px;">
@@ -47,7 +47,7 @@ function orderHtml(order: OrderDoc): string {
         <td style="padding-top:16px;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#7a726a;">
           Totale (IVA inclusa)
         </td>
-        <td style="padding-top:16px;text-align:right;font-family:Georgia,serif;font-size:24px;color:#1e2b4a;">
+        <td style="padding-top:16px;text-align:right;font-family:Georgia,serif;font-size:24px;color:#0a2463;">
           ${formatEur(order.totalCents)}
         </td>
       </tr>
@@ -57,7 +57,7 @@ function orderHtml(order: OrderDoc): string {
       <p style="margin:0 0 12px;font-size:11px;letter-spacing:0.25em;text-transform:uppercase;color:#b5654b;">
         Prossimi passi
       </p>
-      <p style="margin:0;font-size:15px;line-height:1.6;color:#2c3a5c;">
+      <p style="margin:0;font-size:15px;line-height:1.6;color:#2a3f72;">
         Ti contatterò personalmente entro 24 ore per organizzare la consulenza o
         consegnarti il materiale digitale. Se hai bisogno di me prima, scrivimi
         rispondendo a questa email.
@@ -65,7 +65,7 @@ function orderHtml(order: OrderDoc): string {
     </div>
 
     <p style="margin-top:32px;font-size:13px;color:#7a726a;">
-      Riferimento ordine: <code style="color:#1e2b4a;">${order.id}</code>
+      Riferimento ordine: <code style="color:#0a2463;">${order.id}</code>
     </p>
     <p style="margin-top:24px;font-size:13px;color:#7a726a;">
       Puoi consultare tutti i tuoi ordini in

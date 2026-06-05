@@ -78,8 +78,8 @@ export default function StyleguidePage() {
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-7">
             {[
               { name: "Background", css: "--color-background", hex: "#FAF7F2" },
-              { name: "Foreground", css: "--color-foreground", hex: "#1A1A1A" },
-              { name: "Muted", css: "--color-muted", hex: "#7A726A" },
+              { name: "Foreground", css: "--color-foreground", hex: "#0A2463" },
+              { name: "Muted", css: "--color-muted", hex: "#5D564F" },
               { name: "Accent", css: "--color-accent", hex: "#B5654B" },
               { name: "Accent Light", css: "--color-accent-light", hex: "#F0E8E3" },
               { name: "Border", css: "--color-border", hex: "#E6DFD6" },
