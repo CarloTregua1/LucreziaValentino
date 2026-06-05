@@ -188,9 +188,9 @@ export default async function ServizioDetailPage({ params }: Props) {
 
                 {servizio.description && (
                   <div className="mt-12 border-t border-[var(--color-border)] pt-8">
-                    <p className="eyebrow-muted">Cosa include</p>
+                    <p className="eyebrow-muted">Dettagli del servizio</p>
                     <div
-                      className="prose prose-sm mt-4 max-w-none leading-relaxed text-[var(--color-foreground-soft)] [&_strong]:text-[var(--color-foreground)] [&_ul]:mt-3 [&_ul]:list-disc [&_ul]:space-y-1 [&_ul]:pl-5 [&_p]:mt-3"
+                      className="mt-4 max-w-none leading-relaxed text-[var(--color-foreground-soft)] [&_strong]:text-[var(--color-foreground)] [&_ul]:mt-3 [&_ul]:list-disc [&_ul]:space-y-1 [&_ul]:pl-5 [&_p]:mt-3 [&_h3]:mt-8 [&_h3]:font-serif [&_h3]:text-xl [&_h3]:text-[var(--color-foreground)] [&_h4]:mt-7 [&_h4]:font-medium [&_h4]:text-[var(--color-foreground)]"
                       dangerouslySetInnerHTML={{ __html: servizio.description }}
                     />
                   </div>
