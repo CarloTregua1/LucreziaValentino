@@ -110,7 +110,7 @@ export function SettingsForm({ settings }: Props) {
             <input
               {...register("openingHours")}
               className={inputClass}
-              placeholder="Lun–Ven 9:00–18:00"
+              placeholder="Lun–Ven 9:00–19:00"
             />
           </div>
           <div>

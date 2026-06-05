@@ -103,7 +103,7 @@ export function Footer() {
               Contatti
             </p>
             <ul className="mt-4 space-y-2 text-sm text-[var(--color-background)]/90">
-              <li>Lun – Ven · 9:00 – 18:00</li>
+              <li>Lun – Ven · 9:00 – 19:00</li>
               <li>Catania · Milano</li>
               <li>In presenza e online, su tutto il territorio nazionale</li>
               <li>
