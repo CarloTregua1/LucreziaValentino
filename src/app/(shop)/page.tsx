@@ -209,7 +209,11 @@ export default async function HomePage() {
                 professionale e la valorizzazione del capitale umano.
               </p>
 
-              <p className="mt-5 max-w-xl leading-relaxed text-[var(--color-foreground-soft)]">
+              <p
+                data-reveal
+                data-delay="3"
+                className="mt-5 max-w-xl leading-relaxed text-[var(--color-foreground-soft)]"
+              >
                 Competenze specialistiche nei settori dell’educazione
                 finanziaria, della consulenza creditizia e del microcredito,
                 della preparazione agli esami OCF, OAM e IVASS, della
@@ -217,7 +221,11 @@ export default async function HomePage() {
                 della sicurezza sul lavoro e dell’innovazione digitale.
               </p>
 
-              <p className="mt-5 max-w-xl leading-relaxed text-[var(--color-foreground-soft)]">
+              <p
+                data-reveal
+                data-delay="3"
+                className="mt-5 max-w-xl leading-relaxed text-[var(--color-foreground-soft)]"
+              >
                 Percorsi di consulenza, formazione e sviluppo rivolti a persone,
                 professionisti, imprese, enti di formazione e organizzazioni,
                 fondati su competenza, etica professionale, innovazione e
