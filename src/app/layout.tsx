@@ -48,8 +48,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="it" className={`${cormorant.variable} ${dmSans.variable}`}>
+    <html
+      lang="it"
+      suppressHydrationWarning
+      className={`${cormorant.variable} ${dmSans.variable}`}
+    >
       <body className="min-h-screen flex flex-col antialiased">
+        {/* Mark JS as available before paint so scroll-reveal can hide content
+            up front without a flash (and without hiding it for no-JS users). */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.classList.add('js-reveal')",
+          }}
+        />
         <FirebaseProvider>{children}</FirebaseProvider>
       </body>
     </html>
