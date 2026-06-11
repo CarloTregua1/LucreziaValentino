@@ -245,7 +245,9 @@ html.lenis body {
     transition:
       opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
       transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
-    will-change: opacity, transform;
+    /* `will-change` is applied just-in-time by ScrollReveal right before an
+       element animates and cleared afterwards — promoting all reveal targets
+       up front pins dozens of GPU layers and makes mobile scrolling choppy. */
   }
   .js-reveal [data-reveal].is-visible {
     opacity: 1;
