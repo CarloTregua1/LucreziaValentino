@@ -20,7 +20,7 @@ export async function Nav() {
   const isAdmin = user?.role === "admin";
 
   return (
-    <header className="sticky top-0 z-40 border-b border-[var(--color-border)] bg-[var(--color-background)]/85 backdrop-blur-md">
+    <header className="sticky top-0 z-40 border-b border-[var(--color-border)] bg-[var(--color-background)] md:bg-[var(--color-background)]/85 md:backdrop-blur-md">
       <div className="container-xl flex items-center justify-between py-5">
         <Link
           href="/"

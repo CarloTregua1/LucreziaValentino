@@ -116,7 +116,7 @@ export function ParallaxGallery() {
       {/* Soft accent glow on the right edge */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-40 top-1/3 h-[60vh] w-[60vh] rounded-full bg-[var(--color-accent)]/20 blur-3xl"
+        className="pointer-events-none absolute -right-40 top-1/3 hidden h-[60vh] w-[60vh] rounded-full bg-[var(--color-accent)]/20 blur-3xl md:block"
       />
 
       {/* ── Mobile: heading in normal flow + a native, swipeable scroll-snap
