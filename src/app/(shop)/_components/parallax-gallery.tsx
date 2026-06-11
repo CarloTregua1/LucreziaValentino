@@ -100,7 +100,7 @@ export function ParallaxGallery() {
     <section
       ref={sectionRef}
       aria-label="Galleria atmosferica dello studio"
-      className="relative h-screen min-h-[600px] overflow-hidden bg-[var(--color-foreground)] text-[var(--color-background)]"
+      className="relative overflow-hidden bg-[var(--color-foreground)] py-16 text-[var(--color-background)] md:h-screen md:min-h-[600px] md:py-0"
       style={{
         paddingLeft: "var(--container-x)",
         paddingRight: "var(--container-x)",
@@ -112,8 +112,46 @@ export function ParallaxGallery() {
         className="pointer-events-none absolute -right-40 top-1/3 h-[60vh] w-[60vh] rounded-full bg-[var(--color-accent)]/20 blur-3xl"
       />
 
-      {/* Heading anchored top-left */}
-      <div className="pointer-events-none absolute left-0 right-0 top-10 z-10 sm:top-14" style={{ paddingLeft: "var(--container-x)", paddingRight: "var(--container-x)" }}>
+      {/* ── Mobile: heading in normal flow + a native, swipeable scroll-snap
+          strip. No scroll-jacking — that feels buggy on touch. ── */}
+      <div className="relative z-10 md:hidden">
+        <p className="eyebrow" style={{ color: "var(--color-accent-light)" }}>
+          Sguardo
+        </p>
+        <h2 className="mt-3 max-w-2xl font-serif text-[var(--text-h2)] leading-[1.05] text-[var(--color-background)]">
+          Atmosfere{" "}
+          <span className="serif-italic text-[var(--color-accent-light)]">
+            di studio.
+          </span>
+        </h2>
+      </div>
+      <div
+        className="relative z-10 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 md:hidden [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        style={{
+          // Bleed the strip to the screen edges so images can scroll fully
+          // off-screen, while keeping the first one aligned to the text.
+          marginLeft: "calc(-1 * var(--container-x))",
+          marginRight: "calc(-1 * var(--container-x))",
+          paddingLeft: "var(--container-x)",
+          paddingRight: "var(--container-x)",
+        }}
+      >
+        {IMAGES.map((img, i) => (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            key={i}
+            src={img.src}
+            alt={img.alt}
+            draggable={false}
+            loading={i < 2 ? "eager" : "lazy"}
+            className="h-[62vw] w-[76vw] max-w-[340px] flex-shrink-0 snap-start object-cover"
+            style={{ objectPosition: "center" }}
+          />
+        ))}
+      </div>
+
+      {/* ── Desktop: heading anchored top-left ── */}
+      <div className="pointer-events-none absolute left-0 right-0 top-10 z-10 hidden sm:top-14 md:block" style={{ paddingLeft: "var(--container-x)", paddingRight: "var(--container-x)" }}>
         <p
           className="eyebrow"
           style={{ color: "var(--color-accent-light)" }}
@@ -128,17 +166,17 @@ export function ParallaxGallery() {
         </h2>
       </div>
 
-      {/* Scroll hint anchored bottom-left */}
-      <div className="pointer-events-none absolute bottom-8 left-0 right-0 z-10 flex items-center gap-3 text-xs uppercase tracking-widest text-[var(--color-muted-light)]" style={{ paddingLeft: "var(--container-x)", paddingRight: "var(--container-x)" }}>
+      {/* Scroll hint anchored bottom-left (desktop) */}
+      <div className="pointer-events-none absolute bottom-8 left-0 right-0 z-10 hidden items-center gap-3 text-xs uppercase tracking-widest text-[var(--color-muted-light)] md:flex" style={{ paddingLeft: "var(--container-x)", paddingRight: "var(--container-x)" }}>
         <span className="inline-block h-px w-10 bg-[var(--color-accent-light)]/60" />
         <span>Atmosfere in scorrimento</span>
       </div>
 
-      {/* Horizontal track — translated based on the section's vertical
-          position in the viewport. */}
+      {/* Horizontal track (desktop) — translated based on the section's
+          vertical position in the viewport. */}
       <div
         ref={trackRef}
-        className="absolute top-1/2 flex gap-[4vmin]"
+        className="absolute top-1/2 hidden gap-[4vmin] md:flex"
         style={{
           left: "var(--container-x)",
           transform: "translate3d(0, -50%, 0)",
