@@ -593,7 +593,7 @@ export default async function HomePage() {
       <section className="relative overflow-hidden bg-[var(--color-foreground)] text-[var(--color-background)]">
         <div
           aria-hidden
-          className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-[var(--color-accent)]/15 blur-3xl"
+          className="pointer-events-none absolute -right-32 -top-32 hidden h-96 w-96 rounded-full bg-[var(--color-accent)]/15 blur-3xl md:block"
         />
         <div className="container-xl section-spacing relative">
           <div className="grid gap-12 lg:grid-cols-12 lg:items-end">

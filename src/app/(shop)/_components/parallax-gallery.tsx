@@ -24,6 +24,13 @@ export function ParallaxGallery() {
     const track = trackRef.current;
     if (!section || !track) return;
 
+    // The horizontal sweep is desktop-only (the track is `display:none` under
+    // md). On touch devices the strip uses native scroll-snap instead, so bail
+    // out here — otherwise we'd run getBoundingClientRect() on every scroll
+    // event for an invisible element, thrashing layout and making phones choppy.
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
     // Tunables:
     // ACTIVE_RANGE — fraction of the section's transit through the viewport
     // during which the horizontal sweep happens. 1.0 = entering→leaving;
@@ -109,7 +116,7 @@ export function ParallaxGallery() {
       {/* Soft accent glow on the right edge */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-40 top-1/3 h-[60vh] w-[60vh] rounded-full bg-[var(--color-accent)]/20 blur-3xl"
+        className="pointer-events-none absolute -right-40 top-1/3 hidden h-[60vh] w-[60vh] rounded-full bg-[var(--color-accent)]/20 blur-3xl md:block"
       />
 
       {/* ── Mobile: heading in normal flow + a native, swipeable scroll-snap

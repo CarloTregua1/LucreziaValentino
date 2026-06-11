@@ -15,6 +15,11 @@ export function ScrollReveal() {
   const pathname = usePathname();
 
   useEffect(() => {
+    // Mobile: the reveal effect is disabled entirely (felt choppy), so the
+    // `.js-reveal` gate is never set there and content is already visible —
+    // nothing to observe. Keep this in sync with the gate in the root layout.
+    if (!window.matchMedia("(min-width: 768px)").matches) return;
+
     const els = Array.from(
       document.querySelectorAll<HTMLElement>("[data-reveal]")
     );
@@ -31,10 +36,22 @@ export function ScrollReveal() {
     const io = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            io.unobserve(entry.target);
-          }
+          if (!entry.isIntersecting) continue;
+          const el = entry.target as HTMLElement;
+          io.unobserve(el);
+
+          // Promote to its own layer only for the duration of the animation,
+          // then release it so we never hold more than a few composited layers
+          // at once (persistent `will-change` is what makes mobile choppy).
+          el.style.willChange = "opacity, transform";
+          const release = () => {
+            el.style.willChange = "";
+          };
+          el.addEventListener("transitionend", release, { once: true });
+          // Fallback in case the transition is interrupted and never fires.
+          window.setTimeout(release, 1100);
+
+          el.classList.add("is-visible");
         }
       },
       { rootMargin: "0px 0px -12% 0px", threshold: 0.12 }
