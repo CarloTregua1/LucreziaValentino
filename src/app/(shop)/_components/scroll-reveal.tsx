@@ -15,6 +15,11 @@ export function ScrollReveal() {
   const pathname = usePathname();
 
   useEffect(() => {
+    // Mobile: the reveal effect is disabled entirely (felt choppy), so the
+    // `.js-reveal` gate is never set there and content is already visible —
+    // nothing to observe. Keep this in sync with the gate in the root layout.
+    if (!window.matchMedia("(min-width: 768px)").matches) return;
+
     const els = Array.from(
       document.querySelectorAll<HTMLElement>("[data-reveal]")
     );
