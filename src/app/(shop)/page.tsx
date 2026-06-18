@@ -4,7 +4,6 @@ import Link from "next/link";
 import { getServizi } from "@/lib/actions/servizi";
 import type { ServizioDoc } from "@/types";
 import { ParallaxGallery } from "./_components/parallax-gallery";
-import { ScrollReveal } from "./_components/scroll-reveal";
 import { StatCounter } from "./_components/stat-counter";
 
 export const metadata: Metadata = {
@@ -125,19 +124,15 @@ export default async function HomePage() {
 
   return (
     <div>
-      <ScrollReveal />
       {/* ── Accreditations (top) ── */}
       <section className="border-b border-[var(--color-border)] bg-[var(--color-cream-deep)]">
         <div className="container-xl py-10 sm:py-12">
           <p
-            data-reveal
             className="text-center text-xs uppercase tracking-widest text-[var(--color-muted)]"
           >
             Iscrizioni, registri e accreditamenti
           </p>
           <ul
-            data-reveal
-            data-delay="1"
             className="mt-7 grid grid-cols-2 items-center gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-6"
           >
             {ACCREDITATIONS.map((logo) => (
@@ -167,13 +162,11 @@ export default async function HomePage() {
         <div className="container-xl">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16 lg:items-end">
             <div className="lg:col-span-7">
-              <p data-reveal className="eyebrow">
+              <p className="eyebrow">
                 Consulenza · Formazione · Orientamento
               </p>
 
               <h1
-                data-reveal
-                data-delay="1"
                 className="mt-6 font-serif leading-[0.95] text-[var(--color-foreground)]"
               >
                 <span
@@ -192,16 +185,12 @@ export default async function HomePage() {
               </h1>
 
               <p
-                data-reveal
-                data-delay="2"
                 className="mt-7 text-xs uppercase tracking-[0.18em] text-[var(--color-muted)]"
               >
                 {ROLES.join(" · ")}
               </p>
 
               <p
-                data-reveal
-                data-delay="2"
                 className="mt-7 max-w-xl text-lg leading-relaxed text-[var(--color-foreground-soft)]"
               >
                 Consulenza specialistica, formazione professionale e
@@ -210,8 +199,6 @@ export default async function HomePage() {
               </p>
 
               <p
-                data-reveal
-                data-delay="3"
                 className="mt-5 max-w-xl leading-relaxed text-[var(--color-foreground-soft)]"
               >
                 Competenze specialistiche nei settori dell’educazione
@@ -222,8 +209,6 @@ export default async function HomePage() {
               </p>
 
               <p
-                data-reveal
-                data-delay="3"
                 className="mt-5 max-w-xl leading-relaxed text-[var(--color-foreground-soft)]"
               >
                 Percorsi di consulenza, formazione e sviluppo rivolti a persone,
@@ -233,8 +218,6 @@ export default async function HomePage() {
               </p>
 
               <div
-                data-reveal
-                data-delay="3"
                 className="mt-10 flex flex-wrap items-center gap-4"
               >
                 <Link
@@ -259,7 +242,7 @@ export default async function HomePage() {
               </div>
             </div>
 
-            <div data-reveal data-delay="2" className="lg:col-span-5">
+            <div className="lg:col-span-5">
               <div className="relative aspect-[4/5] overflow-hidden bg-[var(--color-card-subtle)]">
                 <Image
                   src="/images/lucrezia.jpg"
@@ -299,7 +282,7 @@ export default async function HomePage() {
       <section className="section-spacing">
         <div className="container-xl">
           <div className="grid gap-6 sm:grid-cols-2 sm:items-end">
-            <div data-reveal>
+            <div>
               <p className="section-index">01 — Aree di competenza</p>
               <h2 className="mt-3 font-serif text-[var(--text-h2)] text-[var(--color-foreground)]">
                 Consulenza, formazione e orientamento per la crescita
@@ -309,7 +292,7 @@ export default async function HomePage() {
                 </span>
               </h2>
             </div>
-            <div data-reveal data-delay="1" className="sm:text-right">
+            <div className="sm:text-right">
               <p className="text-[var(--color-foreground-soft)]">
                 Percorsi su misura per lo sviluppo delle competenze e la
                 valorizzazione del capitale umano.
@@ -351,8 +334,6 @@ export default async function HomePage() {
                 <Link
                   key={s.id}
                   href={`/servizi/${s.slug}`}
-                  data-reveal
-                  data-delay={String((idx % 3) + 1)}
                   className="group relative flex flex-col bg-[var(--color-background)] transition-colors duration-300 hover:bg-[var(--color-accent-light)]"
                 >
                   <div className="relative aspect-[4/3] overflow-hidden bg-[var(--color-card-subtle)]">
@@ -399,7 +380,7 @@ export default async function HomePage() {
       {/* ── Metodo (process) ── */}
       <section className="section-spacing bg-[var(--color-card-subtle)]">
         <div className="container-xl">
-          <div data-reveal className="max-w-2xl">
+          <div className="max-w-2xl">
             <p className="section-index">02 — Il metodo</p>
             <h2 className="mt-3 font-serif text-[var(--text-h2)] text-[var(--color-foreground)]">
               Tre passi, <span className="serif-italic">zero sorprese.</span>
@@ -414,8 +395,6 @@ export default async function HomePage() {
             {METHOD_STEPS.map((step, i) => (
               <li
                 key={step.n}
-                data-reveal
-                data-delay={String(i + 1)}
                 className="flex flex-col bg-[var(--color-background)] p-8 sm:p-10"
               >
                 <p className="font-serif text-6xl leading-none text-[var(--color-accent)]">
@@ -440,7 +419,6 @@ export default async function HomePage() {
       <section className="section-spacing">
         <div className="container-xl grid gap-16 lg:grid-cols-2 lg:items-center">
           <div
-            data-reveal
             className="relative order-2 aspect-[4/5] overflow-hidden bg-[var(--color-card-subtle)] lg:order-1"
           >
             <Image
@@ -451,7 +429,7 @@ export default async function HomePage() {
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
           </div>
-          <div data-reveal data-delay="1" className="order-1 lg:order-2">
+          <div className="order-1 lg:order-2">
             <p className="section-index">03 — Chi sono</p>
             <h2 className="mt-3 font-serif text-[var(--text-h2)] text-[var(--color-foreground)]">
               Esperienza al servizio dei{" "}
@@ -498,7 +476,7 @@ export default async function HomePage() {
       {/* ── Collaborazioni professionali ── */}
       <section className="section-spacing border-y border-[var(--color-border)] bg-[var(--color-cream-deep)]">
         <div className="container-xl grid gap-12 lg:grid-cols-12 lg:gap-16">
-          <div data-reveal className="lg:col-span-5">
+          <div className="lg:col-span-5">
             <p className="section-index">04 — Collaborazioni Professionali</p>
             <h2 className="mt-3 font-serif text-[var(--text-h2)] text-[var(--color-foreground)]">
               Una rete di{" "}
@@ -507,8 +485,6 @@ export default async function HomePage() {
           </div>
 
           <div
-            data-reveal
-            data-delay="1"
             className="lg:col-span-7 space-y-6 leading-relaxed text-[var(--color-foreground-soft)]"
           >
             <p>
@@ -540,7 +516,7 @@ export default async function HomePage() {
       {/* ── Informazioni utili (FAQ) ── */}
       <section className="section-spacing">
         <div className="container-xl grid gap-12 lg:grid-cols-12">
-          <div data-reveal className="lg:col-span-4">
+          <div className="lg:col-span-4">
             <p className="section-index">05 — Informazioni Utili</p>
             <h2 className="mt-3 font-serif text-[var(--text-h2)] text-[var(--color-foreground)]">
               Indicazioni e{" "}
@@ -559,7 +535,7 @@ export default async function HomePage() {
             </Link>
           </div>
 
-          <div data-reveal data-delay="1" className="lg:col-span-8">
+          <div className="lg:col-span-8">
             <div className="border-t border-[var(--color-border)]">
               {FAQS.map((faq, idx) => (
                 <details
@@ -597,7 +573,7 @@ export default async function HomePage() {
         />
         <div className="container-xl section-spacing relative">
           <div className="grid gap-12 lg:grid-cols-12 lg:items-end">
-            <div data-reveal className="lg:col-span-7">
+            <div className="lg:col-span-7">
               <p
                 className="eyebrow"
                 style={{ color: "var(--color-accent-light)" }}
@@ -618,7 +594,7 @@ export default async function HomePage() {
                 collaborazione, è possibile richiedere un contatto diretto.
               </p>
             </div>
-            <div data-reveal data-delay="1" className="lg:col-span-5 lg:text-right">
+            <div className="lg:col-span-5 lg:text-right">
               <Link
                 href="/account/messaggi"
                 className="inline-block bg-[var(--color-accent)] px-10 py-4 text-sm tracking-widest uppercase text-white transition-colors hover:bg-[var(--color-accent-hover)]"

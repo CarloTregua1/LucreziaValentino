@@ -54,16 +54,6 @@ export default function RootLayout({
       className={`${cormorant.variable} ${dmSans.variable}`}
     >
       <body className="min-h-screen flex flex-col antialiased">
-        {/* Mark JS as available before paint so scroll-reveal can hide content
-            up front without a flash (and without hiding it for no-JS users).
-            Desktop only — on mobile the scroll-reveal motion is disabled
-            entirely (it felt choppy), so content just renders statically. */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html:
-              "if(window.matchMedia('(min-width: 768px)').matches)document.documentElement.classList.add('js-reveal')",
-          }}
-        />
         <FirebaseProvider>{children}</FirebaseProvider>
       </body>
     </html>

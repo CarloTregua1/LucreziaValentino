@@ -234,38 +234,7 @@ html.lenis body {
   pointer-events: none;
 }
 
-/* ── Scroll-reveal ──
-   Hidden state only applies when JS is on (`.js-reveal` added before paint by
-   an inline script in the root layout) and motion is allowed, so content stays
-   visible for no-JS and reduced-motion users. */
 @media (prefers-reduced-motion: no-preference) {
-  .js-reveal [data-reveal] {
-    opacity: 0;
-    transform: translateY(26px);
-    transition:
-      opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
-      transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
-    /* `will-change` is applied just-in-time by ScrollReveal right before an
-       element animates and cleared afterwards — promoting all reveal targets
-       up front pins dozens of GPU layers and makes mobile scrolling choppy. */
-  }
-  .js-reveal [data-reveal].is-visible {
-    opacity: 1;
-    transform: none;
-  }
-  .js-reveal [data-reveal][data-delay="1"] {
-    transition-delay: 0.09s;
-  }
-  .js-reveal [data-reveal][data-delay="2"] {
-    transition-delay: 0.18s;
-  }
-  .js-reveal [data-reveal][data-delay="3"] {
-    transition-delay: 0.27s;
-  }
-  .js-reveal [data-reveal][data-delay="4"] {
-    transition-delay: 0.36s;
-  }
-
   /* Slow cinematic zoom for hero imagery */
   .animate-kenburns {
     animation: kenburns 20s ease-out forwards;
