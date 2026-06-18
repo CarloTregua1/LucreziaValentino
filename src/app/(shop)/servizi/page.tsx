@@ -25,7 +25,7 @@ function getImage(servizio: ServizioDoc, idx: number): string {
   return servizio.images[0]?.url ?? PLACEHOLDER_IMAGES[idx % PLACEHOLDER_IMAGES.length];
 }
 
-const CATEGORIES = ["Tutti", "Consulenza", "Digitale"];
+const CATEGORIES = ["Consulenza"];
 
 export default async function ServiziPage() {
   const servizi = await getServizi("published");
