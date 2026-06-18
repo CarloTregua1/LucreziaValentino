@@ -131,7 +131,7 @@ export function Footer() {
             © {new Date().getFullYear()} Lucrezia · Tutti i diritti riservati
           </p>
           <p className="text-xs tracking-widest uppercase text-[var(--color-muted-light)]">
-            Progettato con cura, in Italia
+            Powered by Ing. Carlo Tregua
           </p>
         </div>
       </div>
