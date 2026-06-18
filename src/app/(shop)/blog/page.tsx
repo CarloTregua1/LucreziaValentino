@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { getAllPosts, formatPostDate } from "@/lib/content/blog";
+import { SupportoIndividualeOnline } from "./_components/supporto-individuale-online";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -34,6 +35,9 @@ export default function BlogPage() {
           </div>
         </div>
       </section>
+
+      {/* Paid online lessons & pricing */}
+      <SupportoIndividualeOnline />
 
       {/* Featured */}
       {featured && (
