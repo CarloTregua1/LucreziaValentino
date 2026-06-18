@@ -278,7 +278,7 @@ const SERVIZI = [
     category: "Ebook",
     type: "digitale",
     priceCents: 1990,
-    externalUrl: "https://www.amazon.it/dp/B0D2B1HFBX",
+    externalUrl: "https://scrimmedizioni.com/product-detail?productidn=4416562",
     shortDescription:
       "La collana «Orizzonti Finanziari»: guide professionali ed ebook dedicati all'educazione finanziaria, alla crescita professionale e alla preparazione agli esami OCF, OAM e IVASS.",
     description:
