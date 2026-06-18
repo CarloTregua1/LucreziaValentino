@@ -1,6 +1,5 @@
 import { Nav } from "@/components/shared/nav";
 import { Footer } from "@/components/shared/footer";
-import { SmoothScroll } from "./_components/smooth-scroll";
 
 export default function ShopLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -18,7 +17,6 @@ export default function ShopLayout({ children }: { children: React.ReactNode }) 
         <div className="absolute -bottom-[12vh] -right-[12vw] h-[60vh] w-[55vw] rounded-full bg-[var(--color-accent)]/8 blur-[140px]" />
       </div>
 
-      <SmoothScroll />
       <Nav />
       <main className="flex-1">{children}</main>
       <Footer />
