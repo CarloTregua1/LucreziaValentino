@@ -87,30 +87,26 @@ export default function AboutPage() {
 
             <div className="mt-8 space-y-5 leading-relaxed text-[var(--color-foreground-soft)]">
               <p>
-                Mi chiamo Lucrezia e da oltre dieci anni mi muovo nel mondo
-                della finanza, della formazione e dell&apos;orientamento. Ho
-                iniziato in Poste Italiane come consulente finanziaria; oggi
-                affianco persone, famiglie e professionisti come educatrice
-                finanziaria, consulente del credito e operatrice CAF e
-                Patronato.
+                Mi chiamo Lucrezia Valentino e da oltre dieci anni costruisco
+                percorsi tra finanza, formazione e orientamento. Ho iniziato la
+                mia esperienza professionale in Poste Italiane come consulente
+                finanziaria; oggi integro competenze finanziarie, creditizie,
+                fiscali e formative per offrire supporto a persone, famiglie,
+                professionisti ed enti.
               </p>
               <p>
-                Il mio lavoro non si esaurisce nei numeri: si tratta di
-                ascoltare una storia, capire dove ci sono opportunità e
-                costruire una strada percorribile, sostenibile, chiara. La
-                materia finanziaria è complessa per natura — il mio compito è
-                renderla{" "}
-                <span className="serif-italic text-[var(--color-foreground)]">
-                  comprensibile e azionabile
-                </span>{" "}
-                per chi ho di fronte.
+                Il mio lavoro non si esaurisce nei numeri: significa ascoltare
+                una storia, comprendere bisogni e obiettivi, individuare
+                opportunità e costruire percorsi chiari, sostenibili e concreti.
+                La materia finanziaria è complessa per natura: il mio compito è
+                renderla comprensibile, pratica e utile per chi ho di fronte.
               </p>
               <p>
-                Sono anche formatrice e orientatrice: progetto e conduco corsi
-                su credito, fisco, sicurezza sul lavoro e intelligenza
-                artificiale, e accompagno chi cerca la propria strada
-                professionale. Scrivo inoltre guide ed ebook per rendere
-                l&apos;educazione finanziaria davvero accessibile.
+                Come formatrice e orientatrice, progetto percorsi dedicati alla
+                crescita delle competenze, alla consapevolezza economica e allo
+                sviluppo professionale. Attraverso corsi, consulenze, guide ed
+                ebook, trasformo contenuti complessi in strumenti chiari,
+                accessibili e orientati alla crescita.
               </p>
             </div>
 
@@ -204,14 +200,14 @@ export default function AboutPage() {
             Iniziamo a conoscerci
           </p>
           <h2 className="mx-auto mt-4 max-w-3xl font-serif text-[var(--text-h1)] leading-[1.05] text-[var(--color-background)]">
-            La prima call è{" "}
+            La prima call conoscitiva è{" "}
             <span className="serif-italic text-[var(--color-accent-light)]">
               gratuita.
             </span>
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-[var(--color-muted-light)]">
-            Trenta minuti per capire se possiamo lavorare insieme. Senza
-            impegno, in totale riservatezza.
+            Un momento riservato per ascoltare la tua situazione, comprendere le
+            priorità e orientarti verso il servizio più adatto.
           </p>
           <Link
             href="/servizi"

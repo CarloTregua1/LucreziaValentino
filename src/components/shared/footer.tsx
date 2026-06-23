@@ -40,10 +40,11 @@ export function Footer() {
               Pronto a fare il punto?
             </p>
             <p className="mt-3 font-serif text-3xl leading-tight text-[var(--color-background)] sm:text-4xl">
-              Scrivimi.{" "}
-              <span className="serif-italic text-[var(--color-accent-light)]">
-                Ti rispondo io.
-              </span>
+              Troviamo insieme la soluzione più adatta alle tue esigenze.
+            </p>
+            <p className="mt-4 max-w-xl text-sm leading-relaxed text-[var(--color-muted-light)]">
+              Consulenza, formazione e orientamento professionale per persone,
+              professionisti, imprese ed enti di formazione.
             </p>
           </div>
           <Link
@@ -105,7 +106,7 @@ export function Footer() {
             <ul className="mt-4 space-y-2 text-sm text-[var(--color-background)]/90">
               <li>Lun – Ven · 9:00 – 19:00</li>
               <li>Catania · Milano</li>
-              <li>In presenza e online, su tutto il territorio nazionale</li>
+              <li>Attività in presenza e online, su tutto il territorio nazionale</li>
               <li>
                 <a
                   href="tel:+393508502846"

@@ -96,11 +96,12 @@ export function CustomerThread({ userId, initialMessages }: Props) {
                 ✉
               </div>
               <p className="mt-6 font-serif text-2xl text-[var(--color-foreground)]">
-                Inizia la conversazione
+                Parliamo delle tue esigenze
               </p>
               <p className="mt-3 max-w-sm text-sm text-[var(--color-foreground-soft)]">
-                Scrivi il tuo primo messaggio. Solo Lucrezia potrà leggerlo, in
-                totale riservatezza.
+                Scrivi il tuo messaggio indicando l&apos;argomento di interesse.
+                Ogni comunicazione viene gestita personalmente e nel pieno
+                rispetto della riservatezza.
               </p>
             </div>
           ) : (

@@ -1,20 +1,30 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, DM_Sans } from "next/font/google";
+import { Arimo, Carlito, Archivo_Black } from "next/font/google";
 import { FirebaseProvider } from "@/components/providers/firebase-provider";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
+// Metric-compatible web equivalents so the Arial / Arial Black / Calibri look
+// renders identically on every OS (self-hosted by next/font, no Google calls).
+// Arimo → Arial (body), Carlito → Calibri (subtitles), Archivo Black → Arial Black (titles).
+const arimo = Arimo({
+  variable: "--font-arimo",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
   style: ["normal", "italic"],
   display: "swap",
 });
 
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
+const carlito = Carlito({
+  variable: "--font-carlito",
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
+const archivoBlack = Archivo_Black({
+  variable: "--font-archivo-black",
+  subsets: ["latin"],
+  weight: "400",
   display: "swap",
 });
 
@@ -51,7 +61,7 @@ export default function RootLayout({
     <html
       lang="it"
       suppressHydrationWarning
-      className={`${cormorant.variable} ${dmSans.variable}`}
+      className={`${arimo.variable} ${carlito.variable} ${archivoBlack.variable}`}
     >
       <body className="min-h-screen flex flex-col antialiased">
         <FirebaseProvider>{children}</FirebaseProvider>

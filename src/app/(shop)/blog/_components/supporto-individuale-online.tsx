@@ -179,12 +179,8 @@ export function SupportoIndividualeOnline() {
               {DESTINATARI.map((d) => (
                 <li
                   key={d}
-                  className="flex items-center gap-3 bg-[var(--color-card)] px-5 py-4 text-[var(--color-foreground)]"
+                  className="flex items-center bg-[var(--color-card)] px-5 py-4 font-bold text-[var(--color-foreground)]"
                 >
-                  <span
-                    aria-hidden
-                    className="inline-block h-px w-5 shrink-0 bg-[var(--color-accent)]"
-                  />
                   {d}
                 </li>
               ))}

@@ -35,9 +35,14 @@ export default async function CustomerMessagesPage() {
             Lucrezia.
           </span>
         </h1>
-        <p className="mt-5 max-w-xl text-[var(--color-foreground-soft)]">
-          Una chat diretta e riservata con Lucrezia. Di norma risponde entro
-          24 ore nei giorni lavorativi.
+        <p className="mt-6 font-medium text-[var(--color-foreground)]">
+          Contatto diretto e riservato
+        </p>
+        <p className="mt-3 max-w-xl text-[var(--color-foreground-soft)]">
+          Utilizza questa area per richiedere informazioni, chiarimenti o
+          approfondimenti sui servizi di consulenza, formazione e orientamento.
+          Ogni richiesta viene gestita con attenzione, riservatezza e
+          professionalità.
         </p>
 
         <CustomerThread userId={user.uid} initialMessages={initialMessages} />
