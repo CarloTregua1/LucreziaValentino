@@ -191,7 +191,7 @@ export default async function HomePage() {
               </p>
 
               <p
-                className="mt-7 max-w-xl text-lg leading-relaxed text-[var(--color-foreground-soft)]"
+                className="mt-7 max-w-xl leading-relaxed text-[var(--color-foreground-soft)]"
               >
                 Consulenza specialistica, formazione professionale e
                 orientamento per lo sviluppo delle competenze, la crescita
