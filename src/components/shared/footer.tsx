@@ -62,14 +62,13 @@ export function Footer() {
           <div className="md:col-span-5">
             <p className="font-serif text-3xl leading-none text-[var(--color-background)]">
               Lucrezia
-              <span className="ml-2 serif-italic text-[var(--color-accent-light)]">
+              <span className="ml-2 font-serif text-[var(--color-accent-light)]">
                 Valentino
               </span>
             </p>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-[var(--color-muted-light)]">
-              Educatrice finanziaria, formatrice e consulente. Credito, fisco,
-              previdenza, formazione e orientamento — con competenza, etica e
-              parole semplici.
+              Educatrice finanziaria, formatrice e consulente in credito, fisco,
+              previdenza, formazione e orientamento.
             </p>
           </div>
 
@@ -104,23 +103,36 @@ export function Footer() {
               Contatti
             </p>
             <ul className="mt-4 space-y-2 text-sm text-[var(--color-background)]/90">
-              <li>Lun – Ven · 9:00 – 19:00</li>
-              <li>Catania · Milano</li>
-              <li>Attività in presenza e online, su tutto il territorio nazionale</li>
+              <li>🕘 Lunedì – Venerdì | 9:00 – 19:00</li>
+              <li>📍 Operativa a Catania e Milano</li>
               <li>
-                <a
-                  href="tel:+393508502846"
-                  className="link-underline"
-                >
+                💻 Consulenze e attività in presenza e online, su tutto il
+                territorio nazionale
+              </li>
+              <li>
+                📞{" "}
+                <a href="tel:+393508502846" className="link-underline">
                   +39 350 850 2846
                 </a>
               </li>
               <li>
+                ✉️{" "}
                 <a
                   href="mailto:s.lucreziavalentino@gmail.com"
                   className="link-underline"
                 >
                   s.lucreziavalentino@gmail.com
+                </a>
+              </li>
+              <li>
+                💬{" "}
+                <a
+                  href="https://whatsapp.com/channel/0029VbDBqHD89inkTkGaaj1M"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="link-underline"
+                >
+                  Canale WhatsApp
                 </a>
               </li>
             </ul>

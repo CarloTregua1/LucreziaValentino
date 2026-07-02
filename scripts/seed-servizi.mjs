@@ -307,7 +307,8 @@ const SERVIZI = [
     category: "Formazione online",
     type: "digitale",
     priceCents: 4900,
-    externalUrl: "https://www.lezione-online.it/",
+    externalUrl:
+      "https://www.lezione-online.it/corso/corso-base-di-educazione-finanziaria-gestisci-in-modo-consapevole-le-tue-finanze/?ref=6474645",
     shortDescription:
       "Percorsi formativi online dedicati all'educazione finanziaria e alla preparazione agli esami OCF, OAM e IVASS, da seguire in autonomia e secondo i propri ritmi.",
     description:

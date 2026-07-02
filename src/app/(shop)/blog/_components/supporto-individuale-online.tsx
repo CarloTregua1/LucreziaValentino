@@ -95,10 +95,22 @@ const COMPRENDE = [
 ];
 
 const DESTINATARI = [
-  "Educazione finanziaria di base",
-  "Preparazione Esame OAM",
-  "Preparazione Esame OCF",
-  "Preparazione Esame IVASS",
+  {
+    name: "Educazione finanziaria di base",
+    href: "https://www.lezione-online.it/corso/corso-base-di-educazione-finanziaria-gestisci-in-modo-consapevole-le-tue-finanze/?ref=6474645",
+  },
+  {
+    name: "Preparazione Esame OAM",
+    href: "https://www.lezione-online.it/corso/corso-di-preparazione-allesame-oam-di-agente-in-attivita-finanziaria-e-mediatori-creditizi/?ref=6474645",
+  },
+  {
+    name: "Preparazione Esame OCF",
+    href: "https://www.lezione-online.it/corso/corso-di-preparazione-allesame-ocf-di-abilitazione-per-consulenti-finanziari/?ref=6474645",
+  },
+  {
+    name: "Preparazione Esame IVASS",
+    href: "https://www.lezione-online.it/corso/corso-di-preparazione-allesame-ivass-di-intermediario-assicurativo-e-riassicurativo/?ref=6474645",
+  },
 ];
 
 const SINGLE_LESSONS: Row[] = [
@@ -177,11 +189,15 @@ export function SupportoIndividualeOnline() {
             </p>
             <ul className="mt-5 grid gap-px overflow-hidden border border-[var(--color-border)] bg-[var(--color-border)] sm:grid-cols-2">
               {DESTINATARI.map((d) => (
-                <li
-                  key={d}
-                  className="flex items-center bg-[var(--color-card)] px-5 py-4 font-bold text-[var(--color-foreground)]"
-                >
-                  {d}
+                <li key={d.name} className="bg-[var(--color-card)]">
+                  <a
+                    href={d.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center px-5 py-4 font-bold text-[var(--color-foreground)] underline decoration-[var(--color-accent)] decoration-1 underline-offset-4 transition-colors hover:text-[var(--color-accent)]"
+                  >
+                    {d.name}
+                  </a>
                 </li>
               ))}
             </ul>

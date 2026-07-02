@@ -112,7 +112,7 @@ export async function sendCustomerMessage(content: string): Promise<ActionResult
 export async function sendAdminMessage(
   conversationId: string,
   content: string,
-): Promise<ActionResult> {
+): Promise<ActionResult<MessageDoc>> {
   const user = await getAuthUser();
   if (!user || user.role !== "admin")
     return { ok: false, error: "Non autorizzato." };
@@ -165,7 +165,7 @@ export async function sendAdminMessage(
   revalidatePath("/admin/messaggi");
   revalidatePath(`/admin/messaggi/${conversationId}`);
 
-  return { ok: true };
+  return { ok: true, data: message };
 }
 
 /* ──────────────────────────── Read markers ──────────────────────────── */

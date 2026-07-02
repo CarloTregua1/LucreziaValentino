@@ -1,7 +1,14 @@
 import { z } from "zod";
 
 export const servizioImageSchema = z.object({
-  url: z.string().url(),
+  // Accept both absolute URLs (Firebase Storage uploads) and root-relative
+  // paths (e.g. "/images/servizi/corsi-online.png" from the seed script).
+  url: z
+    .string()
+    .refine(
+      (v) => v.startsWith("/") || /^https?:\/\/.+/i.test(v),
+      "URL immagine non valido",
+    ),
   alt: z.string().default(""),
   order: z.number().int().min(0),
 });

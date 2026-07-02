@@ -31,7 +31,7 @@ export async function Nav() {
           </span>
           <span
             aria-hidden
-            className="font-serif italic text-2xl leading-none tracking-tight text-[var(--color-accent)]"
+            className="font-serif text-2xl leading-none tracking-tight text-[var(--color-accent)]"
           >
             Valentino
           </span>

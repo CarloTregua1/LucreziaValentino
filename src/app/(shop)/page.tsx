@@ -118,6 +118,39 @@ const FAQS = [
   },
 ];
 
+const REVIEWS = [
+  {
+    quote:
+      "Grazie a Lucrezia ho superato l’esame OAM al primo tentativo. Spiegazioni chiare, materiali aggiornati e un metodo di studio che fa davvero la differenza.",
+    name: "Marco R.",
+    role: "Agente in attività finanziaria",
+  },
+  {
+    quote:
+      "Un percorso di educazione finanziaria che mi ha aperto gli occhi sulla gestione del budget familiare. Competente, paziente e sempre disponibile.",
+    name: "Giulia P.",
+    role: "Milano",
+  },
+  {
+    quote:
+      "Preparazione all’esame IVASS impeccabile: simulazioni utilissime e ripasso mirato sugli argomenti più ostici. Consigliatissima.",
+    name: "Antonio F.",
+    role: "Intermediario assicurativo",
+  },
+  {
+    quote:
+      "Professionale ed empatica, chiara anche sugli argomenti più complessi. La consulenza creditizia è stata risolutiva per la mia situazione.",
+    name: "Sara M.",
+    role: "Catania",
+  },
+  {
+    quote:
+      "Ho seguito il corso OCF online e mi sono sentito seguito passo dopo passo. Ottimo rapporto qualità-prezzo e grande disponibilità.",
+    name: "Davide L.",
+    role: "Consulente finanziario",
+  },
+];
+
 export default async function HomePage() {
   const allServizi = await getServizi("published");
   const featured = allServizi.slice(0, 3);
@@ -287,7 +320,7 @@ export default async function HomePage() {
               <h2 className="mt-3 font-serif text-[var(--text-h2)] text-[var(--color-foreground)]">
                 Consulenza, formazione e orientamento per la crescita
                 professionale e finanziaria di{" "}
-                <span className="serif-italic">
+                <span className="serif-italic text-[var(--color-accent)]">
                   persone, professionisti e organizzazioni.
                 </span>
               </h2>
@@ -383,7 +416,10 @@ export default async function HomePage() {
           <div className="max-w-2xl">
             <p className="section-index">02 — Il metodo</p>
             <h2 className="mt-3 font-serif text-[var(--text-h2)] text-[var(--color-foreground)]">
-              Tre passi, <span className="serif-italic">zero sorprese.</span>
+              Tre passi,{" "}
+              <span className="serif-italic text-[var(--color-accent)]">
+                zero sorprese.
+              </span>
             </h2>
             <p className="mt-5 text-[var(--color-foreground-soft)]">
               Un percorso strutturato, dall’analisi delle esigenze fino al
@@ -433,7 +469,9 @@ export default async function HomePage() {
             <p className="section-index">03 — Chi sono</p>
             <h2 className="mt-3 font-serif text-[var(--text-h2)] text-[var(--color-foreground)]">
               Esperienza al servizio dei{" "}
-              <span className="serif-italic">tuoi obiettivi.</span>
+              <span className="serif-italic text-[var(--color-accent)]">
+                tuoi obiettivi.
+              </span>
             </h2>
             <p className="mt-6 leading-relaxed text-[var(--color-foreground-soft)]">
               Sono Lucrezia Valentino. Dopo oltre dieci anni nel settore
@@ -446,12 +484,31 @@ export default async function HomePage() {
 
             <ul className="mt-10 space-y-4">
               {[
-                "Educatrice finanziaria certificata AIEF",
-                "Consulente del credito iscritta all’OAM",
-                "Formatrice AIF · Orientatrice certificata ASNOR",
-              ].map((credit) => (
+                <>
+                  Educatrice finanziaria certificata{" "}
+                  <strong className="font-semibold text-[var(--color-foreground)]">
+                    AIEF
+                  </strong>
+                </>,
+                <>
+                  Consulente del credito iscritta all’
+                  <strong className="font-semibold text-[var(--color-foreground)]">
+                    OAM
+                  </strong>
+                </>,
+                <>
+                  Formatrice{" "}
+                  <strong className="font-semibold text-[var(--color-foreground)]">
+                    AIF
+                  </strong>{" "}
+                  · Orientatrice certificata{" "}
+                  <strong className="font-semibold text-[var(--color-foreground)]">
+                    ASNOR
+                  </strong>
+                </>,
+              ].map((credit, i) => (
                 <li
-                  key={credit}
+                  key={i}
                   className="flex items-start gap-3 text-[var(--color-foreground-soft)]"
                 >
                   <span
@@ -473,6 +530,28 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* ── Canale WhatsApp ── */}
+      <section className="section-spacing">
+        <div className="container-xl">
+          <a
+            href="https://whatsapp.com/channel/0029VbDBqHD89inkTkGaaj1M"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Segui il canale WhatsApp ufficiale di Lucrezia Valentino"
+            className="group block overflow-hidden border border-[var(--color-border)] transition-shadow hover:shadow-lg"
+          >
+            <Image
+              src="/images/whatsapp-canale.jpg"
+              alt="È online il mio Canale WhatsApp ufficiale — segui il canale per contenuti esclusivi, aggiornamenti e strumenti pratici"
+              width={1536}
+              height={1024}
+              className="h-auto w-full transition-transform duration-500 group-hover:scale-[1.02]"
+              sizes="(max-width: 1024px) 100vw, 1200px"
+            />
+          </a>
+        </div>
+      </section>
+
       {/* ── Collaborazioni professionali ── */}
       <section className="section-spacing border-y border-[var(--color-border)] bg-[var(--color-cream-deep)]">
         <div className="container-xl grid gap-12 lg:grid-cols-12 lg:gap-16">
@@ -480,7 +559,9 @@ export default async function HomePage() {
             <p className="section-index">04 — Collaborazioni Professionali</p>
             <h2 className="mt-3 font-serif text-[var(--text-h2)] text-[var(--color-foreground)]">
               Una rete di{" "}
-              <span className="serif-italic">collaborazioni.</span>
+              <span className="serif-italic text-[var(--color-accent)]">
+                collaborazioni.
+              </span>
             </h2>
           </div>
 
@@ -520,7 +601,9 @@ export default async function HomePage() {
             <p className="section-index">05 — Informazioni Utili</p>
             <h2 className="mt-3 font-serif text-[var(--text-h2)] text-[var(--color-foreground)]">
               Indicazioni e{" "}
-              <span className="serif-italic">chiarimenti.</span>
+              <span className="serif-italic text-[var(--color-accent)]">
+                chiarimenti.
+              </span>
             </h2>
             <p className="mt-5 text-[var(--color-foreground-soft)]">
               Indicazioni e chiarimenti sui servizi, sulle modalità di
@@ -562,6 +645,48 @@ export default async function HomePage() {
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ── Recensioni ── */}
+      <section className="section-spacing bg-[var(--color-card-subtle)]">
+        <div className="container-xl">
+          <div className="max-w-2xl">
+            <p className="section-index">06 — Dicono di me</p>
+            <h2 className="mt-3 font-serif text-[var(--text-h2)] text-[var(--color-foreground)]">
+              Le voci di chi ha già{" "}
+              <span className="serif-italic text-[var(--color-accent)]">
+                intrapreso il percorso.
+              </span>
+            </h2>
+          </div>
+
+          <ul className="mt-14 grid gap-px overflow-hidden border border-[var(--color-border)] bg-[var(--color-border)] sm:grid-cols-2 lg:grid-cols-3">
+            {REVIEWS.map((review) => (
+              <li
+                key={review.name}
+                className="flex flex-col bg-[var(--color-background)] p-8"
+              >
+                <p
+                  aria-hidden
+                  className="font-serif text-4xl leading-none text-[var(--color-accent)]"
+                >
+                  &ldquo;
+                </p>
+                <p className="mt-4 flex-1 leading-relaxed text-[var(--color-foreground-soft)]">
+                  {review.quote}
+                </p>
+                <div className="mt-6">
+                  <p className="font-serif text-lg text-[var(--color-foreground)]">
+                    {review.name}
+                  </p>
+                  <p className="mt-1 text-sm text-[var(--color-muted)]">
+                    {review.role}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 

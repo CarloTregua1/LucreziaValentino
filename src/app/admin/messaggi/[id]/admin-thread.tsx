@@ -69,7 +69,15 @@ export function AdminThread({ conversationId, initialMessages }: Props) {
         setError(result.error);
         setContent(trimmed);
         textareaRef.current?.focus();
+        return;
       }
+      // Show the reply immediately. If the live subscription is active it
+      // replaces the whole array, so the id check avoids a duplicate.
+      setMessages((prev) =>
+        prev.some((m) => m.id === result.data.id)
+          ? prev
+          : [...prev, result.data],
+      );
     });
   }
 
