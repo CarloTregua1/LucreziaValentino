@@ -532,13 +532,36 @@ export default async function HomePage() {
 
       {/* ── Canale WhatsApp ── */}
       <section className="section-spacing">
-        <div className="container-xl">
+        <div className="container-xl grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
+          <div>
+            <p className="section-index">Canale WhatsApp</p>
+            <h2 className="mt-3 font-serif text-[var(--text-h2)] text-[var(--color-foreground)]">
+              Aggiornamenti e contenuti esclusivi,{" "}
+              <span className="serif-italic text-[var(--color-accent)]">
+                direttamente su WhatsApp.
+              </span>
+            </h2>
+            <p className="mt-6 leading-relaxed text-[var(--color-foreground-soft)]">
+              Un canale ufficiale con approfondimenti, strumenti pratici e
+              novità su formazione, consulenza, educazione finanziaria e
+              orientamento professionale.
+            </p>
+            <a
+              href="https://whatsapp.com/channel/0029VbDBqHD89inkTkGaaj1M"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-8 inline-block bg-[var(--color-accent)] px-8 py-3 text-sm tracking-widest uppercase text-white transition-colors hover:bg-[var(--color-accent-hover)]"
+            >
+              Segui il canale →
+            </a>
+          </div>
+
           <a
             href="https://whatsapp.com/channel/0029VbDBqHD89inkTkGaaj1M"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Segui il canale WhatsApp ufficiale di Lucrezia Valentino"
-            className="group block overflow-hidden border border-[var(--color-border)] transition-shadow hover:shadow-lg"
+            className="group mx-auto block w-full max-w-md overflow-hidden border border-[var(--color-border)] transition-shadow hover:shadow-lg"
           >
             <Image
               src="/images/whatsapp-canale.jpg"
@@ -546,7 +569,7 @@ export default async function HomePage() {
               width={1536}
               height={1024}
               className="h-auto w-full transition-transform duration-500 group-hover:scale-[1.02]"
-              sizes="(max-width: 1024px) 100vw, 1200px"
+              sizes="(max-width: 1024px) 100vw, 448px"
             />
           </a>
         </div>
