@@ -47,7 +47,7 @@ export default async function OrdersPage() {
   return (
     <section className="section-spacing">
       <div className="container-xl max-w-4xl">
-        <p className="section-index">— Area riservata</p>
+        <p className="section-index">· Area riservata</p>
         <h1 className="mt-3 font-serif text-[var(--text-h1)] leading-[1.05] text-[var(--color-foreground)]">
           I miei <span className="serif-italic">ordini.</span>
         </h1>

@@ -35,7 +35,7 @@ export default async function ServiziPage() {
       {/* Header */}
       <section className="border-b border-[var(--color-border)]">
         <div className="container-xl section-spacing-sm">
-          <p className="section-index">— Catalogo</p>
+          <p className="section-index">· Catalogo</p>
           <div className="mt-4 grid gap-6 lg:grid-cols-12 lg:items-end">
             <h1 className="lg:col-span-7 font-serif text-[var(--text-h1)] leading-[1.02] text-[var(--color-foreground)]">
               Le mie{" "}

@@ -52,7 +52,7 @@ export default function AboutPage() {
       {/* Hero */}
       <section className="section-spacing">
         <div className="container-xl">
-          <p className="section-index">— Chi sono</p>
+          <p className="section-index">· Chi sono</p>
           <h1 className="mt-4 max-w-4xl font-serif text-[var(--text-h1)] leading-[1.02] text-[var(--color-foreground)]">
             La finanza è una materia umana,
             <br />
@@ -121,7 +121,7 @@ export default function AboutPage() {
       <section className="section-spacing bg-[var(--color-card-subtle)]">
         <div className="container-xl">
           <div className="max-w-2xl">
-            <p className="section-index">01 — Valori</p>
+            <p className="section-index">01 · Valori</p>
             <h2 className="mt-3 font-serif text-[var(--text-h2)] text-[var(--color-foreground)]">
               Tre principi,{" "}
               <span className="serif-italic">una sola promessa.</span>
@@ -153,7 +153,7 @@ export default function AboutPage() {
       <section className="section-spacing">
         <div className="container-xl grid gap-16 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <p className="section-index">02 — Percorso</p>
+            <p className="section-index">02 · Percorso</p>
             <h2 className="mt-3 font-serif text-[var(--text-h2)] text-[var(--color-foreground)]">
               Il filo conduttore
               <br />

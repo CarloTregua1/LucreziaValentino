@@ -316,7 +316,7 @@ export default async function HomePage() {
         <div className="container-xl">
           <div className="grid gap-6 sm:grid-cols-2 sm:items-end">
             <div>
-              <p className="section-index">01 — Aree di competenza</p>
+              <p className="section-index">01 · Aree di competenza</p>
               <h2 className="mt-3 font-serif text-[var(--text-h2)] text-[var(--color-foreground)]">
                 Consulenza, formazione e orientamento per la crescita
                 professionale e finanziaria di{" "}
@@ -414,7 +414,7 @@ export default async function HomePage() {
       <section className="section-spacing bg-[var(--color-card-subtle)]">
         <div className="container-xl">
           <div className="max-w-2xl">
-            <p className="section-index">02 — Il metodo</p>
+            <p className="section-index">02 · Il metodo</p>
             <h2 className="mt-3 font-serif text-[var(--text-h2)] text-[var(--color-foreground)]">
               Tre passi,{" "}
               <span className="serif-italic text-[var(--color-accent)]">
@@ -466,7 +466,7 @@ export default async function HomePage() {
             />
           </div>
           <div className="order-1 lg:order-2">
-            <p className="section-index">03 — Chi sono</p>
+            <p className="section-index">03 · Chi sono</p>
             <h2 className="mt-3 font-serif text-[var(--text-h2)] text-[var(--color-foreground)]">
               Esperienza al servizio dei{" "}
               <span className="serif-italic text-[var(--color-accent)]">
@@ -579,7 +579,7 @@ export default async function HomePage() {
       <section className="section-spacing border-y border-[var(--color-border)] bg-[var(--color-cream-deep)]">
         <div className="container-xl grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
-            <p className="section-index">04 — Collaborazioni Professionali</p>
+            <p className="section-index">04 · Collaborazioni Professionali</p>
             <h2 className="mt-3 font-serif text-[var(--text-h2)] text-[var(--color-foreground)]">
               Una rete di{" "}
               <span className="serif-italic text-[var(--color-accent)]">
@@ -621,7 +621,7 @@ export default async function HomePage() {
       <section className="section-spacing">
         <div className="container-xl grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <p className="section-index">05 — Informazioni Utili</p>
+            <p className="section-index">05 · Informazioni Utili</p>
             <h2 className="mt-3 font-serif text-[var(--text-h2)] text-[var(--color-foreground)]">
               Indicazioni e{" "}
               <span className="serif-italic text-[var(--color-accent)]">
@@ -675,7 +675,7 @@ export default async function HomePage() {
       <section className="section-spacing bg-[var(--color-card-subtle)]">
         <div className="container-xl">
           <div className="max-w-2xl">
-            <p className="section-index">06 — Dicono di me</p>
+            <p className="section-index">06 · Dicono di me</p>
             <h2 className="mt-3 font-serif text-[var(--text-h2)] text-[var(--color-foreground)]">
               Le voci di chi ha già{" "}
               <span className="serif-italic text-[var(--color-accent)]">

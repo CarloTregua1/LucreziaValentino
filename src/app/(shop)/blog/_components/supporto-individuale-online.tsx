@@ -175,7 +175,7 @@ export function SupportoIndividualeOnline() {
         {/* A chi è rivolto */}
         <div className="mt-14 grid gap-8 border-t border-[var(--color-border)] pt-14 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <p className="section-index">01 — A chi è rivolto</p>
+            <p className="section-index">01 · A chi è rivolto</p>
             <p className="mt-4 leading-relaxed text-[var(--color-foreground-soft)]">
               Il servizio è rivolto a studenti, professionisti e adulti in
               formazione che desiderano un supporto pratico, chiaro e
@@ -206,7 +206,7 @@ export function SupportoIndividualeOnline() {
 
         {/* Cosa puoi approfondire */}
         <div className="mt-14 border-t border-[var(--color-border)] pt-14">
-          <p className="section-index">02 — Cosa puoi approfondire</p>
+          <p className="section-index">02 · Cosa puoi approfondire</p>
           <div className="mt-8 grid gap-px overflow-hidden border border-[var(--color-border)] bg-[var(--color-border)] sm:grid-cols-2">
             {APPROFONDIMENTI.map((item) => (
               <div
@@ -227,7 +227,7 @@ export function SupportoIndividualeOnline() {
         {/* Cosa comprende il servizio */}
         <div className="mt-14 grid gap-8 border-t border-[var(--color-border)] pt-14 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <p className="section-index">03 — Cosa comprende</p>
+            <p className="section-index">03 · Cosa comprende</p>
             <p className="mt-4 leading-relaxed text-[var(--color-foreground-soft)]">
               Durante l’incontro online è possibile lavorare su diversi aspetti.
               L’obiettivo è offrire un supporto concreto e strutturato, aiutando
@@ -254,7 +254,7 @@ export function SupportoIndividualeOnline() {
         {/* Modalità di svolgimento */}
         <div className="mt-14 grid gap-8 border-t border-[var(--color-border)] pt-14 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <p className="section-index">04 — Modalità di svolgimento</p>
+            <p className="section-index">04 · Modalità di svolgimento</p>
           </div>
           <div className="space-y-4 leading-relaxed text-[var(--color-foreground-soft)] lg:col-span-7">
             <p>
@@ -276,7 +276,7 @@ export function SupportoIndividualeOnline() {
 
         {/* Listino prezzi */}
         <div className="mt-14 border-t border-[var(--color-border)] pt-14">
-          <p className="section-index">05 — Modalità di accesso e listino</p>
+          <p className="section-index">05 · Modalità di accesso e listino</p>
           <p className="mt-4 max-w-3xl leading-relaxed text-[var(--color-foreground-soft)]">
             Il servizio può essere richiesto in base al percorso scelto, alla
             durata dell’incontro e all’eventuale necessità di un affiancamento
