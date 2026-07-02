@@ -513,7 +513,7 @@ export default async function HomePage() {
                 >
                   <span
                     aria-hidden
-                    className="mt-2 inline-block h-px w-6 shrink-0 bg-[var(--color-accent)]"
+                    className="mt-2.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--color-accent)]"
                   />
                   <span>{credit}</span>
                 </li>
