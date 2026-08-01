@@ -104,7 +104,7 @@ export function Footer() {
             </p>
             <ul className="mt-4 space-y-2 text-sm text-[var(--color-background)]/90">
               <li>🕘 Lunedì – Venerdì | 9:00 – 19:00</li>
-              <li>📍 Operativa a Catania e Milano</li>
+              <li>📍 Catania e Milano, con operatività nazionale</li>
               <li>
                 💻 Consulenze e attività in presenza e online, su tutto il
                 territorio nazionale

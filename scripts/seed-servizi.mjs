@@ -50,7 +50,7 @@ const SERVIZI = [
     name: "Consulenza Creditizia",
     category: "Credito",
     type: "consulenza",
-    priceCents: 7500,
+    priceCents: 10000,
     externalUrl: "",
     shortDescription:
       "Un servizio dedicato a chi desidera affrontare con maggiore consapevolezza le proprie scelte di finanziamento: mutui, prestiti personali, cessione del quinto, delega di pagamento e consolidamento debiti.",
@@ -70,7 +70,7 @@ const SERVIZI = [
       "<p>La consulenza ha finalità informative, orientative e di supporto all'analisi delle esigenze finanziarie del cliente. L'eventuale concessione del credito resta subordinata alle valutazioni effettuate dagli istituti di credito o dagli intermediari finanziari competenti, nel rispetto della normativa vigente.</p>" +
       "<p>Iscritta OAM — Organismo Agenti e Mediatori. Numero di iscrizione OAM: M594.</p>" +
       "<h3>La consulenza include</h3>" +
-      "<p><strong>Consulenza Creditizia Personalizzata — € 75</strong></p>" +
+      "<p><strong>Consulenza Creditizia Personalizzata — € 100</strong></p>" +
       "<ul><li>Incontro individuale online</li><li>Analisi preliminare della situazione economica e finanziaria</li><li>Orientamento sulle principali soluzioni di credito</li><li>Supporto nella comprensione di costi, condizioni e sostenibilità</li><li>Durata indicativa: fino a 60 minuti</li></ul>" +
       "<p>Per richieste che richiedono approfondimenti documentali o analisi particolarmente complesse è possibile concordare percorsi di consulenza personalizzati.</p>",
     images: img("consulenza-creditizia", "Consulenza creditizia"),
@@ -86,7 +86,7 @@ const SERVIZI = [
     name: "Orientamento e Supporto Previdenziale, Assistenziale e Fiscale",
     category: "CAF & Patronato",
     type: "consulenza",
-    priceCents: 3900,
+    priceCents: 5000,
     externalUrl: "",
     shortDescription:
       "Servizio di orientamento e consulenza informativa su diritti, prestazioni, agevolazioni e adempimenti in ambito fiscale, previdenziale e assistenziale.",
@@ -102,7 +102,7 @@ const SERVIZI = [
       "<h3>Trasparenza professionale</h3>" +
       "<p>L'attività svolta ha finalità esclusivamente informative, orientative e di supporto alla comprensione delle procedure e della normativa di riferimento. L'eventuale presentazione delle pratiche agli enti competenti resta subordinata alle modalità previste dalla normativa vigente e alle competenze dei soggetti autorizzati.</p>" +
       "<h3>La consulenza include</h3>" +
-      "<p><strong>Consulenza Previdenziale e Assistenziale Personalizzata — € 39</strong></p>" +
+      "<p><strong>Consulenza Previdenziale e Assistenziale Personalizzata — € 50</strong></p>" +
       "<ul><li>Analisi preliminare della situazione personale e familiare</li><li>Orientamento su ISEE, pensioni e prestazioni INPS</li><li>Supporto informativo su NASpI, ADI, SFL e Assegno Unico</li><li>Indicazioni sulla documentazione necessaria</li><li>Consulenza individuale online</li><li>Durata indicativa: fino a 45 minuti</li></ul>" +
       "<p>Servizio di orientamento e consulenza informativa finalizzato a supportare il cliente nella comprensione di prestazioni, agevolazioni e procedure previdenziali, assistenziali e fiscali.</p>",
     images: img("caf-patronato", "Orientamento previdenziale e assistenziale"),

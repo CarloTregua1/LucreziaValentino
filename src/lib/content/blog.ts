@@ -11,6 +11,13 @@ export interface BlogPost {
   imageAlt: string;
   /** Paragraphs of body copy (plain text). */
   body: string[];
+  /** Optional brochure shown under the body, clickable to open in a lightbox. */
+  brochure?: {
+    src: string;
+    alt: string;
+    title?: string;
+    caption?: string;
+  };
 }
 
 const POSTS: BlogPost[] = [
@@ -47,6 +54,14 @@ const POSTS: BlogPost[] = [
       "Particolare attenzione sarà dedicata anche all'evoluzione digitale del settore, all'utilizzo dell'intelligenza artificiale nei servizi finanziari, alle nuove esigenze dei clienti e all'importanza di una consulenza etica, trasparente e orientata alla reale sostenibilità economica della persona.",
       "L'obiettivo è aiutare cittadini, studenti e professionisti a comprendere meglio il funzionamento del mondo creditizio e finanziario, sviluppando maggiore consapevolezza nelle scelte economiche e valorizzando il ruolo del consulente come figura di supporto, orientamento e accompagnamento nelle decisioni finanziarie più importanti.",
     ],
+    brochure: {
+      // PLACEHOLDER — sostituire con la brochure reale (immagine in /public/images).
+      src: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1000&h=1414&fit=crop&q=85",
+      alt: "Brochure consulenza creditizia",
+      title: "· Brochure",
+      caption:
+        "Tocca la brochure per aprirla a schermo intero e leggerla comodamente da computer o da telefono.",
+    },
   },
   {
     slug: "ocf-oam-ivass-come-prepararsi",

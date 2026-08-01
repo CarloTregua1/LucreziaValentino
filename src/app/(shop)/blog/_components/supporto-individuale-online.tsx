@@ -164,7 +164,7 @@ export function SupportoIndividualeOnline() {
               studio.
             </p>
             <p>
-              Le attività sono curate da Salvatrice Lucrezia Valentino,
+              Le attività sono curate da Lucrezia Valentino,
               educatrice finanziaria, formatrice, orientatrice e progettista
               formativa, con esperienza nella formazione in ambito finanziario,
               creditizio, assicurativo e professionale.

@@ -7,6 +7,7 @@ import {
   getPostBySlug,
   formatPostDate,
 } from "@/lib/content/blog";
+import { BrochureViewer } from "../_components/brochure-viewer";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -101,6 +102,16 @@ export default async function BlogPostPage({ params }: Props) {
               <p key={i}>{paragraph}</p>
             ))}
           </div>
+
+          {/* Brochure */}
+          {post.brochure && (
+            <BrochureViewer
+              src={post.brochure.src}
+              alt={post.brochure.alt}
+              title={post.brochure.title}
+              caption={post.brochure.caption}
+            />
+          )}
 
           {/* Signature */}
           <p className="mx-auto mt-12 max-w-2xl font-serif italic text-2xl text-[var(--color-accent)]">
