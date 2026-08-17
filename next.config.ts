@@ -6,6 +6,9 @@ const nextConfig: NextConfig = {
     root: path.resolve(__dirname),
   },
   images: {
+    // 90 is used by the brochure plates: they are dense infographics and the
+    // default 75 smudges their small text.
+    qualities: [75, 90],
     remotePatterns: [
       {
         protocol: "https",

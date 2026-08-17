@@ -104,14 +104,7 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
 
           {/* Brochure */}
-          {post.brochure && (
-            <BrochureViewer
-              src={post.brochure.src}
-              alt={post.brochure.alt}
-              title={post.brochure.title}
-              caption={post.brochure.caption}
-            />
-          )}
+          {post.brochure && <BrochureViewer brochure={post.brochure} />}
 
           {/* Signature */}
           <p className="mx-auto mt-12 max-w-2xl font-serif italic text-2xl text-[var(--color-accent)]">

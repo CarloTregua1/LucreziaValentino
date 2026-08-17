@@ -12,12 +12,20 @@ export interface BlogPost {
   /** Paragraphs of body copy (plain text). */
   body: string[];
   /** Optional brochure shown under the body, clickable to open in a lightbox. */
-  brochure?: {
-    src: string;
-    alt: string;
-    title?: string;
-    caption?: string;
-  };
+  brochure?: Brochure;
+}
+
+export interface Brochure {
+  /** Small label above the brochure block. */
+  title?: string;
+  /** Paragraphs introducing the brochure, shown above the plates. */
+  intro?: string[];
+  /** Brochure plates, in reading order. */
+  pages: { src: string; alt: string }[];
+  /** Short hint under the plates. */
+  caption?: string;
+  /** Legal notice shown at the bottom of the block. */
+  disclaimer?: string;
 }
 
 const POSTS: BlogPost[] = [
@@ -55,12 +63,25 @@ const POSTS: BlogPost[] = [
       "L'obiettivo è aiutare cittadini, studenti e professionisti a comprendere meglio il funzionamento del mondo creditizio e finanziario, sviluppando maggiore consapevolezza nelle scelte economiche e valorizzando il ruolo del consulente come figura di supporto, orientamento e accompagnamento nelle decisioni finanziarie più importanti.",
     ],
     brochure: {
-      // PLACEHOLDER — sostituire con la brochure reale (immagine in /public/images).
-      src: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1000&h=1414&fit=crop&q=85",
-      alt: "Brochure consulenza creditizia",
       title: "· Brochure",
+      intro: [
+        "Comprendere le caratteristiche di un finanziamento è fondamentale per valutare con maggiore consapevolezza la durata, la rata, i costi e la documentazione necessaria.",
+        "In questa sezione puoi trovare una guida sintetica alle principali forme di finanziamento: prestiti personali e finalizzati, cessione del quinto, delega di pagamento e mutui.",
+      ],
+      pages: [
+        {
+          src: "/images/brochure/guida-finanziamenti-01.png",
+          alt: "Guida completa ai prestiti, alla cessione del quinto e alla delega di pagamento: caratteristiche, vantaggi e documenti richiesti",
+        },
+        {
+          src: "/images/brochure/guida-finanziamenti-02.png",
+          alt: "Mutui: tipologie di tasso, durata tipica, documenti richiesti e contatti per una consulenza",
+        },
+      ],
       caption:
-        "Tocca la brochure per aprirla a schermo intero e leggerla comodamente da computer o da telefono.",
+        "Tocca una tavola per aprirla a schermo intero e leggerla comodamente da computer o da telefono.",
+      disclaimer:
+        "Avvertenza: i contenuti presenti in questa pagina hanno finalità informative ed educative. Non costituiscono un'offerta di finanziamento, una garanzia di concessione del credito o una valutazione definitiva del merito creditizio. La concessione del finanziamento è subordinata alla valutazione e all'approvazione dell'intermediario finanziario autorizzato.",
     },
   },
   {
