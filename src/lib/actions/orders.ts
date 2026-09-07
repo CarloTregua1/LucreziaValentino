@@ -14,18 +14,18 @@ import type { OrderDoc, OrderItem, OrderStatus } from "@/types";
 export async function upsertOrderFromStripeSession(
   session: Stripe.Checkout.Session,
   lineItems: Stripe.LineItem[],
-): Promise<{ ok: true; orderId: string; created: boolean } | { ok: false; error: string }> {
+): Promise<{ ok: true; orderId: string; created: boolean } | { ok: false; error: string; permanent: boolean }> {
   const userId =
     (session.metadata?.userId as string | undefined) ??
     (session.client_reference_id as string | undefined);
 
   if (!userId) {
-    return { ok: false, error: "Stripe session missing userId" };
+    return { ok: false, error: "Stripe session missing userId", permanent: true };
   }
 
   const email = session.customer_details?.email ?? session.customer_email ?? "";
   if (!email) {
-    return { ok: false, error: "Stripe session missing customer email" };
+    return { ok: false, error: "Stripe session missing customer email", permanent: true };
   }
 
   const items: OrderItem[] = lineItems

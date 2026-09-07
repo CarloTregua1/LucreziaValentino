@@ -1,8 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import type Stripe from "stripe";
 import { stripe } from "@/lib/stripe/client";
-import { upsertOrderFromStripeSession, getOrderById } from "@/lib/actions/orders";
-import { sendOrderConfirmationEmail } from "@/lib/email/order-confirmation";
+import { upsertOrderFromStripeSession } from "@/lib/actions/orders";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -36,6 +35,11 @@ export async function POST(request: NextRequest) {
       case "checkout.session.completed":
       case "checkout.session.async_payment_succeeded": {
         const session = event.data.object as Stripe.Checkout.Session;
+        // Delayed-notification methods (SEPA, Klarna, ...) emit `completed` while
+        // the session is still unpaid; the payment settles later and arrives as
+        // `async_payment_succeeded`. Fulfilling now would confirm orders that
+        // can still fail.
+        if (session.payment_status === "unpaid") break;
         const lineItems = await stripe.checkout.sessions.listLineItems(session.id, {
           limit: 100,
           expand: ["data.price.product"],
@@ -43,12 +47,17 @@ export async function POST(request: NextRequest) {
         const result = await upsertOrderFromStripeSession(session, lineItems.data);
         if (!result.ok) {
           console.error("Order upsert failed:", result.error);
+          // A permanent failure can never succeed on redelivery, so acknowledge
+          // it — a 5xx would make Stripe retry the same doomed event for 3 days.
+          // Transient failures (Firestore unavailable) throw rather than return,
+          // and are caught below, where a 500 correctly asks Stripe to retry.
+          if (result.permanent) {
+            return NextResponse.json({ received: true, ignored: result.error });
+          }
           return NextResponse.json({ error: result.error }, { status: 500 });
         }
-        if (result.created) {
-          const order = await getOrderById(result.orderId);
-          if (order) await sendOrderConfirmationEmail(order);
-        }
+        // Receipts are sent by Stripe itself (Dashboard → Settings → Emails),
+        // so nothing further is needed here.
         break;
       }
 

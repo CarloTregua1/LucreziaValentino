@@ -5,10 +5,6 @@ import { revalidatePath } from "next/cache";
 import { adminDb } from "@/lib/firebase/admin";
 import { verifySessionCookie } from "@/lib/firebase/auth";
 import { COLLECTIONS } from "@/lib/constants";
-import {
-  sendChatNotificationEmail,
-  sendCustomerReplyEmail,
-} from "@/lib/email/chat-notification";
 import type { ConversationDoc, MessageDoc } from "@/types";
 
 const MAX_LEN = 2000;
@@ -92,14 +88,6 @@ export async function sendCustomerMessage(content: string): Promise<ActionResult
     return { ok: false, error: "Invio non riuscito. Riprova." };
   }
 
-  // Best-effort email notification to Lucrezia; never blocks message delivery.
-  await sendChatNotificationEmail({
-    userId: user.uid,
-    userName,
-    userEmail: user.email,
-    content: validated.content,
-  });
-
   revalidatePath("/account/messaggi");
   revalidatePath("/admin/messaggi");
   revalidatePath(`/admin/messaggi/${user.uid}`);
@@ -153,13 +141,6 @@ export async function sendAdminMessage(
     console.error("sendAdminMessage failed", e);
     return { ok: false, error: "Invio non riuscito. Riprova." };
   }
-
-  // Best-effort email notification to the customer; never blocks delivery.
-  await sendCustomerReplyEmail({
-    userName: conversation.userName,
-    userEmail: conversation.userEmail,
-    content: validated.content,
-  });
 
   revalidatePath("/account/messaggi");
   revalidatePath("/admin/messaggi");

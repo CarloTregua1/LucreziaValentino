@@ -146,7 +146,7 @@ Then Claude Code can write a small Node script (`scripts/set-admin.ts`) that tak
 ### 3.5 Webhook 🔴 (do this in Phase 4, after first deploy)
 
 1. Dashboard → **Developers → Webhooks** → "Add endpoint"
-2. Endpoint URL: `https://your-vercel-domain.vercel.app/api/stripe/webhook`
+2. Endpoint URL: `https://your-vercel-domain.vercel.app/api/webhooks/stripe`
 3. Events to send: select these specifically (don't send all events):
    - `checkout.session.completed`
    - `checkout.session.async_payment_succeeded`
@@ -157,13 +157,21 @@ Then Claude Code can write a small Node script (`scripts/set-admin.ts`) that tak
 5. Copy to Vercel as `STRIPE_WEBHOOK_SECRET`
 6. For local testing during development, use the Stripe CLI:
    ```bash
-   stripe listen --forward-to localhost:3000/api/stripe/webhook
+   stripe listen --forward-to localhost:3000/api/webhooks/stripe
    ```
    This gives you a separate webhook secret for local — keep them straight.
 
 ---
 
-## 4. Resend setup 🔴 (for Phase 5)
+## 4. Resend setup — ⚠️ NO LONGER APPLICABLE
+
+> **Resend was removed from the project on 2026-09-07.** The app sends no email:
+> order confirmations are handled by Stripe's own receipts (Dashboard → Settings
+> → Emails → "Successful payments"), and chat notifications were dropped — new
+> customer messages are seen in `/admin/messaggi`. The rest of this section is
+> kept only as a record; skip it. Delete `RESEND_API_KEY`, `RESEND_FROM_EMAIL`
+> and `LUCREZIA_NOTIFICATION_EMAIL` from Vercel if they're still set.
+
 
 ### 4.1 Account & API key
 
@@ -288,9 +296,6 @@ When you start, work through this exact order:
 | `STRIPE_SECRET_KEY` | Stripe Dashboard → Developers → API keys | 3.4 |
 | `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Stripe Dashboard → Developers → API keys | 3.4 |
 | `STRIPE_WEBHOOK_SECRET` | Stripe Dashboard → Developers → Webhooks → your endpoint | 3.5 |
-| `RESEND_API_KEY` | Resend Dashboard → API Keys | 4.1 |
-| `RESEND_FROM_EMAIL` | Your verified Resend domain | 4.2 |
-| `LUCREZIA_NOTIFICATION_EMAIL` | Lucrezia's actual inbox | 4.2 |
 | `NEXT_PUBLIC_APP_URL` | Your Vercel/custom domain | 5.2 |
 
 ---

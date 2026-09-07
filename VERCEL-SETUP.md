@@ -32,9 +32,6 @@ Mark each as **Production**, **Preview**, and **Development** as appropriate.
 | `STRIPE_SECRET_KEY` | All | Stripe Dashboard → Developers → API Keys |
 | `STRIPE_WEBHOOK_SECRET` | Production | Stripe Dashboard → Developers → Webhooks → signing secret |
 | `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | All | Stripe Dashboard → Developers → API Keys |
-| `RESEND_API_KEY` | All | Resend Dashboard → API Keys |
-| `RESEND_FROM_EMAIL` | All | e.g. `Lucrezia <noreply@lucrezia.it>` (must be a verified domain) |
-| `LUCREZIA_NOTIFICATION_EMAIL` | All | Lucrezia's personal email |
 | `NEXT_PUBLIC_APP_URL` | Production | `https://lucrezia.it` (or Vercel URL initially) |
 
 ### Firebase Admin private key — important note
@@ -45,16 +42,28 @@ The private key contains literal `\n` characters. In Vercel's dashboard, paste t
 
 After the first production deployment:
 1. Stripe Dashboard → Developers → Webhooks → Add endpoint
-2. URL: `https://yourdomain.com/api/stripe/webhook`
-3. Events to listen for:
+2. URL: `https://yourdomain.com/api/webhooks/stripe`
+3. Events to listen for (these are exactly the ones the handler acts on):
    - `checkout.session.completed`
-   - `payment_intent.payment_failed`
-4. Copy the signing secret → add as `STRIPE_WEBHOOK_SECRET` in Vercel
+   - `checkout.session.async_payment_succeeded`
+   - `checkout.session.async_payment_failed`
+   - `checkout.session.expired`
+4. Copy the signing secret → add as `STRIPE_WEBHOOK_SECRET` in Vercel.
+   This is a **different value** from the one `stripe listen` prints locally.
 
 For local development, use Stripe CLI:
 ```bash
-stripe listen --forward-to localhost:3000/api/stripe/webhook
+stripe listen --forward-to localhost:3000/api/webhooks/stripe
 ```
+This prints its own signing secret — a different value from the Dashboard one above.
+Use it in `.env`; use the Dashboard's in Vercel.
+
+### Customer receipts
+
+The app sends no email of its own. Enable Stripe's built-in receipts:
+Stripe Dashboard → Settings → Emails → **"Successful payments"** (set this in
+**live** mode; test mode is a separate toggle). Without it, a customer's only
+record of the purchase is the on-site success page.
 
 ## 5. Firebase Setup
 

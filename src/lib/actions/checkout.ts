@@ -14,8 +14,18 @@ type Result =
   | { ok: true; url: string }
   | { ok: false; error: string; code?: "auth_required" };
 
-const APP_URL =
-  process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+const APP_URL = (
+  process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000"
+).replace(/\/+$/, "");
+
+// Servizi store site-relative image paths (see the note in @/lib/schemas/servizio),
+// but Stripe rejects anything that isn't an absolute URL. A localhost APP_URL is
+// accepted, though the image won't render in Checkout — Stripe can't reach it.
+function absoluteImageUrl(url: string | undefined): string | undefined {
+  if (!url) return undefined;
+  if (/^https?:\/\//i.test(url)) return url;
+  return `${APP_URL}/${url.replace(/^\/+/, "")}`;
+}
 
 export async function createCheckoutSession(
   input: CreateCheckoutSessionInput,
@@ -69,13 +79,14 @@ export async function createCheckoutSession(
     if (servizio.status !== "published") {
       return { ok: false, error: `Servizio non disponibile: ${servizio.name}` };
     }
+    const image = absoluteImageUrl(servizio.images[0]?.url);
     lineItems.push({
       price_data: {
         currency: "eur",
         product_data: {
           name: servizio.name,
           description: servizio.shortDescription,
-          images: servizio.images[0]?.url ? [servizio.images[0].url] : undefined,
+          images: image ? [image] : undefined,
         },
         unit_amount: servizio.priceCents,
       },
@@ -86,7 +97,6 @@ export async function createCheckoutSession(
   try {
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
-      payment_method_types: ["card"],
       line_items: lineItems,
       customer_email: user.email,
       client_reference_id: user.uid,
