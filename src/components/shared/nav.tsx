@@ -21,17 +21,17 @@ export async function Nav() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-[var(--color-border)] bg-[var(--color-background)] md:bg-[var(--color-background)]/85 md:backdrop-blur-md">
-      <div className="container-xl flex items-center justify-between py-5">
+      <div className="container-xl flex items-center justify-between gap-4 py-5">
         <Link
           href="/"
-          className="group flex items-baseline gap-2 text-[var(--color-foreground)]"
+          className="group flex min-w-0 items-baseline gap-2 text-[var(--color-foreground)]"
         >
-          <span className="font-serif text-2xl leading-none tracking-tight">
+          <span className="font-serif text-xl leading-none tracking-tight sm:text-2xl">
             Lucrezia
           </span>
           <span
             aria-hidden
-            className="font-serif text-2xl leading-none tracking-tight text-[var(--color-accent)]"
+            className="font-serif text-xl leading-none tracking-tight text-[var(--color-accent)] sm:text-2xl"
           >
             Valentino
           </span>
@@ -40,7 +40,7 @@ export async function Nav() {
         {/* Desktop nav links */}
         <NavLinks links={NAV_LINKS} />
 
-        <div className="flex items-center gap-5">
+        <div className="flex shrink-0 items-center gap-5">
           {/* Desktop-only items (always visible on md+) */}
           {isAdmin && (
             <Link
@@ -59,7 +59,7 @@ export async function Nav() {
           {isAdmin ? (
             <Link
               href="/admin"
-              className="bg-[var(--color-foreground)] px-3 py-1.5 text-xs uppercase tracking-widest text-[var(--color-background)] transition-colors hover:bg-[var(--color-accent)] lg:hidden"
+              className="shrink-0 bg-[var(--color-foreground)] px-3 py-1.5 text-xs whitespace-nowrap uppercase tracking-widest text-[var(--color-background)] transition-colors hover:bg-[var(--color-accent)] lg:hidden"
             >
               Admin
             </Link>
