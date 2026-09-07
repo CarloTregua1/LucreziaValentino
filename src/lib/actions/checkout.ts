@@ -108,6 +108,11 @@ export async function createCheckoutSession(
         userId: user.uid,
       },
       payment_intent_data: {
+        // In live mode a receipt is sent whenever receipt_email is set, without
+        // depending on the Dashboard's "Successful payments" toggle — which is
+        // per-mode and easy to enable on the wrong one. This is the app's only
+        // customer email, so it shouldn't hinge on a setting we can't see.
+        receipt_email: user.email,
         metadata: {
           userId: user.uid,
         },

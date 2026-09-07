@@ -60,10 +60,19 @@ Use it in `.env`; use the Dashboard's in Vercel.
 
 ### Customer receipts
 
-The app sends no email of its own. Enable Stripe's built-in receipts:
-Stripe Dashboard → Settings → Emails → **"Successful payments"** (set this in
-**live** mode; test mode is a separate toggle). Without it, a customer's only
-record of the purchase is the on-site success page.
+The app sends no email of its own — receipts come from Stripe.
+
+`createCheckoutSession` sets `payment_intent_data.receipt_email`, and in **live
+mode** that alone makes Stripe send a receipt, regardless of Dashboard settings.
+Nothing else is required.
+
+The Dashboard toggle (Settings → Business → Customer emails →
+**"Successful payments"**, at dashboard.stripe.com/settings/emails) is a
+belt-and-braces extra. It is **per-mode** — enabling it in test mode does
+nothing for live payments, which is a common source of "no receipt arrived".
+
+Receipts are never sent automatically for test-mode payments; use the Dashboard's
+payment detail page → Receipt history → Send receipt to send one manually.
 
 ## 5. Firebase Setup
 
