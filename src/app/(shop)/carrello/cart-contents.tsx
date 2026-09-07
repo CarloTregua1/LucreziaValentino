@@ -60,29 +60,31 @@ export function CartContents() {
   }
 
   return (
-    <div className="mt-12 grid gap-12 lg:grid-cols-[1fr_360px]">
+    <div className="mt-12 grid gap-10 lg:grid-cols-[1fr_360px] lg:gap-12">
       {/* Items */}
-      <div className="divide-y divide-[var(--color-border)] border-y border-[var(--color-border)]">
+      <div className="min-w-0 divide-y divide-[var(--color-border)] border-y border-[var(--color-border)]">
         {items.map((item) => (
           <div
             key={`${item.productId}-${item.variantId}`}
-            className="flex gap-5 py-6 sm:gap-8"
+            className="flex gap-4 py-6 sm:gap-8"
           >
-            <div className="relative h-28 w-28 shrink-0 overflow-hidden bg-[var(--color-card-subtle)] sm:h-32 sm:w-32">
+            <div className="relative h-20 w-20 shrink-0 overflow-hidden bg-[var(--color-card-subtle)] sm:h-32 sm:w-32">
               {item.image ? (
                 <Image
                   src={item.image}
                   alt={item.name}
                   fill
                   className="object-cover"
-                  sizes="128px"
+                  sizes="(max-width: 640px) 80px, 128px"
                 />
               ) : null}
             </div>
-            <div className="flex flex-1 flex-col justify-between">
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="font-serif text-xl text-[var(--color-foreground)]">
+            {/* min-w-0 lets these flex children shrink below their content width;
+                without it `min-width: auto` makes long service names overflow. */}
+            <div className="flex min-w-0 flex-1 flex-col justify-between">
+              <div className="flex items-start justify-between gap-3 sm:gap-4">
+                <div className="min-w-0">
+                  <p className="font-serif text-lg break-words text-[var(--color-foreground)] sm:text-xl">
                     {item.name}
                   </p>
                   {item.variantId && (
@@ -94,12 +96,12 @@ export function CartContents() {
                     {formatCents(item.priceCents)} cad.
                   </p>
                 </div>
-                <p className="font-serif text-xl text-[var(--color-foreground)]">
+                <p className="shrink-0 font-serif text-lg whitespace-nowrap text-[var(--color-foreground)] sm:text-xl">
                   {formatCents(item.priceCents * item.quantity)}
                 </p>
               </div>
 
-              <div className="mt-4 flex items-center justify-between">
+              <div className="mt-4 flex flex-wrap items-center justify-between gap-x-4 gap-y-3">
                 <div className="flex items-center border border-[var(--color-border)]">
                   <button
                     aria-label="Diminuisci quantità"
@@ -144,8 +146,8 @@ export function CartContents() {
       </div>
 
       {/* Summary */}
-      <aside className="lg:sticky lg:top-24 lg:self-start">
-        <div className="bg-[var(--color-card-subtle)] p-8">
+      <aside className="min-w-0 lg:sticky lg:top-24 lg:self-start">
+        <div className="bg-[var(--color-card-subtle)] p-6 sm:p-8">
           <p className="eyebrow">Riepilogo</p>
           <div className="mt-6 space-y-3 text-sm">
             <div className="flex justify-between text-[var(--color-foreground-soft)]">
@@ -157,11 +159,11 @@ export function CartContents() {
               <span>—</span>
             </div>
           </div>
-          <div className="mt-5 flex items-baseline justify-between border-t border-[var(--color-border)] pt-5">
+          <div className="mt-5 flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 border-t border-[var(--color-border)] pt-5">
             <span className="text-xs uppercase tracking-widest text-[var(--color-muted)]">
               Totale
             </span>
-            <span className="font-serif text-3xl text-[var(--color-foreground)]">
+            <span className="font-serif text-2xl whitespace-nowrap text-[var(--color-foreground)] sm:text-3xl">
               {formatCents(totalCents())}
             </span>
           </div>
