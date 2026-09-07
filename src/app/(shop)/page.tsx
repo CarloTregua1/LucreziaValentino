@@ -575,6 +575,32 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* ── Partner convenzionata ── */}
+      <section className="section-spacing-sm">
+        <div className="container-xl">
+          <div className="flex flex-col items-center justify-center gap-6 text-center sm:flex-row sm:gap-8 sm:text-left">
+            {/* The logo artwork has a baked-in white background, so it sits on a
+                white tile rather than directly on the cream page. */}
+            <div className="shrink-0 border border-[var(--color-border)] bg-[var(--color-card)] px-6 py-4">
+              <Image
+                src="/images/pacard.jpeg"
+                alt="PAcard by Convenzioni Dipendenti PA"
+                width={2000}
+                height={1060}
+                className="h-auto w-40 sm:w-48"
+                sizes="(max-width: 640px) 160px, 192px"
+              />
+            </div>
+            <p className="font-serif text-xl leading-snug text-[var(--color-foreground)] sm:text-2xl">
+              Partner{" "}
+              <span className="serif-italic text-[var(--color-accent)]">
+                convenzionata
+              </span>
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* ── Collaborazioni professionali ── */}
       <section className="section-spacing border-y border-[var(--color-border)] bg-[var(--color-cream-deep)]">
         <div className="container-xl grid gap-12 lg:grid-cols-12 lg:gap-16">
