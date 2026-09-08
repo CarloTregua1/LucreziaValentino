@@ -8,6 +8,7 @@ import { formatCents } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/components/providers/firebase-provider";
 import { createCheckoutSession } from "@/lib/actions/checkout";
+import { PaymentMethods } from "@/components/shared/payment-methods";
 
 export function CartContents() {
   const { items, removeItem, updateQuantity, totalCents } = useCartStore();
@@ -201,9 +202,7 @@ export function CartContents() {
             Continua a sfogliare
           </Link>
         </div>
-        <p className="mt-4 text-center text-xs uppercase tracking-widest text-[var(--color-muted)]">
-          Pagamento sicuro · Stripe
-        </p>
+        <PaymentMethods detail className="mt-6" />
       </aside>
     </div>
   );

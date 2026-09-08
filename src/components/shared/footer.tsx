@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { PaymentMethods } from "./payment-methods";
 
 const COLUMNS = [
   {
@@ -140,7 +141,11 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col gap-3 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-14 border-t border-white/10 pt-6">
+          <PaymentMethods tone="dark" />
+        </div>
+
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs tracking-widest uppercase text-[var(--color-muted-light)]">
             © {new Date().getFullYear()} Lucrezia · Tutti i diritti riservati
           </p>

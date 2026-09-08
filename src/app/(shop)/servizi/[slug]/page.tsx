@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getServizioBySlug } from "@/lib/actions/servizi";
 import { AddToCartButton } from "./add-to-cart-button";
+import { PaymentMethods } from "@/components/shared/payment-methods";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -32,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 const HIGHLIGHTS = [
   { label: "Prima call", value: "Gratuita" },
   { label: "Risposta", value: "Entro 24h" },
-  { label: "Pagamento", value: "Sicuro · Stripe" },
+  { label: "Pagamento", value: "Stripe · Klarna" },
 ];
 
 const EXTERNAL_HIGHLIGHTS = [
@@ -165,6 +166,7 @@ export default async function ServizioDetailPage({ params }: Props) {
                         priceCents={servizio.priceCents}
                         image={heroImage}
                       />
+                      <PaymentMethods detail className="mt-6" />
                     </div>
                   </>
                 )}
