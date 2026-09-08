@@ -12,13 +12,12 @@ export default function ConvenzioniPage() {
   return (
     <div>
       <section className="section-spacing">
-        {/* Single centred column: the page is one announcement, so it reads
-            better centred than pushed against the left of the wide grid the
-            other pages use. Sizes come from the standard text-* utilities
-            rather than text-[var(--text-h1)], which Tailwind v4 compiles to a
-            color, not a font-size. */}
+        {/* Single centred column, with everything ranged left inside it so
+            wrapped lines share one left edge. Sizes come from the standard
+            text-* utilities rather than text-[var(--text-h1)], which Tailwind
+            v4 compiles to a color, not a font-size. */}
         <div className="container-xl">
-          <div className="mx-auto max-w-3xl text-center">
+          <div className="mx-auto max-w-3xl">
             <p className="section-index">· Convenzioni</p>
             <h1 className="mt-4 font-serif text-4xl leading-tight text-[var(--color-foreground)] sm:text-5xl">
               Convenzione{" "}
@@ -50,7 +49,7 @@ export default function ConvenzioniPage() {
               href="/images/convenzione-pacard.jpeg"
               target="_blank"
               rel="noopener noreferrer"
-              className="group mx-auto mt-12 block max-w-xl border border-[var(--color-border)] bg-[var(--color-card)] transition-colors hover:border-[var(--color-accent)]"
+              className="group mt-12 block border border-[var(--color-border)] bg-[var(--color-card)] transition-colors hover:border-[var(--color-accent)]"
             >
               <Image
                 src="/images/convenzione-pacard.jpeg"
@@ -58,7 +57,7 @@ export default function ConvenzioniPage() {
                 width={1121}
                 height={1403}
                 className="h-auto w-full"
-                sizes="(max-width: 640px) 100vw, 576px"
+                sizes="(max-width: 768px) 100vw, 768px"
                 priority
               />
               <span className="block px-5 py-4 text-sm tracking-wide text-[var(--color-foreground-soft)] transition-colors group-hover:text-[var(--color-foreground)]">
@@ -66,7 +65,7 @@ export default function ConvenzioniPage() {
               </span>
             </a>
 
-            <div className="mt-12 flex flex-wrap justify-center gap-x-8 gap-y-3">
+            <div className="mt-12 flex flex-wrap gap-x-8 gap-y-3">
               <Link
                 href="/servizi"
                 className="link-underline text-sm text-[var(--color-foreground)]"
