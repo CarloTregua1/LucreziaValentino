@@ -7,6 +7,7 @@ import { MobileMenu } from "./mobile-menu";
 
 const NAV_LINKS = [
   { href: "/servizi", label: "Aree di competenza" },
+  { href: "/convenzioni", label: "Convenzioni" },
   { href: "/blog", label: "Blog" },
   { href: "/chi-siamo", label: "Chi sono" },
   { href: "/account/messaggi", label: "Contatti" },

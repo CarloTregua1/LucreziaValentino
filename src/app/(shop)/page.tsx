@@ -40,8 +40,9 @@ const ROLES = [
   "Progettista Formativa",
 ];
 
-// Logos shown at the very top of the page (registers and accreditations).
-// OAM and S.ARF are intentionally represented as text below, not as logos.
+// Logos shown at the very top of the page (registers, accreditations and the
+// PAcard convenzione). OAM and S.ARF are intentionally represented as text
+// below, not as logos.
 const ACCREDITATIONS = [
   { src: "/images/loghi/aief.png", alt: "AIEF — Associazione Italiana Educatori Finanziari" },
   { src: "/images/loghi/asnor.png", alt: "ASNOR — Associazione Nazionale Orientatori" },
@@ -49,6 +50,7 @@ const ACCREDITATIONS = [
   { src: "/images/loghi/microcredito.png", alt: "Ente Nazionale Microcredito" },
   { src: "/images/loghi/regione-sicilia.png", alt: "Regione Siciliana" },
   { src: "/images/loghi/regione-lombardia.png", alt: "Regione Lombardia" },
+  { src: "/images/loghi/pacard.png", alt: "PAcard by Convenzioni Dipendenti PA" },
 ];
 
 // Textual registrations (no logo, per client request).
@@ -163,10 +165,10 @@ export default async function HomePage() {
           <p
             className="text-center text-xs uppercase tracking-widest text-[var(--color-muted)]"
           >
-            Iscrizioni, registri e accreditamenti
+            Iscrizioni, registri, accreditamenti e convenzioni
           </p>
           <ul
-            className="mt-7 grid grid-cols-2 items-center gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-6"
+            className="mt-7 grid grid-cols-2 items-center gap-x-6 gap-y-8 sm:grid-cols-4 lg:grid-cols-7"
           >
             {ACCREDITATIONS.map((logo) => (
               <li key={logo.src} className="flex items-center justify-center">
@@ -572,32 +574,6 @@ export default async function HomePage() {
               sizes="(max-width: 1024px) 100vw, 448px"
             />
           </a>
-        </div>
-      </section>
-
-      {/* ── Partner convenzionata ── */}
-      <section className="section-spacing-sm">
-        <div className="container-xl">
-          <div className="flex flex-col items-center justify-center gap-6 text-center sm:flex-row sm:gap-8 sm:text-left">
-            {/* The logo artwork has a baked-in white background, so it sits on a
-                white tile rather than directly on the cream page. */}
-            <div className="shrink-0 border border-[var(--color-border)] bg-[var(--color-card)] px-6 py-4">
-              <Image
-                src="/images/pacard.jpeg"
-                alt="PAcard by Convenzioni Dipendenti PA"
-                width={2000}
-                height={1060}
-                className="h-auto w-40 sm:w-48"
-                sizes="(max-width: 640px) 160px, 192px"
-              />
-            </div>
-            <p className="font-serif text-xl leading-snug text-[var(--color-foreground)] sm:text-2xl">
-              Partner{" "}
-              <span className="serif-italic text-[var(--color-accent)]">
-                convenzionata
-              </span>
-            </p>
-          </div>
         </div>
       </section>
 

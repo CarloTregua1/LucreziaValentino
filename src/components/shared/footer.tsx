@@ -5,6 +5,7 @@ const COLUMNS = [
     title: "Studio",
     links: [
       { href: "/servizi", label: "Aree di competenza" },
+      { href: "/convenzioni", label: "Convenzioni" },
       { href: "/blog", label: "Blog" },
       { href: "/chi-siamo", label: "Chi sono" },
     ],
