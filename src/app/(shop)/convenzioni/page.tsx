@@ -53,9 +53,9 @@ export default function ConvenzioniPage() {
             >
               <Image
                 src="/images/convenzione-pacard.jpeg"
-                alt="Locandina della convenzione PACard: 20% di sconto su consulenza, educazione finanziaria, credito, orientamento e formazione per i dipendenti della Pubblica Amministrazione e i loro familiari."
-                width={1121}
-                height={1403}
+                alt="Locandina della convenzione PACard: 20% di sconto sui servizi in convenzione — educazione finanziaria, consulenza del credito, orientamento professionale e corsi di formazione — per i dipendenti della Pubblica Amministrazione e i loro familiari."
+                width={1254}
+                height={1254}
                 className="h-auto w-full"
                 sizes="(max-width: 768px) 100vw, 768px"
                 priority
