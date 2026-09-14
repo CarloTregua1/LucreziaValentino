@@ -85,9 +85,16 @@ export default async function ServizioDetailPage({ params }: Props) {
       <section className="section-spacing">
         <div className="container-xl">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-            {/* Images */}
+            {/* Images.
+                The frame is square because every servizio poster is: a 4/5 box
+                letterboxed them with ~120px of dead space above the artwork,
+                which pushed the visible image well below the heading beside
+                it. Matching the ratio removes the gap, so the poster starts
+                level with the title. object-contain still guards against a
+                future image with a different shape — it would letterbox
+                rather than crop. */}
             <div className="lg:col-span-7 space-y-3">
-              <div className="relative aspect-[4/5] overflow-hidden bg-[var(--color-card-subtle)]">
+              <div className="relative aspect-square overflow-hidden bg-[var(--color-card-subtle)]">
                 <Image
                   src={heroImage}
                   alt={heroAlt}
