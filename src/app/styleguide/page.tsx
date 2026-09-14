@@ -1,9 +1,19 @@
+import { notFound } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardBody, CardImage } from "@/components/ui/card";
 
 export default function StyleguidePage() {
+  // Internal component reference, not part of the public site. It used to
+  // return 200 in production and wasn't disallowed in robots.txt, so anything
+  // linking to it could get it indexed. 404 there instead — notFound() also
+  // emits noindex. Still reachable with `npm run dev`, which is the only
+  // place it's useful.
+  if (process.env.NODE_ENV === "production") {
+    notFound();
+  }
+
   return (
     <div className="min-h-screen bg-[var(--color-background)] py-20">
       <div className="container-xl space-y-20">
