@@ -8,15 +8,14 @@ import {
   createCheckoutSessionSchema,
   type CreateCheckoutSessionInput,
 } from "@/lib/schemas/order";
+import { appUrl } from "@/lib/app-url";
 import type { ServizioDoc } from "@/types";
 
 type Result =
   | { ok: true; url: string }
   | { ok: false; error: string; code?: "auth_required" };
 
-const APP_URL = (
-  process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000"
-).replace(/\/+$/, "");
+const APP_URL = appUrl("http://localhost:3000");
 
 // Servizi store site-relative image paths (see the note in @/lib/schemas/servizio),
 // but Stripe rejects anything that isn't an absolute URL. A localhost APP_URL is

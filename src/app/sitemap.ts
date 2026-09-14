@@ -1,12 +1,12 @@
 import type { MetadataRoute } from "next";
 import { getServizi } from "@/lib/actions/servizi";
 import { getAllPosts } from "@/lib/content/blog";
+import { appUrl } from "@/lib/app-url";
 
 export const dynamic = "force-dynamic";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl =
-    process.env.NEXT_PUBLIC_APP_URL ?? "https://lucrezia-shop.vercel.app";
+  const baseUrl = appUrl();
   const now = new Date();
 
   const staticRoutes: MetadataRoute.Sitemap = [

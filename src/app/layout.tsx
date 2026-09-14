@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Arimo, Carlito, Archivo_Black } from "next/font/google";
 import { FirebaseProvider } from "@/components/providers/firebase-provider";
 import { CookieConsent } from "@/components/shared/cookie-consent";
+import { appUrl } from "@/lib/app-url";
 import "./globals.css";
 
 // Metric-compatible web equivalents so the Arial / Arial Black / Calibri look
@@ -36,9 +37,7 @@ export const metadata: Metadata = {
   },
   description:
     "Educazione e consulenza finanziaria, credito, CAF e Patronato, formazione, orientamento e microcredito. Competenza, etica e ascolto al servizio delle tue scelte.",
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_APP_URL ?? "https://lucrezia-shop.vercel.app"
-  ),
+  metadataBase: new URL(appUrl()),
   openGraph: {
     type: "website",
     locale: "it_IT",

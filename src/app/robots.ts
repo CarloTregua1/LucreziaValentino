@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
+import { appUrl } from "@/lib/app-url";
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://lucrezia-shop.vercel.app";
+  const baseUrl = appUrl();
 
   return {
     rules: [
