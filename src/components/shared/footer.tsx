@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { PaymentMethods } from "./payment-methods";
+import { CookiePreferencesButton } from "./cookie-preferences-button";
 
 const COLUMNS = [
   {
@@ -23,6 +24,7 @@ const COLUMNS = [
     title: "Legale",
     links: [
       { href: "/privacy", label: "Privacy" },
+      { href: "/cookie-policy", label: "Cookie policy" },
       { href: "/termini", label: "Termini" },
     ],
   },
@@ -93,6 +95,11 @@ export function Footer() {
                     </Link>
                   </li>
                 ))}
+                {col.title === "Legale" && (
+                  <li>
+                    <CookiePreferencesButton tone="dark" />
+                  </li>
+                )}
               </ul>
             </div>
           ))}

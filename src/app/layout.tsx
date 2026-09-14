@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Arimo, Carlito, Archivo_Black } from "next/font/google";
 import { FirebaseProvider } from "@/components/providers/firebase-provider";
+import { CookieConsent } from "@/components/shared/cookie-consent";
 import "./globals.css";
 
 // Metric-compatible web equivalents so the Arial / Arial Black / Calibri look
@@ -65,6 +66,9 @@ export default function RootLayout({
     >
       <body className="min-h-screen flex flex-col antialiased">
         <FirebaseProvider>{children}</FirebaseProvider>
+        {/* Site-wide, so the notice is shown on the auth and admin routes too,
+            which sit outside the (shop) layout. */}
+        <CookieConsent />
       </body>
     </html>
   );

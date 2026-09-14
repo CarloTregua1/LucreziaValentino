@@ -201,6 +201,100 @@ h6 {
   }
 }
 
+/* ── Legal pages ──
+   Shared typography for the privacy / termini / cookie-policy bodies, whose
+   content is long-form prose rather than the composed sections used elsewhere.
+   Scoped to .legal-prose so it can't leak into the rest of the site. */
+.legal-prose > section + section {
+  margin-top: 3.5rem;
+}
+
+.legal-prose p,
+.legal-prose ul,
+.legal-prose ol,
+.legal-prose .legal-table {
+  margin-top: 1.25rem;
+  color: var(--color-foreground-soft);
+  line-height: 1.7;
+}
+
+.legal-prose h3 {
+  margin-top: 2rem;
+  font-family: var(--font-subtitle);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.4;
+  color: var(--color-foreground);
+}
+
+.legal-prose ul,
+.legal-prose ol {
+  padding-left: 1.25rem;
+}
+
+.legal-prose ul {
+  list-style: disc;
+}
+
+.legal-prose ol {
+  list-style: decimal;
+}
+
+.legal-prose li {
+  margin-top: 0.5rem;
+  padding-left: 0.25rem;
+}
+
+.legal-prose li::marker {
+  color: var(--color-accent);
+}
+
+.legal-prose strong {
+  font-weight: 700;
+  color: var(--color-foreground);
+}
+
+.legal-prose a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.legal-prose a:hover {
+  color: var(--color-accent-hover);
+}
+
+/* Cookie inventory — a real table on desktop, stacked rows on phones. */
+.legal-table {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.legal-table table {
+  width: 100%;
+  min-width: 34rem;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.legal-table th,
+.legal-table td {
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.75rem 1rem 0.75rem 0;
+  text-align: left;
+  vertical-align: top;
+}
+
+.legal-table th {
+  font-family: var(--font-subtitle);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
 /* Accordion summary marker reset */
 details > summary {
   list-style: none;
