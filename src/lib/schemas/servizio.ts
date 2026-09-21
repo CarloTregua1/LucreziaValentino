@@ -13,6 +13,14 @@ export const servizioImageSchema = z.object({
   order: z.number().int().min(0),
 });
 
+export const servizioLinkSchema = z.object({
+  label: z.string().trim().min(1, "Etichetta obbligatoria"),
+  url: z
+    .string()
+    .trim()
+    .regex(/^https?:\/\/.+/i, "Inserire un URL valido (https://…)"),
+});
+
 export const servizioSchema = z.object({
   slug: z
     .string()
@@ -31,6 +39,7 @@ export const servizioSchema = z.object({
       "Inserire un URL valido (https://…) o lasciare vuoto"
     )
     .default(""),
+  externalLinks: z.array(servizioLinkSchema).default([]),
   priceCents: z.number().int().positive("Inserire un prezzo valido"),
   compareAtPriceCents: z.number().int().positive().optional(),
   images: z.array(servizioImageSchema).default([]),

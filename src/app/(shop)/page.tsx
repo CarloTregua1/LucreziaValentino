@@ -393,7 +393,7 @@ export default async function HomePage() {
                     </p>
                     <div className="mt-8 flex items-baseline justify-between border-t border-[var(--color-border)] pt-5">
                       <p className="text-sm font-medium text-[var(--color-foreground)]">
-                        {s.externalUrl
+                        {s.externalUrl || s.externalLinks?.length
                           ? "Disponibile online"
                           : new Intl.NumberFormat("it-IT", {
                               style: "currency",

@@ -50,7 +50,22 @@ export default async function ServizioDetailPage({ params }: Props) {
 
   const heroImage = servizio.images[0]?.url ?? PLACEHOLDER_IMAGE;
   const heroAlt = servizio.images[0]?.alt ?? servizio.name;
-  const isExternal = Boolean(servizio.externalUrl);
+
+  // A servizio sold off-site can point at one destination (externalUrl) or at
+  // several (externalLinks — the ebook collana is four separate titles on the
+  // publisher's shop). Normalise both into one list: the single link keeps the
+  // old wording, the multi-link case labels each row itself.
+  const singleLinkLabel =
+    servizio.type === "digitale" &&
+    servizio.category.toLowerCase().includes("ebook")
+      ? "Acquista l'ebook →"
+      : "Vai al corso →";
+  const externalLinks = servizio.externalLinks?.length
+    ? servizio.externalLinks
+    : servizio.externalUrl
+      ? [{ label: singleLinkLabel, url: servizio.externalUrl }]
+      : [];
+  const isExternal = externalLinks.length > 0;
   const formatPrice = (cents: number) =>
     new Intl.NumberFormat("it-IT", {
       style: "currency",
@@ -138,17 +153,37 @@ export default async function ServizioDetailPage({ params }: Props) {
 
                 {isExternal ? (
                   <div className="mt-8">
-                    <a
-                      href={servizio.externalUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block w-full bg-[var(--color-foreground)] py-4 text-center text-sm tracking-wide text-[var(--color-background)] transition-colors hover:bg-[var(--color-accent)]"
-                    >
-                      {servizio.type === "digitale" &&
-                      servizio.category.toLowerCase().includes("ebook")
-                        ? "Acquista l'ebook →"
-                        : "Vai al corso →"}
-                    </a>
+                    {externalLinks.length === 1 ? (
+                      <a
+                        href={externalLinks[0].url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block w-full bg-[var(--color-foreground)] py-4 text-center text-sm tracking-wide text-[var(--color-background)] transition-colors hover:bg-[var(--color-accent)]"
+                      >
+                        {externalLinks[0].label}
+                      </a>
+                    ) : (
+                      <ul className="space-y-2">
+                        {externalLinks.map((link) => (
+                          <li key={link.url}>
+                            <a
+                              href={link.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="group/link flex items-center justify-between gap-4 border border-[var(--color-border-strong)] px-5 py-4 text-sm text-[var(--color-foreground)] transition-colors hover:border-[var(--color-accent)] hover:bg-[var(--color-accent-light)]"
+                            >
+                              <span>{link.label}</span>
+                              <span
+                                aria-hidden
+                                className="text-[var(--color-accent)] transition-transform duration-300 group-hover/link:translate-x-1"
+                              >
+                                →
+                              </span>
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                     <p className="mt-3 text-xs text-[var(--color-muted)]">
                       Acquisto e accesso gestiti sulla piattaforma esterna.
                     </p>

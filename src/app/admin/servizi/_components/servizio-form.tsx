@@ -52,6 +52,7 @@ export function ServizioForm({ servizio, categories }: Props) {
           type: servizio.type,
           category: servizio.category,
           externalUrl: servizio.externalUrl ?? "",
+          externalLinks: servizio.externalLinks ?? [],
           priceCents: servizio.priceCents,
           compareAtPriceCents: servizio.compareAtPriceCents,
           images: servizio.images,
@@ -62,13 +63,27 @@ export function ServizioForm({ servizio, categories }: Props) {
           type: "consulenza",
           status: "draft",
           externalUrl: "",
+          externalLinks: [],
           images: [],
           seo: {},
         },
   });
 
   const images = watch("images");
+  const externalLinks = watch("externalLinks");
   const nameValue = watch("name");
+
+  function setLinks(next: NonNullable<ServizioFormValues["externalLinks"]>) {
+    setValue("externalLinks", next, { shouldValidate: true });
+  }
+
+  function updateLink(idx: number, patch: { label?: string; url?: string }) {
+    setLinks(
+      (externalLinks ?? []).map((link, i) =>
+        i === idx ? { ...link, ...patch } : link,
+      ),
+    );
+  }
 
   function handleNameBlur() {
     if (!servizio && nameValue) {
@@ -223,6 +238,62 @@ export function ServizioForm({ servizio, categories }: Props) {
             <p className="mt-1.5 text-xs text-[var(--color-muted)]">
               Usalo per ebook e corsi venduti su piattaforme esterne (Amazon,
               Lezione Online…). Lascia vuoto per i servizi acquistabili sul sito.
+            </p>
+          </div>
+
+          {/* Several destinations for one servizio — es. i quattro titoli
+              della collana Orizzonti Finanziari. Se compilati, sostituiscono
+              il bottone singolo con un elenco di link. */}
+          <div className="sm:col-span-2">
+            <label className={labelClass}>Più link esterni</label>
+
+            {(externalLinks ?? []).length > 0 && (
+              <div className="mb-3 space-y-3">
+                {(externalLinks ?? []).map((link, idx) => (
+                  <div key={idx} className="flex flex-col gap-2 sm:flex-row">
+                    <input
+                      value={link.label}
+                      onChange={(e) => updateLink(idx, { label: e.target.value })}
+                      className={`${inputClass} sm:w-1/3`}
+                      placeholder="Titolo (es. OCF — Parte 1)"
+                    />
+                    <input
+                      value={link.url}
+                      onChange={(e) => updateLink(idx, { url: e.target.value })}
+                      className={`${inputClass} sm:flex-1`}
+                      placeholder="https://…"
+                    />
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setLinks((externalLinks ?? []).filter((_, i) => i !== idx))
+                      }
+                      className="shrink-0 border border-[var(--color-border)] px-3 py-2.5 text-sm text-[var(--color-muted)] transition-colors hover:border-[var(--color-error)] hover:text-[var(--color-error)]"
+                    >
+                      Rimuovi
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            <button
+              type="button"
+              onClick={() => setLinks([...(externalLinks ?? []), { label: "", url: "" }])}
+              className="border border-dashed border-[var(--color-border)] px-4 py-2 text-sm text-[var(--color-muted)] transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
+            >
+              + Aggiungi link
+            </button>
+
+            {errors.externalLinks && (
+              <p className={errorClass}>
+                Controlla i link: servono titolo e URL (https://…) per ogni riga.
+              </p>
+            )}
+            <p className="mt-1.5 text-xs text-[var(--color-muted)]">
+              Per un servizio con più destinazioni (es. i titoli di una
+              collana). Se compilato, la pagina mostra l&apos;elenco al posto
+              del bottone singolo.
             </p>
           </div>
         </div>

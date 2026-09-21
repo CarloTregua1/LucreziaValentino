@@ -192,6 +192,15 @@ export interface ServizioImage {
   order: number;
 }
 
+/** One buy/enrol destination on an external platform. A servizio sold outside
+    the site can have several — the Orizzonti Finanziari collana is four
+    separate ebooks on the publisher's shop — so each link carries its own
+    label. `externalUrl` stays the single-link shorthand. */
+export interface ServizioLink {
+  label: string;
+  url: string;
+}
+
 export interface ServizioDoc {
   id: string;
   slug: string;
@@ -201,6 +210,7 @@ export interface ServizioDoc {
   type: ServizioType;
   category: string;
   externalUrl?: string;
+  externalLinks?: ServizioLink[];
   priceCents: number;
   compareAtPriceCents?: number;
   images: ServizioImage[];

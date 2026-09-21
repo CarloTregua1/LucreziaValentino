@@ -279,6 +279,27 @@ const SERVIZI = [
     type: "digitale",
     priceCents: 1990,
     externalUrl: "https://scrimmedizioni.com/product-detail?productidn=4416562",
+    // I quattro titoli della collana, ognuno con la sua pagina sullo shop
+    // dell'editore. Quando questo elenco è valorizzato la pagina servizio
+    // mostra un link per titolo al posto del bottone singolo.
+    externalLinks: [
+      {
+        label: "Io Conto — Educazione finanziaria",
+        url: "https://scrimmedizioni.com/product-detail/productidn/3538423/io-conto-ebook-ivii-coll-orizzonti-finanziari--s-lucrezia-valentino",
+      },
+      {
+        label: "Esame OAM",
+        url: "https://scrimmedizioni.com/product-detail/productidn/3589344/esame-oam-ebook-iivii-coll-orizzonti-finanziari--s-lucrezia-valentino",
+      },
+      {
+        label: "Esame OCF — Parte 1",
+        url: "https://scrimmedizioni.com/product-detail/productidn/4416562/esame-ocf-parte-1-il-settore-finanziario-fondamenti-e-conoscenze-essenziali-parte-iiii-ebook-iiivii-coll-orizzonti-finanziari--s-lucrezia-valentino",
+      },
+      {
+        label: "Esame OCF — Parte 2",
+        url: "https://scrimmedizioni.com/product-detail/productidn/4832686/esame-ocf-parte-2-il-settore-finanziario-fondamenti-e-conoscenze-essenziali-parte-iiiii-ebook-iiivii-coll-orizzonti-finanziari--s-lucrezia-valentino",
+      },
+    ],
     shortDescription:
       "La collana «Orizzonti Finanziari»: guide professionali ed ebook dedicati all'educazione finanziaria, alla crescita professionale e alla preparazione agli esami OCF, OAM e IVASS.",
     description:
