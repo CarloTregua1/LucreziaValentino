@@ -220,6 +220,26 @@ export interface ServizioDoc {
   updatedAt: string;
 }
 
+/* ── Blog post (written from the admin panel) ── */
+
+export type PostStatus = "draft" | "published";
+
+export interface PostDoc {
+  id: string;
+  slug: string;
+  title: string;
+  subtitle: string;
+  /** Plain text. A blank line starts a new paragraph. */
+  content: string;
+  /** Site-relative image URL. */
+  image: string;
+  status: PostStatus;
+  /** Set the first time the post is published; it is the date readers see. */
+  publishedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
 /* ── Cart (client-side) ── */
 
 export interface CartItem {

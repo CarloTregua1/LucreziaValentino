@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import type Stripe from "stripe";
 import { stripe } from "@/lib/stripe/client";
-import { upsertOrderFromStripeSession } from "@/lib/actions/orders";
+import { upsertOrderFromStripeSession } from "@/lib/stripe/orders";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";

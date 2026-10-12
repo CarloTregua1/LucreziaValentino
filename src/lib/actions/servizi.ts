@@ -1,11 +1,16 @@
 "use server";
 
 import { adminDb } from "@/lib/firebase/admin";
+import { getAdminUser, NOT_ALLOWED } from "@/lib/firebase/session";
 import { servizioSchema, type ServizioInput } from "@/lib/schemas/servizio";
 import { revalidatePath } from "next/cache";
+import { deleteUploadedImages } from "@/lib/images";
 import type { ServizioDoc } from "@/types";
 
 export async function getServizi(status?: "draft" | "published"): Promise<ServizioDoc[]> {
+  // Drafts are for the admin panel only.
+  if (status !== "published" && !(await getAdminUser())) return [];
+
   try {
     const snap = await adminDb.collection("servizi").get();
     const all = snap.docs.map((d) => d.data() as ServizioDoc);
@@ -34,6 +39,8 @@ export async function getServizioBySlug(slug: string): Promise<ServizioDoc | nul
 }
 
 export async function getServizioById(id: string): Promise<ServizioDoc | null> {
+  if (!(await getAdminUser())) return null;
+
   try {
     const doc = await adminDb.collection("servizi").doc(id).get();
     if (!doc.exists) return null;
@@ -47,6 +54,8 @@ export async function getServizioById(id: string): Promise<ServizioDoc | null> {
 export async function createServizio(
   input: ServizioInput
 ): Promise<{ ok: true; id: string } | { ok: false; error: string }> {
+  if (!(await getAdminUser())) return { ok: false, error: NOT_ALLOWED };
+
   try {
     const data = servizioSchema.parse(input);
 
@@ -78,6 +87,8 @@ export async function updateServizio(
   id: string,
   input: ServizioInput
 ): Promise<{ ok: true } | { ok: false; error: string }> {
+  if (!(await getAdminUser())) return { ok: false, error: NOT_ALLOWED };
+
   try {
     const data = servizioSchema.parse(input);
 
@@ -91,11 +102,17 @@ export async function updateServizio(
       return { ok: false, error: "Slug già in uso. Scegli uno slug diverso." };
     }
 
+    const ref = adminDb.collection("servizi").doc(id);
+    const previous = (await ref.get()).data() as ServizioDoc | undefined;
+
     const now = new Date().toISOString();
-    await adminDb
-      .collection("servizi")
-      .doc(id)
-      .update({ ...data, updatedAt: now });
+    await ref.update({ ...data, updatedAt: now });
+
+    // Drop the stored bytes of any upload that was removed from the servizio.
+    const kept = new Set(data.images.map((img) => img.url));
+    await deleteUploadedImages(
+      (previous?.images ?? []).map((img) => img.url).filter((url) => !kept.has(url)),
+    );
 
     revalidatePath("/servizi");
     revalidatePath(`/servizi/${data.slug}`);
@@ -110,8 +127,14 @@ export async function updateServizio(
 export async function deleteServizio(
   id: string
 ): Promise<{ ok: true } | { ok: false; error: string }> {
+  if (!(await getAdminUser())) return { ok: false, error: NOT_ALLOWED };
+
   try {
-    await adminDb.collection("servizi").doc(id).delete();
+    const ref = adminDb.collection("servizi").doc(id);
+    const previous = (await ref.get()).data() as ServizioDoc | undefined;
+
+    await ref.delete();
+    await deleteUploadedImages((previous?.images ?? []).map((img) => img.url));
 
     revalidatePath("/servizi");
     revalidatePath("/admin/servizi");
@@ -126,6 +149,8 @@ export async function toggleServizioStatus(
   id: string,
   status: "draft" | "published"
 ): Promise<{ ok: true } | { ok: false; error: string }> {
+  if (!(await getAdminUser())) return { ok: false, error: NOT_ALLOWED };
+
   try {
     await adminDb.collection("servizi").doc(id).update({
       status,

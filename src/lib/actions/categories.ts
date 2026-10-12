@@ -1,6 +1,7 @@
 "use server";
 
 import { adminDb } from "@/lib/firebase/admin";
+import { getAdminUser, NOT_ALLOWED } from "@/lib/firebase/session";
 import { categorySchema, type CategoryInput } from "@/lib/schemas/category";
 import { revalidatePath } from "next/cache";
 import type { CategoryDoc } from "@/types";
@@ -35,6 +36,8 @@ export async function getCategoryById(id: string): Promise<CategoryDoc | null> {
 export async function createCategory(
   input: CategoryInput
 ): Promise<{ ok: true; id: string } | { ok: false; error: string }> {
+  if (!(await getAdminUser())) return { ok: false, error: NOT_ALLOWED };
+
   try {
     const data = categorySchema.parse(input);
 
@@ -66,6 +69,8 @@ export async function updateCategory(
   id: string,
   input: CategoryInput
 ): Promise<{ ok: true } | { ok: false; error: string }> {
+  if (!(await getAdminUser())) return { ok: false, error: NOT_ALLOWED };
+
   try {
     const data = categorySchema.parse(input);
 
@@ -79,11 +84,22 @@ export async function updateCategory(
       return { ok: false, error: "Slug già in uso. Scegli uno slug diverso." };
     }
 
+    const ref = adminDb.collection(COLLECTION).doc(id);
+    const previous = (await ref.get()).data() as CategoryDoc | undefined;
+
     const now = new Date().toISOString();
-    await adminDb
-      .collection(COLLECTION)
-      .doc(id)
-      .update({ ...data, updatedAt: now });
+    await ref.update({ ...data, updatedAt: now });
+
+    // Servizi carry the category by name, so a rename has to follow them.
+    if (previous && previous.name !== data.name) {
+      const using = await adminDb
+        .collection("servizi")
+        .where("category", "==", previous.name)
+        .get();
+      const batch = adminDb.batch();
+      using.docs.forEach((d) => batch.update(d.ref, { category: data.name, updatedAt: now }));
+      await batch.commit();
+    }
 
     revalidatePath("/servizi");
     revalidatePath("/admin/categorie");
@@ -98,13 +114,15 @@ export async function updateCategory(
 export async function deleteCategory(
   id: string
 ): Promise<{ ok: true } | { ok: false; error: string }> {
+  if (!(await getAdminUser())) return { ok: false, error: NOT_ALLOWED };
+
   try {
     const cat = await getCategoryById(id);
     if (!cat) return { ok: false, error: "Categoria non trovata." };
 
     const used = await adminDb
       .collection("servizi")
-      .where("category", "==", cat.slug)
+      .where("category", "==", cat.name)
       .limit(1)
       .get();
 

@@ -2,24 +2,19 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import {
-  getAllPosts,
-  getPostBySlug,
-  formatPostDate,
-} from "@/lib/content/blog";
+import { formatPostDate } from "@/lib/content/blog";
+import { getAllPosts, getPostBySlug } from "@/lib/content/posts";
 import { BrochureViewer } from "../_components/brochure-viewer";
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
-export function generateStaticParams() {
-  return getAllPosts().map((p) => ({ slug: p.slug }));
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
 
   if (!post) return { title: "Articolo non trovato" };
 
@@ -37,11 +32,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
 
   if (!post) notFound();
 
-  const related = getAllPosts()
+  const related = (await getAllPosts())
     .filter((p) => p.slug !== post.slug)
     .slice(0, 2);
 
@@ -72,8 +67,12 @@ export default async function BlogPostPage({ params }: Props) {
           {/* Header */}
           <header className="mx-auto max-w-3xl text-center">
             <div className="flex items-center justify-center gap-3 text-xs uppercase tracking-widest text-[var(--color-muted)]">
-              <span className="text-[var(--color-accent)]">{post.category}</span>
-              <span aria-hidden>·</span>
+              {post.category && (
+                <>
+                  <span className="text-[var(--color-accent)]">{post.category}</span>
+                  <span aria-hidden>·</span>
+                </>
+              )}
               <span>{formatPostDate(post.date)}</span>
             </div>
             <h1 className="mt-5 font-serif text-[var(--text-h1)] leading-[1.05] text-[var(--color-foreground)]">
@@ -99,7 +98,9 @@ export default async function BlogPostPage({ params }: Props) {
           {/* Body */}
           <div className="mx-auto mt-14 max-w-2xl space-y-6 text-lg leading-relaxed text-[var(--color-foreground-soft)]">
             {post.body.map((paragraph, i) => (
-              <p key={i}>{paragraph}</p>
+              <p key={i} className="whitespace-pre-line">
+                {paragraph}
+              </p>
             ))}
           </div>
 
@@ -126,10 +127,14 @@ export default async function BlogPostPage({ params }: Props) {
                   className="group flex flex-col bg-[var(--color-background)] p-8 transition-colors hover:bg-[var(--color-accent-light)] sm:p-10"
                 >
                   <div className="flex items-center gap-3 text-xs uppercase tracking-widest text-[var(--color-muted)]">
-                    <span className="text-[var(--color-accent)]">
-                      {p.category}
-                    </span>
-                    <span aria-hidden>·</span>
+                    {p.category && (
+                      <>
+                        <span className="text-[var(--color-accent)]">
+                          {p.category}
+                        </span>
+                        <span aria-hidden>·</span>
+                      </>
+                    )}
                     <span>{formatPostDate(p.date)}</span>
                   </div>
                   <h3 className="mt-3 font-serif text-2xl leading-tight text-[var(--color-foreground)]">

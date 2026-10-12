@@ -1,6 +1,7 @@
 "use server";
 
 import { adminDb } from "@/lib/firebase/admin";
+import { getAdminUser, NOT_ALLOWED } from "@/lib/firebase/session";
 import { settingsSchema, type SettingsInput } from "@/lib/schemas/settings";
 import { revalidatePath } from "next/cache";
 import type { SettingsDoc } from "@/types";
@@ -37,6 +38,8 @@ export async function getSettings(): Promise<SettingsDoc> {
 export async function saveSettings(
   input: SettingsInput
 ): Promise<{ ok: true } | { ok: false; error: string }> {
+  if (!(await getAdminUser())) return { ok: false, error: NOT_ALLOWED };
+
   try {
     const data = settingsSchema.parse(input);
     const updatedAt = new Date().toISOString();

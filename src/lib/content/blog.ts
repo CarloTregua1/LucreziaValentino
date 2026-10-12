@@ -1,10 +1,12 @@
-// Static blog content. Articles live here (no database) so the blog can be
-// edited directly in code. Newest first is handled by getAllPosts().
+// The blog's hand-written articles. They live in code; the ones Lucrezia writes
+// from the admin panel live in Firestore. @/lib/content/posts merges the two —
+// pages should read from there, not from this file.
 
 export interface BlogPost {
   slug: string;
   title: string;
   excerpt: string;
+  /** Empty for posts written from the admin panel, which have no category. */
   category: string;
   date: string; // ISO yyyy-mm-dd
   image: string;
@@ -103,12 +105,8 @@ const POSTS: BlogPost[] = [
   },
 ];
 
-export function getAllPosts(): BlogPost[] {
-  return [...POSTS].sort((a, b) => b.date.localeCompare(a.date));
-}
-
-export function getPostBySlug(slug: string): BlogPost | null {
-  return POSTS.find((p) => p.slug === slug) ?? null;
+export function getStaticPosts(): BlogPost[] {
+  return POSTS;
 }
 
 export function formatPostDate(date: string): string {

@@ -175,9 +175,17 @@ export async function markConversationRead(
 
 /* ──────────────────────────── Server-side reads ──────────────────────────── */
 
+// A thread is readable by the customer it belongs to and by the admin.
+async function canReadThread(userId: string): Promise<boolean> {
+  const user = await getAuthUser();
+  return !!user && (user.role === "admin" || user.uid === userId);
+}
+
 export async function getConversationForUser(
   userId: string,
 ): Promise<ConversationDoc | null> {
+  if (!(await canReadThread(userId))) return null;
+
   try {
     const doc = await adminDb.collection(COLLECTIONS.CONVERSATIONS).doc(userId).get();
     if (!doc.exists) return null;
@@ -188,6 +196,8 @@ export async function getConversationForUser(
 }
 
 export async function getMessagesForUser(userId: string): Promise<MessageDoc[]> {
+  if (!(await canReadThread(userId))) return [];
+
   try {
     const snap = await adminDb
       .collection(COLLECTIONS.CONVERSATIONS)
@@ -203,6 +213,9 @@ export async function getMessagesForUser(userId: string): Promise<MessageDoc[]> 
 }
 
 export async function getAllConversations(): Promise<ConversationDoc[]> {
+  const user = await getAuthUser();
+  if (user?.role !== "admin") return [];
+
   try {
     const snap = await adminDb.collection(COLLECTIONS.CONVERSATIONS).get();
     return snap.docs

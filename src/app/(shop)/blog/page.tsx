@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { getAllPosts, formatPostDate } from "@/lib/content/blog";
+import { formatPostDate } from "@/lib/content/blog";
+import { getAllPosts } from "@/lib/content/posts";
 import { SupportoIndividualeOnline } from "./_components/supporto-individuale-online";
 
 export const metadata: Metadata = {
@@ -10,8 +11,10 @@ export const metadata: Metadata = {
     "Articoli e approfondimenti su educazione finanziaria, credito, formazione, orientamento e microcredito — contenuti chiari, professionali e accessibili.",
 };
 
-export default function BlogPage() {
-  const posts = getAllPosts();
+export const dynamic = "force-dynamic";
+
+export default async function BlogPage() {
+  const posts = await getAllPosts();
   const [featured, ...rest] = posts;
 
   return (
@@ -59,10 +62,14 @@ export default function BlogPage() {
               </div>
               <div>
                 <div className="flex items-center gap-3 text-xs uppercase tracking-widest text-[var(--color-muted)]">
-                  <span className="text-[var(--color-accent)]">
-                    {featured.category}
-                  </span>
-                  <span aria-hidden>·</span>
+                  {featured.category && (
+                    <>
+                      <span className="text-[var(--color-accent)]">
+                        {featured.category}
+                      </span>
+                      <span aria-hidden>·</span>
+                    </>
+                  )}
                   <span>{formatPostDate(featured.date)}</span>
                 </div>
                 <h2 className="mt-4 font-serif text-[var(--text-h2)] leading-tight text-[var(--color-foreground)]">
@@ -102,10 +109,14 @@ export default function BlogPage() {
                   </div>
                   <div className="flex flex-1 flex-col p-6 sm:p-8">
                     <div className="flex items-center gap-3 text-xs uppercase tracking-widest text-[var(--color-muted)]">
-                      <span className="text-[var(--color-accent)]">
-                        {post.category}
-                      </span>
-                      <span aria-hidden>·</span>
+                      {post.category && (
+                        <>
+                          <span className="text-[var(--color-accent)]">
+                            {post.category}
+                          </span>
+                          <span aria-hidden>·</span>
+                        </>
+                      )}
                       <span>{formatPostDate(post.date)}</span>
                     </div>
                     <h2 className="mt-3 font-serif text-2xl leading-tight text-[var(--color-foreground)]">

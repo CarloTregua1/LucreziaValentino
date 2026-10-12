@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getServizi } from "@/lib/actions/servizi";
-import { getAllPosts } from "@/lib/content/blog";
+import { getAllPosts } from "@/lib/content/posts";
 import { appUrl } from "@/lib/app-url";
 import { LEGAL_UPDATED_AT_ISO } from "@/lib/legal/dates";
 
@@ -42,7 +42,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = appUrl();
 
   const servizi = await getServizi("published");
-  const posts = getAllPosts();
+  const posts = await getAllPosts();
 
   const servizioDates = servizi.map((s) =>
     s.updatedAt ? new Date(s.updatedAt) : undefined

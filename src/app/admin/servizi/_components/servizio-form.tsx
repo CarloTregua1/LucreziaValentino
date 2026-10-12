@@ -4,8 +4,7 @@ import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { storage } from "@/lib/firebase/client";
-import { ref as storageRef, uploadBytes, getDownloadURL } from "firebase/storage";
+import { uploadImage } from "@/lib/utils/upload-image";
 import { servizioSchema, type ServizioFormValues, type ServizioInput } from "@/lib/schemas/servizio";
 import { createServizio, updateServizio } from "@/lib/actions/servizi";
 import type { CategoryDoc, ServizioDoc } from "@/types";
@@ -98,17 +97,16 @@ export function ServizioForm({ servizio, categories }: Props) {
     setUploading(true);
     try {
       const uploaded = await Promise.all(
-        files.map(async (file, i) => {
-          const path = `servizi/temp/${Date.now()}-${i}-${file.name}`;
-          const r = storageRef(storage, path);
-          await uploadBytes(r, file);
-          const url = await getDownloadURL(r);
-          return { url, alt: file.name.replace(/\.[^.]+$/, ""), order: (images?.length ?? 0) + i };
-        })
+        files.map(async (file, i) => ({
+          url: await uploadImage(file),
+          alt: file.name.replace(/\.[^.]+$/, ""),
+          order: (images?.length ?? 0) + i,
+        }))
       );
 
       setValue("images", [...(images ?? []), ...uploaded], { shouldValidate: true });
-    } catch {
+    } catch (err) {
+      console.error(err);
       setServerError("Errore nel caricamento delle immagini.");
     } finally {
       setUploading(false);
@@ -207,8 +205,14 @@ export function ServizioForm({ servizio, categories }: Props) {
             ) : (
               <select {...register("category")} className={inputClass}>
                 <option value="">— seleziona —</option>
+                {/* A servizio stores the category's name — it is what the site
+                    prints above the title — so the name is the value here. */}
+                {servizio &&
+                  !categories.some((c) => c.name === servizio.category) && (
+                    <option value={servizio.category}>{servizio.category}</option>
+                  )}
                 {categories.map((c) => (
-                  <option key={c.id} value={c.slug}>
+                  <option key={c.id} value={c.name}>
                     {c.name}
                   </option>
                 ))}

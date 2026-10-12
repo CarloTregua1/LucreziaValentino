@@ -73,6 +73,12 @@ export default async function AdminDashboard() {
             + Nuovo servizio
           </Link>
           <Link
+            href="/admin/blog/nuovo"
+            className="border border-[var(--color-border)] px-5 py-2.5 text-sm text-[var(--color-foreground)] transition-colors hover:border-[var(--color-accent)]"
+          >
+            + Nuovo articolo
+          </Link>
+          <Link
             href="/admin/ordini"
             className="border border-[var(--color-border)] px-5 py-2.5 text-sm text-[var(--color-foreground)] transition-colors hover:border-[var(--color-accent)]"
           >

@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 const NAV = [
   { href: "/admin", label: "Dashboard" },
   { href: "/admin/servizi", label: "Servizi" },
+  { href: "/admin/blog", label: "Blog" },
   { href: "/admin/ordini", label: "Ordini" },
   { href: "/admin/messaggi", label: "Messaggi" },
   { href: "/admin/categorie", label: "Categorie" },
