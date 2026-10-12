@@ -9,9 +9,9 @@ interface Props {
 /**
  * Stripe Checkout picks the methods it offers from the Dashboard's payment
  * method configuration rather than from anything in this codebase — the
- * session is created without payment_method_types. Card and Klarna are both
- * enabled there; the rest of what Stripe may show varies by country and
- * amount, so only these two are named.
+ * session is created without payment_method_types. Card, Klarna and PayPal
+ * are enabled there; the rest of what Stripe may show varies by country and
+ * amount, so only these are named.
  */
 export function PaymentMethods({
   tone = "light",
@@ -39,11 +39,14 @@ export function PaymentMethods({
         <span className={`border px-2.5 py-1 text-xs tracking-wide ${badge}`}>
           Klarna
         </span>
+        <span className={`border px-2.5 py-1 text-xs tracking-wide ${badge}`}>
+          PayPal
+        </span>
       </div>
       {detail && (
         <p className={`mt-3 text-xs leading-relaxed ${muted}`}>
           Il pagamento è gestito da Stripe. Puoi pagare con carta di credito o
-          debito, oppure scegliere Klarna al momento del checkout.
+          debito, oppure scegliere Klarna o PayPal al momento del checkout.
         </p>
       )}
     </div>

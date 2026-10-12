@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 const HIGHLIGHTS = [
   { label: "Prima call", value: "Gratuita" },
   { label: "Risposta", value: "Entro 24h" },
-  { label: "Pagamento", value: "Stripe · Klarna" },
+  { label: "Pagamento", value: "Stripe, Klarna, PayPal" },
 ];
 
 const EXTERNAL_HIGHLIGHTS = [

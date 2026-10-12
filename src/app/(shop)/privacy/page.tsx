@@ -150,9 +150,12 @@ export default async function PrivacyPage() {
             </li>
             <li>
               <strong>Stripe Payments Europe Ltd.</strong> — gestione dei
-              pagamenti online, inclusi i metodi Klarna resi disponibili
-              tramite Stripe. Stripe agisce anche come titolare autonomo per gli
-              obblighi antiriciclaggio e antifrode che le sono propri.
+              pagamenti online, inclusi i metodi Klarna e PayPal resi
+              disponibili tramite Stripe. Stripe agisce anche come titolare
+              autonomo per gli obblighi antiriciclaggio e antifrode che le sono
+              propri. Se scegli Klarna o PayPal, il pagamento si completa sulle
+              loro pagine e i dati che inserisci lì sono trattati da ciascuna
+              di esse come titolare autonomo, secondo la propria informativa.
             </li>
             <li>
               <strong>Vercel Inc.</strong> — hosting e distribuzione del sito.

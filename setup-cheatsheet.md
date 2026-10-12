@@ -122,6 +122,7 @@ Then Claude Code can write a small Node script (`scripts/set-admin.ts`) that tak
 2. Enable:
    - **Cards** (Visa, Mastercard, Amex) — on by default
    - **Klarna** — toggle on, may require activation (usually instant for IT)
+   - **PayPal** — toggle on, then connect a PayPal Business account when prompted. Enable it in **live mode** as well as test: the setting is per-mode.
    - **Apple Pay / Google Pay** — on by default with Checkout
    - **Link** — on by default
    - **Satispay** — toggle on. Available in Italy; widely used.

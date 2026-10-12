@@ -137,11 +137,14 @@ export default async function TerminiPage() {
             I pagamenti sono gestiti da <strong>Stripe Payments Europe Ltd.</strong>{" "}
             e possono essere effettuati con carta di credito o di debito e con
             gli ulteriori metodi mostrati in fase di pagamento, tra cui{" "}
-            <strong>Klarna</strong> ove disponibile. La disponibilità dei singoli
-            metodi dipende da Stripe, dal paese e dall’importo dell’ordine.
-            L’eventuale pagamento dilazionato tramite Klarna costituisce un
-            rapporto autonomo tra il cliente e Klarna, soggetto alle condizioni
-            e alle valutazioni di quest’ultima.
+            <strong>Klarna</strong> e <strong>PayPal</strong> ove disponibili.
+            La disponibilità dei singoli metodi dipende da Stripe, dal paese e
+            dall’importo dell’ordine. L’eventuale pagamento dilazionato tramite
+            Klarna costituisce un rapporto autonomo tra il cliente e Klarna,
+            soggetto alle condizioni e alle valutazioni di quest’ultima. Allo
+            stesso modo, il pagamento tramite PayPal avviene attraverso
+            l’account PayPal del cliente ed è soggetto alle condizioni d’uso di
+            PayPal.
           </p>
           <p>
             I dati della carta non transitano mai sui sistemi del
