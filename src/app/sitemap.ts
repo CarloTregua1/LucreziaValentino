@@ -21,6 +21,7 @@ const PAGE_MODIFIED: Record<string, string> = {
   "": "2026-09-08",
   "/chi-siamo": "2026-07-02",
   "/convenzioni": "2026-09-08",
+  "/calcolatore": "2026-10-21",
   "/privacy": LEGAL_UPDATED_AT_ISO,
   "/cookie-policy": LEGAL_UPDATED_AT_ISO,
   "/termini": LEGAL_UPDATED_AT_ISO,
@@ -80,6 +81,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: modified("/convenzioni"),
       changeFrequency: "monthly",
       priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/calcolatore`,
+      lastModified: modified("/calcolatore"),
+      changeFrequency: "monthly",
+      priority: 0.7,
     },
     {
       url: `${baseUrl}/privacy`,

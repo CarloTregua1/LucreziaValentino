@@ -8,6 +8,7 @@ import { MobileMenu } from "./mobile-menu";
 const NAV_LINKS = [
   { href: "/servizi", label: "Aree di competenza" },
   { href: "/convenzioni", label: "Convenzioni" },
+  { href: "/calcolatore", label: "Calcolatore" },
   { href: "/blog", label: "Blog" },
   { href: "/chi-siamo", label: "Chi sono" },
   { href: "/account/messaggi", label: "Contatti" },
@@ -46,12 +47,12 @@ export async function Nav() {
           {isAdmin && (
             <Link
               href="/admin"
-              className="hidden bg-[var(--color-foreground)] px-3 py-1.5 text-xs uppercase tracking-widest text-[var(--color-background)] transition-colors hover:bg-[var(--color-accent)] lg:inline-block"
+              className="hidden bg-[var(--color-foreground)] px-3 py-1.5 text-xs uppercase tracking-widest text-[var(--color-background)] transition-colors hover:bg-[var(--color-accent)] xl:inline-block"
             >
               Admin
             </Link>
           )}
-          <span className="hidden lg:inline-block">
+          <span className="hidden xl:inline-block">
             <CartLink />
           </span>
 
@@ -60,7 +61,7 @@ export async function Nav() {
           {isAdmin ? (
             <Link
               href="/admin"
-              className="shrink-0 bg-[var(--color-foreground)] px-3 py-1.5 text-xs whitespace-nowrap uppercase tracking-widest text-[var(--color-background)] transition-colors hover:bg-[var(--color-accent)] lg:hidden"
+              className="shrink-0 bg-[var(--color-foreground)] px-3 py-1.5 text-xs whitespace-nowrap uppercase tracking-widest text-[var(--color-background)] transition-colors hover:bg-[var(--color-accent)] xl:hidden"
             >
               Admin
             </Link>

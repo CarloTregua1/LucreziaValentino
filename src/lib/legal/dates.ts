@@ -4,7 +4,7 @@
  * stamp shown on the page and the sitemap's lastModified both derive from it,
  * so they can't drift apart.
  */
-export const LEGAL_UPDATED_AT_ISO = "2026-10-12";
+export const LEGAL_UPDATED_AT_ISO = "2026-10-21";
 
 export const LEGAL_UPDATED_AT = new Intl.DateTimeFormat("it-IT", {
   day: "numeric",

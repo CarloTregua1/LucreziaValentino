@@ -84,6 +84,22 @@ export default async function PrivacyPage() {
               <Link href="/cookie-policy">Cookie Policy</Link>.
             </li>
           </ul>
+          <h3>Calcolatore finanziamenti</h3>
+          <p>
+            I dati che inserisci nel{" "}
+            <Link href="/calcolatore">calcolatore</Link> (reddito, importi,
+            età, tipo di contratto e simili) vengono elaborati{" "}
+            <strong>
+              esclusivamente nel tuo browser: non vengono inviati a questo
+              sito, non vengono salvati e il titolare non vi ha accesso
+            </strong>
+            . Chiudendo o ricaricando la pagina vanno persi. Se scegli di
+            usare il pulsante «Invia la simulazione a Lucrezia», il riepilogo
+            viene soltanto proposto come testo nell’area messaggi: diventa un
+            messaggio, e quindi viene trattato come descritto sopra, solo se
+            decidi tu di inviarlo.
+          </p>
+
           <p>
             Non raccolgo categorie particolari di dati (art. 9 GDPR) e ti invito
             a non inserirne nei messaggi. Non utilizzo strumenti di

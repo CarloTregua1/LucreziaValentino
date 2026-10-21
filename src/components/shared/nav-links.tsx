@@ -22,7 +22,7 @@ export function NavLinks({ links }: Props) {
     .sort((a, b) => b.href.length - a.href.length)[0]?.href;
 
   return (
-    <nav className="hidden items-center gap-8 lg:flex">
+    <nav className="hidden items-center gap-8 xl:flex">
       {links.map((link) => {
         const active = link.href === activeHref;
         return (
@@ -31,7 +31,7 @@ export function NavLinks({ links }: Props) {
             href={link.href}
             data-active={active}
             aria-current={active ? "page" : undefined}
-            className={`link-underline text-sm tracking-wide ${
+            className={`link-underline text-sm tracking-wide whitespace-nowrap ${
               active
                 ? "text-[var(--color-foreground)]"
                 : "text-[var(--color-foreground-soft)] hover:text-[var(--color-foreground)]"

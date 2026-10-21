@@ -51,6 +51,13 @@ const LOCAL_STORAGE: CookieRow[] = [
       "Ricorda la scelta espressa nel banner, per non riproporlo a ogni visita.",
     duration: "Fino alla cancellazione dei dati del browser",
   },
+  {
+    name: "lv:bozza-messaggio",
+    provider: "Questo sito",
+    purpose:
+      "Solo se premi «Invia la simulazione a Lucrezia» nel calcolatore: conserva il riepilogo per proporlo nell’area messaggi, anche dopo l’accesso. Viene cancellato appena la pagina dei messaggi lo legge.",
+    duration: "Fino alla lettura o alla chiusura della scheda (sessionStorage)",
+  },
 ];
 
 function CookieTable({ rows }: { rows: CookieRow[] }) {

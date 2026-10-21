@@ -15,6 +15,7 @@ import {
 } from "@/lib/actions/messages";
 import type { MessageDoc } from "@/types";
 import { COLLECTIONS } from "@/lib/constants";
+import { MESSAGE_DRAFT_KEY } from "@/lib/message-draft";
 
 interface Props {
   userId: string;
@@ -28,6 +29,19 @@ export function CustomerThread({ userId, initialMessages }: Props) {
   const [pending, startTransition] = useTransition();
   const bottomRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  // Pick up a draft left by another page (the calcolatore), once.
+  useEffect(() => {
+    try {
+      const draft = sessionStorage.getItem(MESSAGE_DRAFT_KEY);
+      if (!draft) return;
+      sessionStorage.removeItem(MESSAGE_DRAFT_KEY);
+      setContent(draft.slice(0, 2000));
+      textareaRef.current?.focus();
+    } catch {
+      // Storage blocked — nothing to restore.
+    }
+  }, []);
 
   // Live subscription — silently falls back to initial messages if rules deny.
   useEffect(() => {
