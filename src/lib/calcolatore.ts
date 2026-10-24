@@ -72,7 +72,7 @@ const eur = new Intl.NumberFormat("it-IT", {
 export const formatEuro = (n: number) => eur.format(Math.round(n));
 export const formatPerc = (n: number) => `${Math.round(n * 100)}%`;
 
-function verificaDti(dti: number): Verifica {
+function verificaDti(dti: number, prodotto: "mutuo" | "prestito"): Verifica {
   if (!Number.isFinite(dti)) {
     return {
       livello: "ko",
@@ -84,7 +84,10 @@ function verificaDti(dti: number): Verifica {
     return {
       livello: "ok",
       titolo: "Rapporto rata/reddito",
-      testo: `Le rate assorbono il ${formatPerc(dti)} del reddito: entro un terzo, la soglia che le banche considerano sostenibile.`,
+      testo:
+        prodotto === "mutuo"
+          ? "La rata stimata risulta compatibile con il reddito indicato, secondo i parametri orientativi utilizzati nella simulazione."
+          : `Le rate dei finanziamenti rappresentano il ${formatPerc(dti)} del reddito considerato. Questo valore rientra nei parametri orientativi utilizzati per la simulazione.`,
     };
   }
   if (dti <= DTI_MASSIMO) {
@@ -106,14 +109,14 @@ function verificaContratto(contratto: Contratto, prodotto: "mutuo" | "prestito")
     case "indeterminato":
       return {
         livello: "ok",
-        titolo: "Contratto",
-        testo: "Il contratto a tempo indeterminato è il profilo preferito dalle banche.",
+        titolo: "Situazione lavorativa",
+        testo: `Il contratto a tempo indeterminato rappresenta un elemento positivo nella valutazione della stabilità del reddito. La concessione del ${prodotto} dipende comunque dalla valutazione complessiva dell’istituto finanziatore.`,
       };
     case "pensionato":
       return {
         livello: "ok",
         titolo: "Reddito da pensione",
-        testo: "La pensione è un reddito stabile; conta soprattutto l’età a fine piano.",
+        testo: "La pensione rappresenta una fonte di reddito regolare, da valutare insieme agli altri requisiti.",
       };
     case "determinato":
       return {
@@ -186,13 +189,13 @@ export function calcolaMutuo(i: MutuoInput): MutuoRisultato {
       testo: "L’anticipo copre già il prezzo dell’immobile.",
     });
   } else {
-    verifiche.push(verificaDti(dti));
+    verifiche.push(verificaDti(dti, "mutuo"));
 
     if (ltv <= LTV_STANDARD) {
       verifiche.push({
         livello: "ok",
         titolo: "Anticipo",
-        testo: `Chiedi il ${formatPerc(ltv)} del valore dell’immobile, entro l’80% che le banche finanziano di norma.`,
+        testo: `L’importo disponibile permette di richiedere un mutuo pari al ${formatPerc(ltv)} del prezzo dell’immobile.`,
       });
     } else if (ltv <= 1 && under) {
       verifiche.push({
@@ -213,7 +216,7 @@ export function calcolaMutuo(i: MutuoInput): MutuoRisultato {
       verifiche.push({
         livello: "ok",
         titolo: "Età a fine mutuo",
-        testo: `Finiresti di pagare a ${etaFine} anni.`,
+        testo: `L’età prevista alla scadenza (${etaFine} anni) rientra nei limiti indicativi considerati.`,
       });
     } else if (etaFine <= ETA_FINE_MUTUO_MAX) {
       verifiche.push({
@@ -237,7 +240,7 @@ export function calcolaMutuo(i: MutuoInput): MutuoRisultato {
   verifiche.push({
     livello: "info",
     titolo: "Spese di acquisto",
-    testo: `Oltre all’anticipo, tieni da parte circa ${formatEuro(spese)} per notaio, imposte e agenzia.`,
+    testo: `Ricorda di considerare anche notaio, imposte ed eventuali spese di agenzia: circa ${formatEuro(spese)}.`,
   });
 
   return { importo, rata, ltv, dti, mutuoMax, prezzoMax, spese, verifiche, esito: esitoDa(verifiche) };
@@ -271,7 +274,7 @@ export function calcolaPrestito(i: PrestitoInput): PrestitoRisultato {
   const dti = reddito > 0 ? (rata + i.altreRate) / reddito : Infinity;
   const importoMax = capitaleDaRata(reddito * DTI_SOSTENIBILE - i.altreRate, i.tan, i.mesi);
 
-  const verifiche: Verifica[] = [verificaDti(dti)];
+  const verifiche: Verifica[] = [verificaDti(dti, "prestito")];
   const contratto = verificaContratto(i.contratto, "prestito");
   if (contratto) verifiche.push(contratto);
   if (i.altreRate > 0) {

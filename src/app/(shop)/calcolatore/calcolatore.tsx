@@ -35,6 +35,14 @@ const CONTRATTI: { value: Contratto; label: string }[] = [
   { value: "pensionato", label: "Pensionato" },
 ];
 
+// The TAN leaves out fees and charges, so say so wherever a rate is asked for.
+const NOTA_TAEG =
+  " Il TAN non comprende spese e commissioni: il costo complessivo del finanziamento è espresso dal TAEG, indicato nell’offerta.";
+const HINT_TAN_BANCA =
+  "Il tasso è utilizzato solo per la simulazione. Quello effettivo dipenderà dalle condizioni proposte dalla banca." + NOTA_TAEG;
+const HINT_TAN_ISTITUTO =
+  "Il tasso serve a calcolare una rata indicativa. Quello effettivo dipenderà dalle condizioni applicate dall’istituto finanziatore." + NOTA_TAEG;
+
 const MENSILITA = [
   { value: 12, label: "12" },
   { value: 13, label: "13" },
@@ -43,7 +51,7 @@ const MENSILITA = [
 
 const ESITO: Record<Esito, { label: string; className: string }> = {
   buono: {
-    label: "Buone possibilità",
+    label: "Parametri iniziali favorevoli",
     className: "bg-[#9fd8a8]/15 text-[#b6e6bd] ring-[#9fd8a8]/40",
   },
   valutare: {
@@ -130,7 +138,7 @@ export function Calcolatore() {
   }
 
   function riepilogo(): string {
-    const intro = "Ciao Lucrezia, ho usato il calcolatore sul sito e vorrei una valutazione.";
+    const intro = "Ciao Lucrezia, ho usato il simulatore finanziario sul sito e vorrei una valutazione.";
     if (tab === "mutuo") {
       const contratto = CONTRATTI.find((x) => x.value === mutuo.contratto)?.label;
       return [
@@ -146,7 +154,7 @@ export function Calcolatore() {
             : ""
         }`,
         `· Altre rate in corso: ${formatEuro(mutuo.altreRate)} al mese`,
-        `· Età: ${mutuo.eta} anni · Contratto: ${contratto}`,
+        `· Età: ${mutuo.eta} anni · Situazione lavorativa: ${contratto}`,
         `· Rata stimata: ${formatEuro(mutuoRis.rata)} al mese (${formatPerc(mutuoRis.dti)} del reddito)`,
       ].join("\n");
     }
@@ -159,7 +167,7 @@ export function Calcolatore() {
         `· Importo: ${formatEuro(prestito.importo)} in ${prestito.mesi} mesi`,
         `· Reddito netto: ${formatEuro(prestito.reddito)} × ${prestito.mensilita} mensilità`,
         `· Altre rate in corso: ${formatEuro(prestito.altreRate)} al mese`,
-        `· Contratto: ${contratto}`,
+        `· Situazione lavorativa: ${contratto}`,
         `· Rata stimata: ${formatEuro(prestitoRis.rata)} al mese (${formatPerc(prestitoRis.dti)} del reddito)`,
       ].join("\n");
     }
@@ -238,8 +246,8 @@ export function Calcolatore() {
               <Gruppo titolo="Il tuo reddito">
                 <Campo label="Reddito netto mensile" value={mutuo.reddito} onChange={m("reddito")} min={500} max={8_000} step={50} inputMax={100_000} unita="euro" hint="Quello che ricevi in busta paga o, per gli autonomi, la media mensile netta." />
                 <Scelta label="Mensilità" value={mutuo.mensilita} onChange={m("mensilita")} opzioni={MENSILITA} />
-                <Scelta label="Contratto" value={mutuo.contratto} onChange={m("contratto")} opzioni={CONTRATTI} />
-                <Campo label="Rate di altri finanziamenti" value={mutuo.altreRate} onChange={m("altreRate")} min={0} max={1_500} step={10} inputMax={20_000} unita="euro" hint="Auto, prestiti, carte revolving: il totale che paghi ogni mese." />
+                <Scelta label="Situazione lavorativa" value={mutuo.contratto} onChange={m("contratto")} opzioni={CONTRATTI} />
+                <Campo label="Altre rate mensili" value={mutuo.altreRate} onChange={m("altreRate")} min={0} max={1_500} step={10} inputMax={20_000} unita="euro" hint="Inserisci il totale delle rate che paghi ogni mese per prestiti, finanziamenti auto o carte revolving." />
                 <div>
                   <label className="flex cursor-pointer items-center gap-3 text-sm text-[var(--color-foreground)]">
                     <input
@@ -261,7 +269,7 @@ export function Calcolatore() {
               <Gruppo titolo="Il mutuo">
                 <Campo label="Durata" value={mutuo.anni} onChange={m("anni")} min={5} max={30} step={1} unita="anni" />
                 <Campo label="Età del richiedente più anziano" value={mutuo.eta} onChange={m("eta")} min={18} max={75} step={1} unita="anni" />
-                <Campo label="Tasso ipotetico (TAN)" value={mutuo.tan} onChange={m("tan")} min={0.5} max={7} step={0.05} unita="percento" hint="Puoi modificarlo: il tasso reale dipende dalla banca e dal tuo profilo." />
+                <Campo label="Tasso annuo indicativo (TAN)" value={mutuo.tan} onChange={m("tan")} min={0.5} max={7} step={0.05} unita="percento" hint={HINT_TAN_BANCA} />
               </Gruppo>
             </div>
           )}
@@ -271,13 +279,13 @@ export function Calcolatore() {
               <Gruppo titolo="Il prestito">
                 <Campo label="Importo richiesto" value={prestito.importo} onChange={p("importo")} min={1_000} max={75_000} step={500} inputMax={150_000} unita="euro" />
                 <Campo label="Durata" value={prestito.mesi} onChange={p("mesi")} min={12} max={120} step={6} unita="mesi" />
-                <Campo label="Tasso ipotetico (TAN)" value={prestito.tan} onChange={p("tan")} min={2} max={15} step={0.1} unita="percento" hint="Puoi modificarlo: il tasso reale dipende dall’istituto e dal tuo profilo." />
+                <Campo label="Tasso annuo indicativo (TAN)" value={prestito.tan} onChange={p("tan")} min={2} max={15} step={0.1} unita="percento" hint={HINT_TAN_ISTITUTO} />
               </Gruppo>
               <Gruppo titolo="Il tuo reddito">
                 <Campo label="Reddito netto mensile" value={prestito.reddito} onChange={p("reddito")} min={500} max={8_000} step={50} inputMax={100_000} unita="euro" />
                 <Scelta label="Mensilità" value={prestito.mensilita} onChange={p("mensilita")} opzioni={MENSILITA} />
-                <Scelta label="Contratto" value={prestito.contratto} onChange={p("contratto")} opzioni={CONTRATTI} />
-                <Campo label="Rate di altri finanziamenti" value={prestito.altreRate} onChange={p("altreRate")} min={0} max={1_500} step={10} inputMax={20_000} unita="euro" hint="Mutuo, auto, altri prestiti: il totale che paghi ogni mese." />
+                <Scelta label="Situazione lavorativa" value={prestito.contratto} onChange={p("contratto")} opzioni={CONTRATTI} />
+                <Campo label="Altre rate mensili" value={prestito.altreRate} onChange={p("altreRate")} min={0} max={1_500} step={10} inputMax={20_000} unita="euro" hint="Indica quanto paghi ogni mese per mutui, prestiti, finanziamenti e carte revolving." />
               </Gruppo>
             </div>
           )}
@@ -313,7 +321,7 @@ export function Calcolatore() {
               </Gruppo>
               <Gruppo titolo="Il piano">
                 <Campo label="Durata" value={cessione.mesi} onChange={c("mesi")} min={24} max={120} step={12} unita="mesi" />
-                <Campo label="Tasso ipotetico (TAN)" value={cessione.tan} onChange={c("tan")} min={1} max={12} step={0.1} unita="percento" hint="Puoi modificarlo: il tasso reale dipende dall’istituto e dal tuo profilo." />
+                <Campo label="Tasso annuo indicativo (TAN)" value={cessione.tan} onChange={c("tan")} min={1} max={12} step={0.1} unita="percento" hint={HINT_TAN_ISTITUTO} />
               </Gruppo>
             </div>
           )}
@@ -357,9 +365,9 @@ export function Calcolatore() {
                 <Indicatore dti={prestitoRis.dti} />
                 <Dati
                   righe={[
-                    ["Interessi totali", formatEuro(prestitoRis.interessi)],
+                    ["Interessi complessivi stimati", formatEuro(prestitoRis.interessi)],
                     ["Totale da restituire", formatEuro(prestito.importo + prestitoRis.interessi)],
-                    ["Importo massimo stimato", formatEuro(prestitoRis.importoMax)],
+                    ["Prestito massimo indicativo", formatEuro(prestitoRis.importoMax)],
                   ]}
                 />
                 <Valutazione esito={prestitoRis.esito} verifiche={prestitoRis.verifiche} />
@@ -399,25 +407,36 @@ export function Calcolatore() {
           {/* ── Call to action ── */}
           <div className="border border-t-0 border-[var(--color-border)] bg-[var(--color-card)] px-6 py-7 sm:px-8">
             <p className="font-serif text-xl leading-tight text-[var(--color-foreground)]">
-              Vuoi sapere cosa puoi ottenere{" "}
-              <span className="serif-italic text-[var(--color-accent)]">davvero?</span>
+              Vuoi conoscere la tua possibilità di{" "}
+              <span className="serif-italic text-[var(--color-accent)]">ottenere un prestito?</span>
             </p>
             <p className="mt-3 text-sm leading-relaxed text-[var(--color-foreground-soft)]">
-              Lucrezia analizza la tua situazione, ti indica la soluzione più
-              adatta e ti accompagna fino all’erogazione.
+              Scopri quanto potresti richiedere attraverso la cessione del
+              quinto e valuta una rata compatibile con il tuo stipendio o la
+              tua pensione.
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-[var(--color-foreground-soft)]">
+              Richiedi un approfondimento personalizzato per conoscere le
+              condizioni applicabili alla tua situazione.
             </p>
             <button
               type="button"
               onClick={inviaALucrezia}
               className="mt-6 w-full bg-[var(--color-accent)] px-6 py-4 text-sm tracking-wide text-white transition-colors hover:bg-[var(--color-accent-hover)]"
             >
-              Invia la simulazione a Lucrezia
+              Richiedi una consulenza
             </button>
             <p className="mt-4 text-center text-xs text-[var(--color-muted)]">
               oppure chiama il{" "}
               <a href="tel:+393508502846" className="link-underline text-[var(--color-foreground)]">
                 350 850 2846
               </a>
+            </p>
+            <p className="mt-5 text-xs leading-relaxed text-[var(--color-muted)]">
+              La simulazione è indicativa e non costituisce un’offerta di
+              finanziamento. L’importo effettivamente erogabile dipende dalla
+              verifica dei requisiti, dai costi applicabili e dalla valutazione
+              dell’istituto finanziatore.
             </p>
           </div>
         </div>
@@ -628,7 +647,7 @@ function Indicatore({ dti }: { dti: number }) {
   return (
     <div className="mt-8">
       <div className="flex items-baseline justify-between text-sm">
-        <span className="text-[var(--color-background)]/70">Rate / reddito</span>
+        <span className="text-[var(--color-background)]/70">Rapporto rata/reddito</span>
         <span className="font-bold tabular-nums">{valido ? formatPerc(dti) : "—"}</span>
       </div>
       <div className="relative mt-3 h-2">
