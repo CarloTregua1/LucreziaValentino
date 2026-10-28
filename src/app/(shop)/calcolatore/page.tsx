@@ -25,7 +25,7 @@ const CRITERI = [
     ],
   },
   {
-    titolo: "Età e situazione lavorativa",
+    titolo: "Età e lavoro",
     domanda: "Quali altri aspetti vengono valutati?",
     testi: [
       "La banca considera la tua età, il tipo di lavoro, la stabilità del reddito e la tua capacità di rispettare i pagamenti.",
