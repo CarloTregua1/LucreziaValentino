@@ -60,7 +60,9 @@ export default async function PrivacyPage() {
             <li>
               <strong>Acquisti:</strong> indirizzo email, servizi acquistati,
               importo, valuta, stato dell’ordine e identificativi della
-              transazione. I <strong>dati di pagamento</strong> (numero di
+              transazione. Se acquisti da un link diretto senza accedere,
+              l’email che indichi a Stripe viene usata per collegare l’ordine
+              al tuo account, se ne hai uno. I <strong>dati di pagamento</strong> (numero di
               carta, intestatario, scadenza) sono raccolti e trattati
               direttamente da Stripe sulla propria pagina di pagamento:{" "}
               <strong>non transitano né vengono conservati su questo sito</strong>.

@@ -9,6 +9,7 @@ import {
   type CreateCheckoutSessionInput,
 } from "@/lib/schemas/order";
 import { appUrl } from "@/lib/app-url";
+import { servizioLineItem } from "@/lib/stripe/line-items";
 import type { ServizioDoc } from "@/types";
 
 type Result =
@@ -16,15 +17,6 @@ type Result =
   | { ok: false; error: string; code?: "auth_required" };
 
 const APP_URL = appUrl("http://localhost:3000");
-
-// Servizi store site-relative image paths (see the note in @/lib/schemas/servizio),
-// but Stripe rejects anything that isn't an absolute URL. A localhost APP_URL is
-// accepted, though the image won't render in Checkout — Stripe can't reach it.
-function absoluteImageUrl(url: string | undefined): string | undefined {
-  if (!url) return undefined;
-  if (/^https?:\/\//i.test(url)) return url;
-  return `${APP_URL}/${url.replace(/^\/+/, "")}`;
-}
 
 export async function createCheckoutSession(
   input: CreateCheckoutSessionInput,
@@ -61,14 +53,7 @@ export async function createCheckoutSession(
     }
   }
 
-  const lineItems: Array<{
-    price_data: {
-      currency: "eur";
-      product_data: { name: string; description?: string; images?: string[] };
-      unit_amount: number;
-    };
-    quantity: number;
-  }> = [];
+  const lineItems: Array<ReturnType<typeof servizioLineItem>> = [];
 
   for (const item of parsed.data.items) {
     const servizio = servizi.get(item.productId);
@@ -78,19 +63,7 @@ export async function createCheckoutSession(
     if (servizio.status !== "published") {
       return { ok: false, error: `Servizio non disponibile: ${servizio.name}` };
     }
-    const image = absoluteImageUrl(servizio.images[0]?.url);
-    lineItems.push({
-      price_data: {
-        currency: "eur",
-        product_data: {
-          name: servizio.name,
-          description: servizio.shortDescription,
-          images: image ? [image] : undefined,
-        },
-        unit_amount: servizio.priceCents,
-      },
-      quantity: item.quantity,
-    });
+    lineItems.push(servizioLineItem(servizio, item.quantity));
   }
 
   try {
@@ -105,6 +78,7 @@ export async function createCheckoutSession(
       billing_address_collection: "auto",
       metadata: {
         userId: user.uid,
+        source: "cart",
       },
       payment_intent_data: {
         // In live mode a receipt is sent whenever receipt_email is set, without

@@ -18,3 +18,18 @@ export function appUrl(fallback = "https://lucrezia-valentino.vercel.app"): stri
   const raw = process.env.NEXT_PUBLIC_APP_URL?.trim();
   return (raw || fallback).replace(/\/+$/, "");
 }
+
+/**
+ * Base URL for links and QR codes the admin hands to customers (/admin/link-vendita).
+ *
+ * Not appUrl(): that is localhost:3000 in development — useless from a
+ * customer's phone — and still the vercel.app host in production (see the
+ * custom-domain note). A printed QR code lives forever, so it must name the
+ * canonical domain. Override with SHARE_URL — deliberately not NEXT_PUBLIC_,
+ * so it's read at request time and `npm run demo` can point the QR codes at a
+ * temporary tunnel without rebuilding. Server-only: call it from server code.
+ */
+export function shareUrl(fallback = "https://lucreziavalentino.com"): string {
+  const raw = process.env.SHARE_URL?.trim();
+  return (raw || fallback).replace(/\/+$/, "");
+}

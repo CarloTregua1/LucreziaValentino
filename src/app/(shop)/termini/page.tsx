@@ -85,8 +85,11 @@ export default async function TerminiPage() {
       title: "Registrazione e account",
       body: (
         <p>
-          Per acquistare e per scambiare messaggi è necessario registrarsi
-          fornendo dati veritieri e aggiornati. Le credenziali sono personali:
+          Per scambiare messaggi e per acquistare dal carrello è necessario
+          registrarsi fornendo dati veritieri e aggiornati. Un singolo servizio
+          può essere acquistato anche senza account, tramite un link diretto o
+          un QR code ricevuto dal professionista: in quel caso indichi la tua
+          email nella pagina di pagamento di Stripe. Le credenziali sono personali:
           sei responsabile della loro custodia e delle attività svolte tramite
           il tuo account. In caso di uso non autorizzato avvisa
           tempestivamente il professionista. La registrazione è riservata a
@@ -115,8 +118,10 @@ export default async function TerminiPage() {
           </li>
           <li>
             Ricevi da Stripe una ricevuta all’indirizzo email associato
-            all’account; l’ordine resta consultabile nell’area riservata, alla
-            voce <em>I miei ordini</em>.
+            all’account, o a quello indicato in fase di pagamento se acquisti
+            da un link diretto; se hai un account con quell’email, l’ordine
+            resta consultabile nell’area riservata, alla voce{" "}
+            <em>I miei ordini</em>.
           </li>
         </ol>
       ),

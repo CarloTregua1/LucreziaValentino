@@ -64,6 +64,8 @@ export default async function AdminOrderDetailPage({ params }: Props) {
           </h1>
           <p className="mt-1 text-sm text-[var(--color-muted)]">
             {formatDate(order.createdAt)}
+            {order.source === "link" &&
+              ` · Acquisto da link diretto${order.userId ? "" : ", senza account"}`}
           </p>
         </div>
         <span className="bg-[var(--color-accent-light)] px-3 py-1 text-xs uppercase tracking-widest text-[var(--color-accent-deep)]">

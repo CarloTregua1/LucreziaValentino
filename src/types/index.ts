@@ -123,10 +123,15 @@ export interface OrderItem {
   subtotalCents: number;
 }
 
+/** "link" = guest checkout from a direct buy link (/acquista/[slug]). */
+export type OrderSource = "cart" | "link";
+
 export interface OrderDoc {
   id: string;
+  /** Empty for a guest order whose email matches no account. */
   userId: string;
   email: string;
+  source?: OrderSource;
   status: OrderStatus;
   items: OrderItem[];
   subtotalCents: number;

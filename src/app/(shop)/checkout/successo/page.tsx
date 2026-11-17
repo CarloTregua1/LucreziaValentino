@@ -22,6 +22,9 @@ export default async function CheckoutSuccessPage({ searchParams }: Props) {
 
   let total: number | null = null;
   let email: string | null = null;
+  // Guests from a direct buy link have no account, so "my orders" would only
+  // bounce them to the login page.
+  let isGuestLink = false;
   let items: Array<{ name: string; quantity: number; total: number }> = [];
 
   if (session_id) {
@@ -32,6 +35,7 @@ export default async function CheckoutSuccessPage({ searchParams }: Props) {
       ]);
       total = session.amount_total ?? null;
       email = session.customer_details?.email ?? session.customer_email ?? null;
+      isGuestLink = session.metadata?.source === "link";
       items = lineItems.data.map((li) => ({
         name: li.description ?? "Servizio",
         quantity: li.quantity ?? 1,
@@ -101,18 +105,29 @@ export default async function CheckoutSuccessPage({ searchParams }: Props) {
           )}
 
           <div className="mt-12 flex flex-wrap items-center gap-4">
-            <Link
-              href="/account/ordini"
-              className="bg-[var(--color-foreground)] px-8 py-3 text-sm tracking-wide text-[var(--color-background)] transition-colors hover:bg-[var(--color-accent)]"
-            >
-              Vai ai miei ordini
-            </Link>
-            <Link
-              href="/servizi"
-              className="link-underline text-sm tracking-wide text-[var(--color-foreground)]"
-            >
-              Continua a sfogliare
-            </Link>
+            {isGuestLink ? (
+              <Link
+                href="/servizi"
+                className="bg-[var(--color-foreground)] px-8 py-3 text-sm tracking-wide text-[var(--color-background)] transition-colors hover:bg-[var(--color-accent)]"
+              >
+                Scopri gli altri servizi
+              </Link>
+            ) : (
+              <>
+                <Link
+                  href="/account/ordini"
+                  className="bg-[var(--color-foreground)] px-8 py-3 text-sm tracking-wide text-[var(--color-background)] transition-colors hover:bg-[var(--color-accent)]"
+                >
+                  Vai ai miei ordini
+                </Link>
+                <Link
+                  href="/servizi"
+                  className="link-underline text-sm tracking-wide text-[var(--color-foreground)]"
+                >
+                  Continua a sfogliare
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </section>

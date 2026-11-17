@@ -98,6 +98,11 @@ export default async function AdminOrdersPage() {
                   </td>
                   <td className="px-4 py-3 text-[var(--color-foreground)]">
                     {o.email}
+                    {o.source === "link" && (
+                      <span className="ml-2 whitespace-nowrap text-xs text-[var(--color-muted)]">
+                        · Link diretto{o.userId ? "" : " (ospite)"}
+                      </span>
+                    )}
                   </td>
                   <td className="px-4 py-3 text-[var(--color-muted)]">
                     {formatDate(o.createdAt)}
